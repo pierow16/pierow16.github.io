@@ -990,13 +990,14 @@ ___粗斜体文本___
   <entry>
     <title>多媒体图文音视频</title>
     <url>/2023/03/02/html/video/</url>
-    <content><![CDATA[<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><ul>
-<li>在 <code>&lt;picture&gt;</code> 标签中使用 <code>&lt;source&gt;</code> 来设置不同屏幕显示的图片：<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">&lt;picture&gt;</span><br><span class="line">  &lt;source media<span class="operator">=</span><span class="string">&quot;(min-width:650px)&quot;</span> srcset<span class="operator">=</span><span class="string">&quot;https://static.runoob.com/images/runoob-logo.png&quot;</span>&gt;</span><br><span class="line">  &lt;source media<span class="operator">=</span><span class="string">&quot;(min-width:465px)&quot;</span> srcset<span class="operator">=</span><span class="string">&quot;https://static.runoob.com/images/code-icon-script.png&quot;</span>&gt;</span><br><span class="line">  &lt;img decoding<span class="operator">=</span><span class="string">&quot;async&quot;</span> src<span class="operator">=</span><span class="string">&quot;https://static.runoob.com/images/mix/hjkg_icon.png&quot;</span>  style<span class="operator">=</span><span class="string">&quot;width:auto;&quot;</span>&gt;</span><br><span class="line">&lt;/picture&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><blockquote>
+<p>在 <code>&lt;picture&gt;</code> 标签中使用 <code>&lt;source&gt;</code> 来设置不同屏幕显示的图片：</p>
+</blockquote>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">&lt;picture&gt;</span><br><span class="line">  &lt;source media<span class="operator">=</span><span class="string">&quot;(min-width:650px)&quot;</span> srcset<span class="operator">=</span><span class="string">&quot;https://static.runoob.com/images/runoob-logo.png&quot;</span>&gt;</span><br><span class="line">  &lt;source media<span class="operator">=</span><span class="string">&quot;(min-width:465px)&quot;</span> srcset<span class="operator">=</span><span class="string">&quot;https://static.runoob.com/images/code-icon-script.png&quot;</span>&gt;</span><br><span class="line">  &lt;img decoding<span class="operator">=</span><span class="string">&quot;async&quot;</span> src<span class="operator">=</span><span class="string">&quot;https://static.runoob.com/images/mix/hjkg_icon.png&quot;</span>  style<span class="operator">=</span><span class="string">&quot;width:auto;&quot;</span>&gt;</span><br><span class="line">&lt;/picture&gt;</span><br></pre></td></tr></table></figure>
+
 <h2 id="音频Audio"><a href="#音频Audio" class="headerlink" title="音频Audio"></a>音频Audio</h2><blockquote>
 <p><code>&lt;Audio&gt;</code>标签使用</p>
 </blockquote>
-</li>
-</ul>
 <ul>
 <li><code>&lt;embed&gt;</code> 标签在 HTML 4 中是无效的。页面无法通过 HTML 4 验证。</li>
 <li>audio IE9.0支持</li>
@@ -1007,30 +1008,24 @@ ___粗斜体文本___
 <li>preload&#x3D;”preload”：音频在页面加载时进行加载，并预备播放。</li>
 </ul>
 </li>
-<li>可以在audio标签内写多个source标签来指定资源文件标签，浏览器会<b>选择第一个支持的格式</b>来进行播放。<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">id</span>=<span class="string">&quot;player&quot;</span> <span class="attr">controls</span> <span class="attr">autoplay</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;src/sulver_4.mp3&quot;</span> <span class="attr">type</span>=<span class="string">&quot;audio/mpeg&quot;</span>&gt;</span>  //source资源文件标签</span><br><span class="line">   <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;src/sulver_4.ogg&quot;</span> <span class="attr">type</span>=<span class="string">&quot;audio/ogg&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">embed</span> <span class="attr">height</span>=<span class="string">&quot;50&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">src</span>=<span class="string">&quot;src/sulver_4.ogg&quot;</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- Your browser does not support this audio format. --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li>可以在audio标签内写多个source标签来指定资源文件标签，浏览器会<b>选择第一个支持的格式</b>来进行播放。<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">id</span>=<span class="string">&quot;player&quot;</span> <span class="attr">controls</span> <span class="attr">autoplay</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;src/sulver_4.mp3&quot;</span> <span class="attr">type</span>=<span class="string">&quot;audio/mpeg&quot;</span>&gt;</span>  //source资源文件标签</span><br><span class="line">   <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;src/sulver_4.ogg&quot;</span> <span class="attr">type</span>=<span class="string">&quot;audio/ogg&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">embed</span> <span class="attr">height</span>=<span class="string">&quot;50&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">src</span>=<span class="string">&quot;src/sulver_4.ogg&quot;</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- Your browser does not support this audio format. --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Audio-x2F-Video-的一些方法-amp-属性设置-html5"><a href="#Audio-x2F-Video-的一些方法-amp-属性设置-html5" class="headerlink" title=" Audio&#x2F;Video 的一些方法&amp;属性设置  (html5)"></a><b> Audio&#x2F;Video 的一些方法&amp;属性设置  (html5)</b></h2><p><code>$(&#39;#player&#39;)[0]  // player是audio对象（js）。</code></p>
 <blockquote>
-<p>Audio&#x2F;Video 的一些方法&amp;属性设置  (html5)<br> player是audio对象（js）。<br>只读属性：</p>
+<p><b>只读属性</b>：</p>
 </blockquote>
 <ul>
-<li><p><code>player.duration</code>音频总时长 双精度浮点数double。返回音频的总时长，单位为秒。</p>
-<ul>
+<li><code>player.duration</code>音频总时长 双精度浮点数double。返回音频的总时长，单位为秒。<ul>
 <li>注意：如果音频元数据还没加载好，则这个值会是NaN <figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">const audioDOM = document.get<span class="constructor">ElementById(<span class="string">&quot;audio&quot;</span>)</span>;</span><br><span class="line"><span class="keyword">if</span> (is<span class="constructor">NaN(<span class="params">audioDOM</span>.<span class="params">duration</span>)</span>) &#123;</span><br><span class="line">   <span class="comment">// 未加载时的操作</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="comment">// 已加载时的操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p><code>player.paused</code> &#x2F;&#x2F;音频是否暂停 返回boolean </p>
-</li>
-<li><p><code>player.ended</code> boolean</p>
-</li>
-<li><p><code>player.currentSrc</code> &#x2F;&#x2F;当前音频链接</p>
-</li>
-<li><p><code>player.buffered</code>  &#x2F;&#x2F;已缓存范围 可用来做缓存进度条</p>
- <figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">示例（获取已加载的比例）:</span><br><span class="line"><span class="built_in">let</span> audio = document.getElementById(<span class="string">&quot;audio&quot;</span>);</span><br><span class="line"><span class="built_in">let</span> timeRanges = audio.buffered;</span><br><span class="line"><span class="built_in">let</span> <span class="built_in">num</span> = <span class="number">0</span>;</span><br><span class="line"><span class="comment">/*获取已加载时长，然后除以歌曲时长，即可得到已加载比例*/</span></span><br><span class="line"><span class="keyword">if</span>(timeRanges.<span class="built_in">length</span> &gt; <span class="number">0</span>)</span><br><span class="line">   <span class="built_in">num</span> = parseInt(timeRanges.end(timeRanges.<span class="built_in">length</span> - <span class="number">1</span>) * <span class="number">100</span> / audio.duration);</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">num</span> &gt; <span class="number">100</span>)</span><br><span class="line">   <span class="built_in">num</span> = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">num</span> &lt; <span class="number">0</span>)</span><br><span class="line">   <span class="built_in">num</span> = <span class="number">0</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p><code>seekable</code> 可跳转范围,TimeRanges对象。同buffered。</p>
-</li>
-<li><p><code>networkState</code>网络范围</p>
-</li>
-<li><p><code>error </code>发生错误</p>
-<ul>
+<li><code>player.paused</code> &#x2F;&#x2F;音频是否暂停 返回boolean </li>
+<li><code>player.ended</code> boolean</li>
+<li><code>player.currentSrc</code> &#x2F;&#x2F;当前音频链接</li>
+<li><code>player.buffered</code>  &#x2F;&#x2F;已缓存范围 可用来做缓存进度条 <figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">示例（获取已加载的比例）:</span><br><span class="line"><span class="built_in">let</span> audio = document.getElementById(<span class="string">&quot;audio&quot;</span>);</span><br><span class="line"><span class="built_in">let</span> timeRanges = audio.buffered;</span><br><span class="line"><span class="built_in">let</span> <span class="built_in">num</span> = <span class="number">0</span>;</span><br><span class="line"><span class="comment">/*获取已加载时长，然后除以歌曲时长，即可得到已加载比例*/</span></span><br><span class="line"><span class="keyword">if</span>(timeRanges.<span class="built_in">length</span> &gt; <span class="number">0</span>)</span><br><span class="line">   <span class="built_in">num</span> = parseInt(timeRanges.end(timeRanges.<span class="built_in">length</span> - <span class="number">1</span>) * <span class="number">100</span> / audio.duration);</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">num</span> &gt; <span class="number">100</span>)</span><br><span class="line">   <span class="built_in">num</span> = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">num</span> &lt; <span class="number">0</span>)</span><br><span class="line">   <span class="built_in">num</span> = <span class="number">0</span>;</span><br></pre></td></tr></table></figure></li>
+<li><code>seekable</code> 可跳转范围,TimeRanges对象。同buffered。</li>
+<li><code>networkState</code>网络范围</li>
+<li><code>error </code>发生错误<ul>
 <li>code 错误码：<ul>
 <li>MEDIA_ERR_ABORTED，音频加载加载过程中由于用户操作而被终止.</li>
 <li>MEDIA_ERR_NETWORK，确认音频资源可用，但是加载时出现网路错误，音频加载被终止</li>
@@ -1041,32 +1036,33 @@ ___粗斜体文本___
 <li>message 错误描述信息</li>
 </ul>
 </li>
-<li><p><code>seeking</code> 是否移动或跳转播放进度</p>
- <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">seeking</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="keyword">const</span> audioDOM = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;audio&quot;</span>);</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(audioDOM.<span class="property">seeking</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><code>seeking</code> 是否移动或跳转播放进度 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">seeking</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="keyword">const</span> audioDOM = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;audio&quot;</span>);</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(audioDOM.<span class="property">seeking</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 <blockquote>
-<p>可读写:</p>
+<p><b>可读写</b>:</p>
 </blockquote>
-</li>
-<li><p><code>player.currentTime</code> &#x2F;&#x2F;设置或返回音频&#x2F;视频播放的当前位置（以秒计），当设置该属性时，播放会跳跃到指定的位置。</p>
 <ul>
+<li><code>player.currentTime</code> &#x2F;&#x2F;设置或返回音频&#x2F;视频播放的当前位置（以秒计），当设置该属性时，播放会跳跃到指定的位置。<ul>
 <li>双精度浮点数double，返回已经播放的时长，单位为秒。可以给它赋值修改，来实现快进，回退，跳转等功能</li>
 <li>取值应在 [0, (duration)]</li>
 </ul>
 </li>
-<li><p><code>player.volume = value;</code> &#x2F;&#x2F;设置音量 双精度浮点数double，返回当前音量大小，</p>
-<ul>
+<li><code>player.volume = value;</code> &#x2F;&#x2F;设置音量 双精度浮点数double，返回当前音量大小，<ul>
 <li>默认为 1，值为0时为静音。可修改它来增大，降低音量</li>
 <li>取值应在 [0, 1]</li>
 </ul>
 </li>
-<li><p><code>player.playbackRate</code>播放速度 双精度浮点数double，返回当前播放速度，默认为 1. 取值建议在 [0, 2]</p>
- <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">if</span> (audioDOM.playbackRate &gt;= <span class="number">2</span>)</span><br><span class="line">   <span class="attribute">audioDOM</span>.playbackRate = <span class="number">0</span>.<span class="number">5</span>;</span><br><span class="line"><span class="attribute">else</span></span><br><span class="line">   <span class="attribute">audioDOM</span>.playbackRate += <span class="number">0</span>.<span class="number">25</span>;</span><br></pre></td></tr></table></figure>
+<li><code>player.playbackRate</code>播放速度 双精度浮点数double，返回当前播放速度，默认为 1. 取值建议在 [0, 2] <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">if</span> (audioDOM.playbackRate &gt;= <span class="number">2</span>)</span><br><span class="line">   <span class="attribute">audioDOM</span>.playbackRate = <span class="number">0</span>.<span class="number">5</span>;</span><br><span class="line"><span class="attribute">else</span></span><br><span class="line">   <span class="attribute">audioDOM</span>.playbackRate += <span class="number">0</span>.<span class="number">25</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
 <blockquote>
-<p>标签属性控制  loop &#x2F; controls &#x2F; muted &#x2F; autoplay 属性都会返回布尔值boolean，可读写设置对应的标签属性是否启用</p>
- <figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">const audioDOM <span class="operator">=</span> document.getElementById(<span class="string">&quot;audio&quot;</span>)<span class="comment">;</span></span><br><span class="line">audioDOM.controls <span class="operator">=</span> true<span class="comment">;</span></span><br><span class="line">if(audioDOM.loop <span class="operator">=</span><span class="operator">=</span> false)&#123;</span><br><span class="line">   audioDOM.loop <span class="operator">=</span> true<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>JS操作函数</p>
+<p><b>标签属性控制</b>  loop &#x2F; controls &#x2F; muted &#x2F; autoplay 属性都会返回布尔值boolean，可读写设置对应的标签属性是否启用</p>
 </blockquote>
-</li>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">const audioDOM <span class="operator">=</span> document.getElementById(<span class="string">&quot;audio&quot;</span>)<span class="comment">;</span></span><br><span class="line">audioDOM.controls <span class="operator">=</span> true<span class="comment">;</span></span><br><span class="line">if(audioDOM.loop <span class="operator">=</span><span class="operator">=</span> false)&#123;</span><br><span class="line">   audioDOM.loop <span class="operator">=</span> true<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><b>JS操作函数</b></p>
+</blockquote>
+<ul>
 <li><p><code>player.play()</code>  &#x2F;&#x2F;播放音频</p>
  <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (audioDOM.canPlay == true) &#123;   <span class="regexp">//</span>如果资源准备好可以播放</span><br><span class="line"><span class="keyword">if</span> (audioDOM.paused == true)  <span class="regexp">//</span>音频为暂停状态</span><br><span class="line">   audioDOM.play();    <span class="regexp">//</span>播放</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   audioDOM.pause();   <span class="regexp">//</span>暂停</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p><code>player.pause()</code> &#x2F;&#x2F;暂停</p>
@@ -1082,82 +1078,68 @@ ___粗斜体文本___
 <ul>
 <li>“probably” - 浏览器最可能支持该音频&#x2F;视频类型</li>
 <li>“maybe” - 浏览器也许支持该音频&#x2F;视频类型</li>
-<li>“” - （空字符串）浏览器不支持该音频&#x2F;视频类型 <figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;probably&quot;</span> - 浏览器最可能支持该音频/视频类型</span><br><span class="line"><span class="string">&quot;maybe&quot;</span> - 浏览器也许支持该音频/视频类型</span><br><span class="line"><span class="string">&quot;&quot;</span> - （空字符串）浏览器不支持该音频/视频类型</span><br></pre></td></tr></table></figure></li>
+<li>“” - （空字符串）浏览器不支持该音频&#x2F;视频类型<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;probably&quot;</span> - 浏览器最可能支持该音频/视频类型</span><br><span class="line"><span class="string">&quot;maybe&quot;</span> - 浏览器也许支持该音频/视频类型</span><br><span class="line"><span class="string">&quot;&quot;</span> - （空字符串）浏览器不支持该音频/视频类型</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p><code>addTextTrack()</code> &#x2F;&#x2F;向音频&#x2F;视频添加新的文本轨道 (暂时不知道用途主流不支持)</p>
+</li>
+</ul>
 <blockquote>
-<p>事件</p>
+<p><b>事件</b></p>
 </blockquote>
-</li>
-<li><p><code>loadstart</code>开始加载</p>
-</li>
-<li><p><code>durationchange</code>时长改变 ： 音频的总时长改变了。一般就是加载好歌曲的元数据了，或者是切换audio标签的src资源，即切换歌曲的时候。</p>
-</li>
-<li><p><code>loadedmetadata</code>元数据加载完毕</p>
 <ul>
+<li><code>loadstart</code>开始加载</li>
+<li><code>durationchange</code>时长改变 ： 音频的总时长改变了。一般就是加载好歌曲的元数据了，或者是切换audio标签的src资源，即切换歌曲的时候。</li>
+<li><code>loadedmetadata</code>元数据加载完毕<ul>
 <li>可以用作判断“音频初始化”的方法。当然初始化也可以用duration属性是否为NaN或者durationchange来判断。其中元数据就包含有歌曲总时长，标题，艺术家等信息。</li>
 </ul>
 </li>
-<li><p><code>loadeddata</code> 数据开始加载</p>
-</li>
-<li><p><code>progress</code> 加载中</p>
-<ul>
+<li><code>loadeddata</code> 数据开始加载</li>
+<li><code>progress</code> 加载中<ul>
 <li>每次浏览器一加载，就会触发这个事件。</li>
 <li>注意这个事件并不是在加载完成前一直触发，浏览器一般一开始只会加载一部分，然后等你播放或跳跃到和已经加载的音频差不多或是已经超过的时候，才会开始再加载一部分，以此直到完成加载整个音频。</li>
 <li>加载进度条的长度改变函数，就可以绑定在这个事件上。</li>
 </ul>
 </li>
-<li><p><code>canplay</code> 可以播放</p>
-<ul>
+<li><code>canplay</code> 可以播放<ul>
 <li>音频可以播放了。音频只加载了一部分，但已经可以开始播放了</li>
 <li>可以通过这个事件来设置加载动画。触发前启用加载动画，触发后移除加载动画</li>
 </ul>
 </li>
-<li><p><code>canplaythrough</code>  可以播放整个音频</p>
-<ul>
+<li><code>canplaythrough</code>  可以播放整个音频<ul>
 <li>浏览器预计在不停下来进行缓冲的情况下，能够持续播放音频时会触发</li>
 </ul>
 </li>
-<li><p><code>player.oncanplay = function () &#123;//播放时候执行&#125;</code></p>
-<blockquote>
+<li><code>player.oncanplay = function () &#123;//播放时候执行&#125;</code><blockquote>
 <p>其他事件</p>
 </blockquote>
 </li>
-<li><p><code>timeupdate</code> 已播放时长更新</p>
-<ul>
+<li><code>timeupdate</code> 已播放时长更新<ul>
 <li>即 currentTime 更新了，最频繁是每250毫秒触发一次。</li>
 <li>播放进度条长度改变函数就可以绑定在这个事件上</li>
 </ul>
 </li>
-<li><p><code>waiting</code> 等待资源中 由于没有数据而导致暂停时触发.可用于绑定加载动画</p>
-</li>
-<li><p><code>playing</code>播放中 从waiting状态转换到可以播放的状态时触发。</p>
-</li>
-<li><p><code>play</code>播放<code> play()</code>方法被调用时触发。</p>
-</li>
-<li><p><code>pause</code>暂停 <code>pause()</code>方法被调用时触发。</p>
-</li>
-<li><p><code>ended</code>结束 音频播放完毕后触发。 ，可以实现播放列表的循环播放，随机播放</p>
-<ul>
+<li><code>waiting</code> 等待资源中 由于没有数据而导致暂停时触发.可用于绑定加载动画</li>
+<li><code>playing</code>播放中 从waiting状态转换到可以播放的状态时触发。</li>
+<li><code>play</code>播放<code> play()</code>方法被调用时触发。</li>
+<li><code>pause</code>暂停 <code>pause()</code>方法被调用时触发。</li>
+<li><code>ended</code>结束 音频播放完毕后触发。 ，可以实现播放列表的循环播放，随机播放<ul>
 <li>当设置了autoplay时，不会触发这个事件</li>
 <li>利用这个事件，可以实现播放列表的循环播放，随机播放。当触发时，切换src资源链接，并等待加载触发canplay，然后play()播放。</li>
 </ul>
 </li>
-<li><p><code>volumechange</code>音量改变. 音量条的函数可以绑定在这个事件上</p>
-</li>
-<li><p><code>ratechange</code> 播放速率改变</p>
-</li>
-<li><p><code>error</code> 发生错误</p>
-</li>
-</ul>
-</li>
+<li><code>volumechange</code>音量改变. 音量条的函数可以绑定在这个事件上</li>
+<li><code>ratechange</code> 播放速率改变</li>
+<li><code>error</code> 发生错误</li>
 </ul>
 <blockquote>
-<p>js控制从某个时刻开始播放<br>   <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从某个时刻开始播放  </span></span><br><span class="line"><span class="keyword">var</span> player=$(<span class="string">&quot;#player&quot;</span>)[<span class="number">0</span>];</span><br><span class="line">player.<span class="property">currentTime</span> = <span class="number">4</span>; <span class="comment">//从4s位置开始播放</span></span><br><span class="line">player.<span class="title function_">play</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.5s后停止播放</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">   player.<span class="title function_">pause</span>()</span><br><span class="line">&#125;,<span class="number">1500</span>)</span><br></pre></td></tr></table></figure><br>js创建audio对象<br>   <figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">// <span class="number">1</span>.</span><br><span class="line">var audio <span class="operator">=</span> document.createElement(<span class="string">&quot;audio&quot;</span>)<span class="comment">;</span></span><br><span class="line">audio.src <span class="operator">=</span> <span class="string">&quot;hangge.mp3&quot;</span><span class="comment">;</span></span><br><span class="line">audio.play()<span class="comment">;</span></span><br><span class="line">//<span class="number">2</span>.</span><br><span class="line">var audio <span class="operator">=</span> new Audio(<span class="string">&quot;hangge.mp3&quot;</span>)<span class="comment">;</span></span><br><span class="line">audio.play()<span class="comment">;</span></span><br><span class="line">//通过canPlayType()方法可以判断浏览器支持的编码方式，从而设置对应的音频文件。</span><br><span class="line">if (audio.canPlayType(<span class="string">&quot;audio/mp3&quot;</span>)) &#123;</span><br><span class="line">   audio.src <span class="operator">=</span> <span class="string">&quot;hangge.mp3&quot;</span><span class="comment">;</span></span><br><span class="line">&#125;else if(audio.canPlayType(<span class="string">&quot;audio/ogg&quot;</span>)) &#123;</span><br><span class="line">   audio.src <span class="operator">=</span> <span class="string">&quot;hangge.ogg&quot;</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><b>js控制从某个时刻开始播放</b><br>   <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从某个时刻开始播放  </span></span><br><span class="line"><span class="keyword">var</span> player=$(<span class="string">&quot;#player&quot;</span>)[<span class="number">0</span>];</span><br><span class="line">player.<span class="property">currentTime</span> = <span class="number">4</span>; <span class="comment">//从4s位置开始播放</span></span><br><span class="line">player.<span class="title function_">play</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.5s后停止播放</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">   player.<span class="title function_">pause</span>()</span><br><span class="line">&#125;,<span class="number">1500</span>)</span><br></pre></td></tr></table></figure><br><b>js创建audio对象</b><br>   <figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">// <span class="number">1</span>.</span><br><span class="line">var audio <span class="operator">=</span> document.createElement(<span class="string">&quot;audio&quot;</span>)<span class="comment">;</span></span><br><span class="line">audio.src <span class="operator">=</span> <span class="string">&quot;hangge.mp3&quot;</span><span class="comment">;</span></span><br><span class="line">audio.play()<span class="comment">;</span></span><br><span class="line">//<span class="number">2</span>.</span><br><span class="line">var audio <span class="operator">=</span> new Audio(<span class="string">&quot;hangge.mp3&quot;</span>)<span class="comment">;</span></span><br><span class="line">audio.play()<span class="comment">;</span></span><br><span class="line">//通过canPlayType()方法可以判断浏览器支持的编码方式，从而设置对应的音频文件。</span><br><span class="line">if (audio.canPlayType(<span class="string">&quot;audio/mp3&quot;</span>)) &#123;</span><br><span class="line">   audio.src <span class="operator">=</span> <span class="string">&quot;hangge.mp3&quot;</span><span class="comment">;</span></span><br><span class="line">&#125;else if(audio.canPlayType(<span class="string">&quot;audio/ogg&quot;</span>)) &#123;</span><br><span class="line">   audio.src <span class="operator">=</span> <span class="string">&quot;hangge.ogg&quot;</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h2 id="视频video"><a href="#视频video" class="headerlink" title="视频video"></a>视频video</h2><blockquote>
-<p><code>&lt;video&gt;</code>标签使用<br><br>最好的 HTML 解决方法 : <b>HTML 5 +<code> &lt;object&gt;</code> +<code>&lt;embed&gt;</code></b><br>   <figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">//HTML <span class="number">5</span> &lt;video&gt; 元素会尝试播放以 mp4、ogg 或 webm 格式中的一种来播放视频。</span><br><span class="line">//如果均失败，则回退到 &lt;embed&gt; 元素。</span><br><span class="line">&lt;video width<span class="operator">=</span><span class="string">&quot;320&quot;</span> height<span class="operator">=</span><span class="string">&quot;240&quot;</span> controls<span class="operator">=</span><span class="string">&quot;controls&quot;</span>&gt;</span><br><span class="line">&lt;source src<span class="operator">=</span><span class="string">&quot;movie.mp4&quot;</span> type<span class="operator">=</span><span class="string">&quot;video/mp4&quot;</span> /&gt;</span><br><span class="line">&lt;source src<span class="operator">=</span><span class="string">&quot;movie.ogg&quot;</span> type<span class="operator">=</span><span class="string">&quot;video/ogg&quot;</span> /&gt;</span><br><span class="line">&lt;source src<span class="operator">=</span><span class="string">&quot;movie.webm&quot;</span> type<span class="operator">=</span><span class="string">&quot;video/webm&quot;</span> /&gt;</span><br><span class="line">&lt;object data<span class="operator">=</span><span class="string">&quot;movie.mp4&quot;</span> width<span class="operator">=</span><span class="string">&quot;320&quot;</span> height<span class="operator">=</span><span class="string">&quot;240&quot;</span>&gt;</span><br><span class="line">   &lt;embed src<span class="operator">=</span><span class="string">&quot;movie.swf&quot;</span> width<span class="operator">=</span><span class="string">&quot;320&quot;</span> height<span class="operator">=</span><span class="string">&quot;240&quot;</span> /&gt;</span><br><span class="line">&lt;/object&gt;</span><br><span class="line">&lt;/video&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>&lt;video&gt;</code>标签使用<br>最好的 HTML 解决方法 : <b>HTML 5 +<code> &lt;object&gt;</code> +<code>&lt;embed&gt;</code></p>
+</blockquote>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">//HTML <span class="number">5</span> &lt;video&gt; 元素会尝试播放以 mp4、ogg 或 webm 格式中的一种来播放视频。</span><br><span class="line">//如果均失败，则回退到 &lt;embed&gt; 元素。</span><br><span class="line">&lt;video width<span class="operator">=</span><span class="string">&quot;320&quot;</span> height<span class="operator">=</span><span class="string">&quot;240&quot;</span> controls<span class="operator">=</span><span class="string">&quot;controls&quot;</span>&gt;</span><br><span class="line">&lt;source src<span class="operator">=</span><span class="string">&quot;movie.mp4&quot;</span> type<span class="operator">=</span><span class="string">&quot;video/mp4&quot;</span> /&gt;</span><br><span class="line">&lt;source src<span class="operator">=</span><span class="string">&quot;movie.ogg&quot;</span> type<span class="operator">=</span><span class="string">&quot;video/ogg&quot;</span> /&gt;</span><br><span class="line">&lt;source src<span class="operator">=</span><span class="string">&quot;movie.webm&quot;</span> type<span class="operator">=</span><span class="string">&quot;video/webm&quot;</span> /&gt;</span><br><span class="line">&lt;object data<span class="operator">=</span><span class="string">&quot;movie.mp4&quot;</span> width<span class="operator">=</span><span class="string">&quot;320&quot;</span> height<span class="operator">=</span><span class="string">&quot;240&quot;</span>&gt;</span><br><span class="line">   &lt;embed src<span class="operator">=</span><span class="string">&quot;movie.swf&quot;</span> width<span class="operator">=</span><span class="string">&quot;320&quot;</span> height<span class="operator">=</span><span class="string">&quot;240&quot;</span> /&gt;</span><br><span class="line">&lt;/object&gt;</span><br><span class="line">&lt;/video&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
 <ul>
 <li>HTML4 无法识别 <code>&lt;embed&gt;</code> 标签。您的页面无法通过验证。</li>
 <li>如果浏览器不支持 Flash，那么视频将无法播放</li>
@@ -1169,17 +1151,17 @@ ___粗斜体文本___
 </blockquote>
 <ul>
 <li>如果未显示 object 元素，就会执行位于<code> &lt;object&gt;</code> 和 <code>&lt;/object&gt;</code> 之间的代码。通过这种方式，我们能够嵌套多个 object 元素（每个对应一个浏览器）。</li>
-<li>不要对图像使用<code> &lt;object&gt;</code> 标签，请使用<code> &lt;img&gt;</code> 标签代替。   <figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">&lt;object classid<span class="operator">=</span><span class="string">&quot;clsid:F08DF954-8592-11D1-B16A-00C0F0283628&quot;</span> id<span class="operator">=</span><span class="string">&quot;Slider1&quot;</span> width<span class="operator">=</span><span class="string">&quot;100&quot;</span> height<span class="operator">=</span><span class="string">&quot;50&quot;</span>&gt;</span><br><span class="line">   &lt;param name<span class="operator">=</span><span class="string">&quot;BorderStyle&quot;</span> value<span class="operator">=</span><span class="string">&quot;1&quot;</span> /&gt;</span><br><span class="line">   &lt;param name<span class="operator">=</span><span class="string">&quot;MousePointer&quot;</span> value<span class="operator">=</span><span class="string">&quot;0&quot;</span> /&gt;</span><br><span class="line">   &lt;param name<span class="operator">=</span><span class="string">&quot;Enabled&quot;</span> value<span class="operator">=</span><span class="string">&quot;1&quot;</span> /&gt;</span><br><span class="line">   &lt;param name<span class="operator">=</span><span class="string">&quot;Min&quot;</span> value<span class="operator">=</span><span class="string">&quot;0&quot;</span> /&gt;</span><br><span class="line">   &lt;param name<span class="operator">=</span><span class="string">&quot;Max&quot;</span> value<span class="operator">=</span><span class="string">&quot;10&quot;</span> /&gt;</span><br><span class="line">&lt;/object&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="相关链接以及参考mark"><a href="#相关链接以及参考mark" class="headerlink" title="相关链接以及参考mark"></a>相关链接以及参考mark</h2></li>
+<li>不要对图像使用<code> &lt;object&gt;</code> 标签，请使用<code> &lt;img&gt;</code> 标签代替。   <figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">&lt;object classid<span class="operator">=</span><span class="string">&quot;clsid:F08DF954-8592-11D1-B16A-00C0F0283628&quot;</span> id<span class="operator">=</span><span class="string">&quot;Slider1&quot;</span> width<span class="operator">=</span><span class="string">&quot;100&quot;</span> height<span class="operator">=</span><span class="string">&quot;50&quot;</span>&gt;</span><br><span class="line">   &lt;param name<span class="operator">=</span><span class="string">&quot;BorderStyle&quot;</span> value<span class="operator">=</span><span class="string">&quot;1&quot;</span> /&gt;</span><br><span class="line">   &lt;param name<span class="operator">=</span><span class="string">&quot;MousePointer&quot;</span> value<span class="operator">=</span><span class="string">&quot;0&quot;</span> /&gt;</span><br><span class="line">   &lt;param name<span class="operator">=</span><span class="string">&quot;Enabled&quot;</span> value<span class="operator">=</span><span class="string">&quot;1&quot;</span> /&gt;</span><br><span class="line">   &lt;param name<span class="operator">=</span><span class="string">&quot;Min&quot;</span> value<span class="operator">=</span><span class="string">&quot;0&quot;</span> /&gt;</span><br><span class="line">   &lt;param name<span class="operator">=</span><span class="string">&quot;Max&quot;</span> value<span class="operator">=</span><span class="string">&quot;10&quot;</span> /&gt;</span><br><span class="line">&lt;/object&gt;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<ul>
+<h2 id="相关链接以及参考mark"><a href="#相关链接以及参考mark" class="headerlink" title="相关链接以及参考mark"></a>相关链接以及参考mark</h2><ul>
 <li>HTML 音频&#x2F;视频 DOM 参考手册 ：<a href="https://www.runoob.com/tags/ref-av-dom.html">https://www.runoob.com/tags/ref-av-dom.html</a></li>
 <li>音乐播放器exp <a href="https://www.cnblogs.com/coderwcb/p/16090563.html">https://www.cnblogs.com/coderwcb/p/16090563.html</a></li>
 </ul>
 <ul>
 <li>JS实现audio音频剪裁剪切复制播放与上传(步骤详解 <a href="http://www.ay1.cc/article/33460.html">http://www.ay1.cc/article/33460.html</a></li>
 <li>时间转换？<a href="https://www.jb51.net/article/200835.htm">https://www.jb51.net/article/200835.htm</a></li>
-<li>笔记部分摘要： <a href="https://blog.coolight.cool/htmlaudio%e9%9f%b3%e9%a2%91%e6%a0%87%e7%ad%be%e7%9a%84%e5%b1%9e%e6%80%a7%e5%92%8c%e4%ba%8b%e4%bb%b6/">https://blog.coolight.cool/htmlaudio%e9%9f%b3%e9%a2%91%e6%a0%87%e7%ad%be%e7%9a%84%e5%b1%9e%e6%80%a7%e5%92%8c%e4%ba%8b%e4%bb%b6/</a></li>
+<li>笔记部分摘要!!<br> <a href="https://blog.coolight.cool/htmlaudio%e9%9f%b3%e9%a2%91%e6%a0%87%e7%ad%be%e7%9a%84%e5%b1%9e%e6%80%a7%e5%92%8c%e4%ba%8b%e4%bb%b6/">https://blog.coolight.cool/htmlaudio%e9%9f%b3%e9%a2%91%e6%a0%87%e7%ad%be%e7%9a%84%e5%b1%9e%e6%80%a7%e5%92%8c%e4%ba%8b%e4%bb%b6/</a></li>
+<li>html属性方法 <a href="https://www.runoob.com/tags/ref-eventattributes.html">https://www.runoob.com/tags/ref-eventattributes.html</a></li>
 </ul>
 ]]></content>
       <categories>

@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="javascript中function&amp;method的归纳总结">
+<meta name="description" content="javascript中function&amp;method的概念以及this指向">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript函数&amp;方法笔记归纳">
+<meta property="og:title" content="js函数&amp;方法概念以及this指向归纳">
 <meta property="og:url" content="http://example.com/2023/03/03/JavaScript/function/index.html">
 <meta property="og:site_name" content="鸣子铺">
-<meta property="og:description" content="javascript中function&amp;method的归纳总结">
+<meta property="og:description" content="javascript中function&amp;method的概念以及this指向">
 <meta property="og:locale">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/3317d7238cfa4c72807478874ad80cd9.png#pic_center">
 <meta property="article:published_time" content="2023-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-03T15:29:28.689Z">
+<meta property="article:modified_time" content="2023-03-04T11:18:57.645Z">
 <meta property="article:author" content="Piero">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="function">
@@ -129,7 +129,7 @@
 
 
 
-  <title>javascript函数&方法笔记归纳 | 鸣子铺</title>
+  <title>js函数&方法概念以及this指向归纳 | 鸣子铺</title>
   
 
 
@@ -357,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">javascript函数&方法笔记归纳</h1>
+          <h1 class="post-title" itemprop="name headline">js函数&方法概念以及this指向归纳</h1>
         
 
         <div class="post-meta">
@@ -392,8 +392,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
 
@@ -429,7 +429,7 @@
       
 
       
-        <blockquote class="blockquote-center"><p>javascript中function&amp;method的归纳总结 </p>
+        <blockquote class="blockquote-center"><p>javascript中function&amp;method的概念以及this指向 </p>
 </blockquote>
 
 <span id="more"></span>
@@ -493,7 +493,7 @@
 
 <h2 id="原型链中的this"><a href="#原型链中的this" class="headerlink" title="原型链中的this"></a>原型链中的this</h2><div class="note info"><p>this这个值在一个继承机制中，仍然是指向它原本属于的对象，而不是从原型链上找到它时，它所属于的对象。</p></div>
 
-<h2 id="改变this指向方法-call-apply"><a href="#改变this指向方法-call-apply" class="headerlink" title="改变this指向方法 call() apply()"></a>改变this指向方法 call() apply()</h2><div class="note info"><h1 id="call和apply异同"><a href="#call和apply异同" class="headerlink" title="call和apply异同"></a>call和apply异同</h1><p>都可以调用&amp;执行函数，主要作用：修改函数指向的this（上下文对象），第一个参数是谁this就是谁！</p>
+<h2 id="改变this指向方法-call-apply"><a href="#改变this指向方法-call-apply" class="headerlink" title="改变this指向方法 call() apply()"></a>改变this指向方法 call() apply()</h2><div class="note info"><h2 id="call和apply异同"><a href="#call和apply异同" class="headerlink" title="call和apply异同"></a>call和apply异同</h2><p>都可以调用&amp;执行函数，主要作用：修改函数指向的this（上下文对象），第一个参数是谁this就是谁！</p>
 <ol>
 <li>这两个方法都是<b>函数对象</b>的方法，需要通过<b>函数对象</b>来调用.</li>
 <li>对函数调用<b>call() 和apply 都会调用函数执行</li>
@@ -555,6 +555,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/03/04/JavaScript/scope/" rel="prev" title="作用域&闭包">
+                作用域&闭包 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -635,7 +639,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -657,7 +661,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -690,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">函数和方法区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this-%E4%B8%8A%E4%B8%8B%E6%96%87-%E7%9A%84%E6%8C%87%E5%90%91%E6%83%85%E5%86%B5"><span class="nav-number">2.</span> <span class="nav-text">this 上下文 的指向情况</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91"><span class="nav-number">2.1.</span> <span class="nav-text">箭头函数this指向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E5%AE%9E%E4%BE%8B"><span class="nav-number">2.2.</span> <span class="nav-text">构造函数this指向实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%AD%E7%9A%84this"><span class="nav-number">2.3.</span> <span class="nav-text">原型链中的this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91%E6%96%B9%E6%B3%95-call-apply"><span class="nav-number">2.4.</span> <span class="nav-text">改变this指向方法 call() apply()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#call%E5%92%8Capply%E5%BC%82%E5%90%8C"><span class="nav-number">3.</span> <span class="nav-text">call和apply异同</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="nav-number">3.1.</span> <span class="nav-text">枚举对象属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0-function"><span class="nav-number">3.2.</span> <span class="nav-text">立即执行函数 (function(){})()</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">函数和方法区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this-%E4%B8%8A%E4%B8%8B%E6%96%87-%E7%9A%84%E6%8C%87%E5%90%91%E6%83%85%E5%86%B5"><span class="nav-number">2.</span> <span class="nav-text">this 上下文 的指向情况</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91"><span class="nav-number">2.1.</span> <span class="nav-text">箭头函数this指向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E5%AE%9E%E4%BE%8B"><span class="nav-number">2.2.</span> <span class="nav-text">构造函数this指向实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%AD%E7%9A%84this"><span class="nav-number">2.3.</span> <span class="nav-text">原型链中的this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91%E6%96%B9%E6%B3%95-call-apply"><span class="nav-number">2.4.</span> <span class="nav-text">改变this指向方法 call() apply()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call%E5%92%8Capply%E5%BC%82%E5%90%8C"><span class="nav-number">2.5.</span> <span class="nav-text">call和apply异同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="nav-number">2.6.</span> <span class="nav-text">枚举对象属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0-function"><span class="nav-number">2.7.</span> <span class="nav-text">立即执行函数 (function(){})()</span></a></li></ol></li></ol></div>
             
 
           </div>

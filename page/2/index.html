@@ -358,7 +358,7 @@
         
 
         <div class="post-meta">
-          <span class="fa fa-heart" style="color:pink">爱心</span>
+          <span class="fa fa-heart btn-like" style="color:#f15269;margin-right:10px"> 0 </span> | 
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -547,7 +547,7 @@
         
 
         <div class="post-meta">
-          <span class="fa fa-heart" style="color:pink">爱心</span>
+          <span class="fa fa-heart btn-like" style="color:#f15269;margin-right:10px"> 0 </span> | 
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -730,7 +730,7 @@ var()​ 函数用于插入自定义的属性值如果一个属性值在多处�
         
 
         <div class="post-meta">
-          <span class="fa fa-heart" style="color:pink">爱心</span>
+          <span class="fa fa-heart btn-like" style="color:#f15269;margin-right:10px"> 0 </span> | 
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -919,7 +919,7 @@ var()​ 函数用于插入自定义的属性值如果一个属性值在多处�
         
 
         <div class="post-meta">
-          <span class="fa fa-heart" style="color:pink">爱心</span>
+          <span class="fa fa-heart btn-like" style="color:#f15269;margin-right:10px"> 0 </span> | 
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -1097,7 +1097,7 @@ var()​ 函数用于插入自定义的属性值如果一个属性值在多处�
         
 
         <div class="post-meta">
-          <span class="fa fa-heart" style="color:pink">爱心</span>
+          <span class="fa fa-heart btn-like" style="color:#f15269;margin-right:10px"> 0 </span> | 
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -1275,7 +1275,7 @@ var()​ 函数用于插入自定义的属性值如果一个属性值在多处�
         
 
         <div class="post-meta">
-          <span class="fa fa-heart" style="color:pink">爱心</span>
+          <span class="fa fa-heart btn-like" style="color:#f15269;margin-right:10px"> 0 </span> | 
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -1433,7 +1433,7 @@ var()​ 函数用于插入自定义的属性值如果一个属性值在多处�
         
 
         <div class="post-meta">
-          <span class="fa fa-heart" style="color:pink">爱心</span>
+          <span class="fa fa-heart btn-like" style="color:#f15269;margin-right:10px"> 0 </span> | 
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -1738,7 +1738,6 @@ $(document).ready(function() {
        if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
         {
             $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
-            console.log($("#busuanzi_value_site_pv").text(),countOffset)
             clearInterval(int);
         }                  
         if ($("#busuanzi_container_site_pv").css("display") != "none")
@@ -1747,7 +1746,14 @@ $(document).ready(function() {
             clearInterval(int); // 停止检测
         }  
     }
-       	
+    
+
+    //点赞
+    var likecount = 0;  // 初始化首次数据
+    $('.btn-like').on("click",function(){
+      console.log('点击了爱心')
+     $(this).text(parseInt($(this).text().trim()) + 1)
+    })  	
 });
 </script> 
 

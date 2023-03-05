@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="归纳总结：事件流、事件委托、阻止默认行为、其他事件(页面加载，滚动事件)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件">
+<meta property="og:url" content="http://example.com/2023/03/05/JavaScript/event/index.html">
+<meta property="og:site_name" content="鸣子铺">
+<meta property="og:description" content="归纳总结：事件流、事件委托、阻止默认行为、其他事件(页面加载，滚动事件)">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/images/event1.png">
+<meta property="og:image" content="http://example.com/images/event2.png">
+<meta property="article:published_time" content="2023-03-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-05T12:56:21.589Z">
+<meta property="article:author" content="Piero">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/event1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2023/03/05/JavaScript/event/"/>
+
+
+
+
+
+  <title>事件 | 鸣子铺</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鸣子铺</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个平平无奇的杂货铺</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%E5%85%B3%E4%BA%8E" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorite">
+          <a href="/favorite/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fa-star"></i> <br />
+            
+            收藏夹
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-foreend">
+          <a href="/foreend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fa-star"></i> <br />
+            
+            前端技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resources">
+          <a href="/resources/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-download"></i> <br />
+            
+            资源
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/05/JavaScript/event/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鸣子铺">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">事件</h1>
+        
+
+        <div class="post-meta">
+          <span class="fa fa-heart btn-like" style="color:#f15269;margin-right:10px">  </span> | 
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-05T00:00:00+08:00">
+                2023-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%8B%E4%BB%B6%E6%B5%81/" itemprop="url" rel="index">
+                    <span itemprop="name">事件流</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>归纳总结：事件流、事件委托、阻止默认行为、其他事件(页面加载，滚动事件)</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h1><div class="note info"><ol>
+<li>事件流是指事件完整执行过程中的流动路径<br><img src="/images/event1.png"></li>
+<li>事件流有两个阶段：<mark>事件捕获</mark>和<mark>事件冒泡</mark></li>
+</ol>
+<h2 id="事件捕获-从外到里"><a href="#事件捕获-从外到里" class="headerlink" title="事件捕获 (从外到里)"></a>事件捕获 (从外到里)</h2><ol>
+<li>从Dom根元素开始去执行对应的事件（从外到里</li>
+<li>语法<code>DOM。addEventListener(事件类型，事件处理函数（回调函数），[是否使用捕获机制])</code>  第三个参数可选,<mark>默认false即默认是冒泡</mark></li>
+</ol>
+<ul>
+<li>注意第二个参数回调函数传的是函数名<b style="color:red">不要加()</b>,不是执行。 匿名函数时候才有()  因为匿名函数执行是(function(){})()</li>
+</ul>
+<ol start="3">
+<li><mark><b>L0事件箭头只有冒泡阶段没有捕获</b></mark>  <code>btn.onclick=function(){}</code></li>
+<li><mark>IE浏览器只支持冒泡，不支持捕获</mark>。W3C浏览器先执行捕获，后执行冒泡?<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span><span class="params">()</span><span class="comment">&#123;&#125;</span></span><br><span class="line">//注意第二个参数回调函数传的是函数名不要加<span class="params">()</span>,不是执行。</span><br><span class="line"><span class="title function_">dom</span>.<span class="title function_">addEventListener</span><span class="params">(<span class="string">&#x27;click&#x27;</span>,fn,<span class="keyword">true</span>)</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="事件冒泡-从里到外"><a href="#事件冒泡-从里到外" class="headerlink" title="事件冒泡 (从里到外)"></a>事件冒泡 (从里到外)</h2><ol>
+<li>当一个元素的事件被触发时，<mark>同样的事件</mark>将会在该元素的<b>所有祖先元素中依次被触发</b>。这一过程即事件冒泡。</li>
+<li>当一个元素触发事件后，会<mark>依次向上调用所有父级元素的同名事件。</mark></li>
+<li>L2事件监听第三个参数false，默认都是冒泡<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;outer&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inner&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="keyword">const</span> outer = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.outer&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> inner = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.inner&#x27;</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;我是最外层，整个页面&quot;</span>)&#125;)</span><br><span class="line">outer.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;我是外层outer&quot;</span>)&#125;)</span><br><span class="line">inner.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;我是最里层inner&quot;</span>)&#125;)</span><br><span class="line"><span class="comment">//当点击inner的div时候， 从里到外依次执行同名事件</span></span><br><span class="line"><span class="comment">// 打印结果&amp;顺序如下</span></span><br><span class="line"><span class="comment">// 我是最里层inner at test/js.html:31</span></span><br><span class="line"><span class="comment">// 我是外层outer at test/js.html:30</span></span><br><span class="line"><span class="comment">// 我是最外层，整个页面 at test/js.html:29</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="阻止冒泡"><a href="#阻止冒泡" class="headerlink" title="阻止冒泡"></a>阻止冒泡</h3><ol>
+<li>如果想把事件限制在当前元素，不希望往外冒泡触发父级元素同名事件就需要阻止事件冒泡。</li>
+<li>方法：调用事件对象even的<code>stopPropagation</code>方法 ，<mark>该方法可以阻止事件流动传播，即对捕获阶段也生效。</mark><blockquote>
+<p>回调函数第一个参数就是事件对象e</p>
+</blockquote>
+<figure class="highlight javascript"><figcaption><span>阻止冒泡事件</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;outer&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inner&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="keyword">const</span> outer = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.outer&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> inner = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.inner&#x27;</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;我是最外层，整个页面&quot;</span>)&#125;)</span><br><span class="line">outer.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;我是外层outer&quot;</span>)&#125;)</span><br><span class="line">inner.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;我是最里层inner&quot;</span>)</span><br><span class="line">    <span class="comment">//阻止流动传播</span></span><br><span class="line">    e.<span class="title function_">stopPropagation</span>()</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 此时点击inner的div只打印 我是最里层inner</span></span><br><span class="line"><span class="comment">// outer document的同名事件都被阻止了不执行。</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="解绑事件"><a href="#解绑事件" class="headerlink" title="解绑事件"></a>解绑事件</h2><ol>
+<li>on事件：<mark>直接使用null覆盖</mark>。</li>
+<li>解绑语句的位置慎重！</li>
+</ol>
+<ul>
+<li>如果放在绑定里面则会先执行然后马上解绑 <mark>能实现事件只执行一次。</mark></li>
+<li>如果放在绑定语句后面，则 <mark>可能不会执行事件处理 </mark>，因为已经往下执行到解绑了，已经解绑。<figure class="highlight awk"><figcaption><span>L0解绑</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">btn.onclick = <span class="keyword">function</span>()&#123;</span><br><span class="line">    alert(<span class="string">&quot;点击了&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="regexp">//</span>用空对象null去覆盖事件对象实现解绑</span><br><span class="line"><span class="regexp">//</span> 此时 点击按钮btn一次都不会弹框，因为js往下执行直接解绑了。</span><br><span class="line">btn.onclick = null </span><br><span class="line"><span class="regexp">//</span>但如果是这样。</span><br><span class="line"><span class="regexp">//</span>此时点击了btn2后会弹窗显示<span class="string">&quot;点击了&quot;</span>,然后马上执行解绑，</span><br><span class="line"><span class="regexp">//</span>即第二次再点击时候事件已经被解绑指向null不会再弹框</span><br><span class="line"><span class="regexp">//</span>可以事件事件只执行一次！！！</span><br><span class="line">btn2.onclick = <span class="keyword">function</span>()&#123;</span><br><span class="line">    alert(<span class="string">&quot;点击了&quot;</span>);</span><br><span class="line">    btn2.onclick = null </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li>addEventListener方式：调用<code>removeEventListener(事件类型，事件处理函数，[获取阶段或者冒泡阶段])</code><blockquote>
+<p><b><mark>匿名函数无法解绑</mark>，所以第二个参数不能使用匿名形式，得单独拿出来！！</b></p>
+</blockquote>
+<figure class="highlight reasonml"><figcaption><span>L2解绑</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> fn<span class="literal">()</span>&#123;</span><br><span class="line">    alert(<span class="string">&quot;点击了&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 绑定</span></span><br><span class="line">btn.add<span class="constructor">EventListener(&#x27;<span class="params">click</span>&#x27;,<span class="params">function</span>()</span>&#123;&#125;)</span><br><span class="line"><span class="comment">// 解绑</span></span><br><span class="line">btn.remove<span class="constructor">EventListener(&#x27;<span class="params">click</span>&#x27;,<span class="params">fn</span>)</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="两种注册事件L0-和-L2的区别"><a href="#两种注册事件L0-和-L2的区别" class="headerlink" title="两种注册事件L0 和 L2的区别"></a>两种注册事件L0 和 L2的区别</h2><div class="note "><h3 id="传统on注册-L0"><a href="#传统on注册-L0" class="headerlink" title="传统on注册(L0)"></a>传统on注册(L0)</h3><ol>
+<li>同一个对象,后面注册的事件<b>会覆盖</b>前面注册(同一个事件类型&#x2F;比如同click) &#x2F;&#x2F;最多只能存在一个同类</li>
+<li>直接使用null覆盖但就可以实现事件的解绑</li>
+<li>都是冒泡阶段执行的，L0没有捕获阶段</li>
+</ol>
+<h3 id="事件监听注册-L2"><a href="#事件监听注册-L2" class="headerlink" title="事件监听注册(L2)"></a>事件监听注册(L2)</h3><ol>
+<li><code>addEventListener(事件炎型,事件处理函数,是否使用捕获)</code></li>
+<li>后面注册的事件<b>不会覆盖</b>前面注册的事件(同一个事件),即<b><mark>可以绑定多个同名事件且他们都会被执行！！</mark></b></li>
+<li>可以通过第三个参数去确定是在冒泡或者捕获阶段执行。默认false 即冒泡</li>
+<li>必须使用<code>remoweEventListener(事件类型。事件处理函数,获取描获或者冒泡阶段)</code></li>
+<li>匿名函数无法被解绑，所以<mark>L2解绑时事件处理函数要单独拿出来</mark>。</li>
+</ol></div>
+
+
+<h2 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h2><blockquote>
+<p>是用事件流的特征解决一些开发需求的技巧。</p>
+</blockquote>
+<ol>
+<li>优点：减少注册次数，可以提高程序性能</li>
+<li>主要利用：事件冒泡特点</li>
+<li>给父元素绑定事件。当触发子元素时候，会<b>冒泡并触发父元素同名事件</b>上。</li>
+</ol>
+<ul>
+<li>比如给ul绑定点击事件，当点击ul里某个li时候会触发ul的点击事件，因此可以再里面对多个li同时做一些操作而不用对每个li都绑监听。</li>
+</ul>
+<ol start="4">
+<li>可以通过 事件对象.target.tagName 来获得真正触发事件的那个元素。<br><mark>console.dir(e.target)可以打印对象信息！</mark><br><img src="/images/event2.png"><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//html</span></span><br><span class="line">&lt;ul&gt;<span class="language-xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>1点击变红<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>2点击变红<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>3点击变红<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>点击不变色<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//js</span></span><br><span class="line"><span class="keyword">const</span> ul = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;ul&#x27;</span>)</span><br><span class="line">ul.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    <span class="comment">// console.dir(e.target) //我们点击的那个对象</span></span><br><span class="line">    <span class="comment">// 只在点击li时候变色，点p不变</span></span><br><span class="line">    <span class="keyword">if</span>(e.<span class="property">target</span>.<span class="property">tagName</span>===<span class="string">&#x27;li&#x27;</span>)&#123;</span><br><span class="line">         e.<span class="property">target</span>.<span class="property">style</span>.<span class="property">color</span> = <span class="string">&quot;red&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol></div>
+
+<h2 id="阻止默认行为"><a href="#阻止默认行为" class="headerlink" title="阻止默认行为"></a>阻止默认行为</h2><div class="note info"><p>待补充完善</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const <span class="selector-tag">form</span> = document<span class="selector-class">.querySelector</span>(<span class="string">&#x27;form&#x27;</span>)</span><br><span class="line"><span class="selector-tag">form</span><span class="selector-class">.addEventListener</span>(<span class="string">&#x27;submit&#x27;</span>,<span class="built_in">function</span>(e)&#123;</span><br><span class="line">    <span class="comment">//阻止默认提交</span></span><br><span class="line">    e<span class="selector-class">.preventDefault</span>()</span><br><span class="line">&#125;)</span><br><span class="line">const <span class="selector-tag">a</span> = document<span class="selector-class">.querySelector</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="built_in">function</span>(e)&#123;</span><br><span class="line">    <span class="comment">//阻止a标签默认点击跳转事件</span></span><br><span class="line">    e<span class="selector-class">.preventDefault</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="其他事件mark"><a href="#其他事件mark" class="headerlink" title="其他事件mark"></a>其他事件mark</h1><blockquote>
+<p>持续完善<br>鼠标经过离开 &#x2F; 页面加载事件 &#x2F; 滚动事件 &#x2F; 页面尺寸？</p>
+</blockquote>
+<div class="note info"><h2 id="鼠标经过和离开"><a href="#鼠标经过和离开" class="headerlink" title="鼠标经过和离开"></a>鼠标经过和离开</h2><h3 id="1-mouseover-鼠标经过-和-mouseout-鼠标离开"><a href="#1-mouseover-鼠标经过-和-mouseout-鼠标离开" class="headerlink" title="1.mouseover 鼠标经过 和 mouseout 鼠标离开"></a>1.<code>mouseover</code> 鼠标经过 和 <code>mouseout</code> 鼠标离开</h3><div class="note "><p>存在冒泡现象<br>example：下面代码中。当鼠标从outer进入到innder 运行结果：<br>鼠标经过 鼠标离开 鼠标经过<br>运行结果与理想不太符合是因为：<br>1.当鼠标进入outer时，会触发outer的”鼠标经过”，<br>2.当鼠标进入子元素inner时候,此时鼠标已经离开outer所以会执行outer的”鼠标离开”，<br>但这时候鼠标进入了子元素inner，所以会从inner开始冒泡查找鼠标经过事件。<br>子元素没有鼠标经过事件但是冒泡到父元素outer时发现outer有于是执行了outer的”鼠标经过”。<br><mark>故而多打了印了一次鼠标经过，这是由于冒泡导致的异常!</mark></p></div>
+<figure class="highlight javascript"><figcaption><span>mouseover&mouseout</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;outer&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inner&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//js</span></span><br><span class="line"><span class="keyword">const</span> outer = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;outer&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> inner = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">outer.<span class="title function_">addEventListener</span>(<span class="string">&#x27;mouseover&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;鼠标经过&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">outer.<span class="title function_">addEventListener</span>(<span class="string">&#x27;mouseout&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;鼠标离开&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-mouseenter-和-mouseleave"><a href="#2-mouseenter-和-mouseleave" class="headerlink" title="2.mouseenter 和 mouseleave"></a>2.<code>mouseenter</code> 和 <code>mouseleave</code></h3><blockquote>
+<p>不存在冒泡现象，推荐！！<br>鼠标从outer移动到inner，运行结果：鼠标经过</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;outer&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inner&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//js</span></span><br><span class="line"><span class="keyword">const</span> outer = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;outer&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> inner = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">outer.<span class="title function_">addEventListener</span>(<span class="string">&#x27;mouseenter&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;鼠标经过&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">outer.<span class="title function_">addEventListener</span>(<span class="string">&#x27;mouseleave&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;鼠标离开&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="页面加载-load-amp-DOMContentLoaded"><a href="#页面加载-load-amp-DOMContentLoaded" class="headerlink" title="页面加载 load &amp; DOMContentLoaded"></a>页面加载 load &amp; DOMContentLoaded</h2><div class="note "><h3 id="load-外部资源全部加载完毕"><a href="#load-外部资源全部加载完毕" class="headerlink" title="load 外部资源全部加载完毕"></a>load 外部资源全部加载完毕</h3><ol>
+<li>加载外部资源〔如图片、外联CSS和JavaScript等）加载完毕时触发的事件</li>
+<li>使用情况：</li>
+</ol>
+<ul>
+<li>有些时候需要等页面资源全部处理完了再做一些事情。</li>
+<li>老代码喜欢script写在头部，代码从上往下执行。这时候直接找dom元素容易找不到</li>
+</ul>
+<ol start="3">
+<li>事件名: load  ：监听页面所有资源加载完毕<blockquote>
+<p><b>注意:不光可以监听整个页面资源加载完毕，也可以针对某个资源绑定load事件.</b></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;load&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="comment">//执行..&#125;)</span></span><br><span class="line">img.<span class="title function_">addEventListener</span>(<span class="string">&quot;load&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="DOMContentLoaded-监听页面DOM加裁完毕"><a href="#DOMContentLoaded-监听页面DOM加裁完毕" class="headerlink" title="DOMContentLoaded 监听页面DOM加裁完毕"></a>DOMContentLoaded 监听页面DOM加裁完毕</h3><ol>
+<li>当初始的HTML文档被完全加载和解析完成之后，DOMContentLoaded事件被触发，而无需等待样式表、图像等完全加载。(即dom结构加载完就开始执行)</li>
+<li>给document添加DOMContentLoaded事件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;DOMContentLoaded&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//执行...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol></div>
+
+<h2 id="滚动事件-scroll"><a href="#滚动事件-scroll" class="headerlink" title="滚动事件 scroll"></a>滚动事件 scroll</h2><blockquote>
+<p>获取html document.documentElement  —html对象<br>document.documentElement.scrollTop 可以拿到整个页面向上滚动了多少px</p>
+</blockquote>
+<div class="note "><ol>
+<li>scrollTop &#x2F; scrollLeft 可以拿到被卷去距离（滚动的距离。</li>
+</ol>
+<ul>
+<li><b>返回值是不带单位的数值</b></li>
+<li><b>可读写</b>。可以通过修改值来设置一开始默认处在的位置。</li>
+</ul>
+<ol start="2">
+<li>判断语句<mark>用大于等于最稳妥</mark> 因为可能会有小数点。</li>
+<li>场景：导航栏常用。控制显隐藏 定位等。<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const <span class="selector-tag">div</span> = document<span class="selector-class">.querySelector</span>(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line">window<span class="selector-class">.addEventListener</span>(<span class="string">&quot;scroll&quot;</span>,<span class="built_in">function</span>()&#123;</span><br><span class="line">    <span class="comment">// 被卷去距离 scrollTop  scrollLeft</span></span><br><span class="line">    const n = document<span class="selector-class">.documentElement</span><span class="selector-class">.scrollTop</span></span><br><span class="line">    <span class="comment">//用大于等于最稳妥 因为可能会有小数点</span></span><br><span class="line">    <span class="comment">//滚动距离大于等于100时候 显示否则隐藏 </span></span><br><span class="line">    <span class="built_in">if</span>(n&gt;=<span class="number">100</span>)&#123;</span><br><span class="line">        <span class="selector-tag">div</span><span class="selector-class">.style</span><span class="selector-class">.display</span> = <span class="string">&#x27;block&#x27;</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="selector-tag">div</span><span class="selector-class">.style</span><span class="selector-class">.display</span> = <span class="string">&#x27;none&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="获取元素位置"><a href="#获取元素位置" class="headerlink" title="获取元素位置"></a>获取元素位置</h2><blockquote>
+<p>补充： 持续ing</p>
+</blockquote>
+<ol>
+<li><p>通过元素的offsetLeft和offsetTop</p>
+<blockquote>
+<p>dom元素的offsetLeft、offsetTop指的是元素相对于其offseParent指定的坐标来说的。<br>注意：当前元素为fixed时，其offsetParent的值为null<br>offsetWidth&#x2F;offsetHeight: width+padding+borderclientLeft&#x2F;clientTop;</p>
+</blockquote>
+</li>
+<li><p>event.clientX和event.clientY</p>
+<blockquote>
+<p>事件相对于文档的水平和垂直距离</p>
+</blockquote>
+</li>
+<li><p>getBoundingClientRect</p>
+<blockquote>
+<p>方法返回一个一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离</p>
+</blockquote>
+</li>
+<li><p>window.screen.availHeight&#x2F;window.screen.availWidth: 浏览器去除上方工具栏和下放菜单栏可用宽高</p>
+</li>
+<li><p>window.screen.height&#x2F;window.screen.width: 屏幕宽高</p>
+</li>
+</ol></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/03/04/JavaScript/scope/" rel="next" title="作用域&闭包">
+                <i class="fa fa-chevron-left"></i> 作用域&闭包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E6%B5%81"><span class="nav-number">1.</span> <span class="nav-text">事件流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7-%E4%BB%8E%E5%A4%96%E5%88%B0%E9%87%8C"><span class="nav-number">1.1.</span> <span class="nav-text">事件捕获 (从外到里)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1-%E4%BB%8E%E9%87%8C%E5%88%B0%E5%A4%96"><span class="nav-number">1.2.</span> <span class="nav-text">事件冒泡 (从里到外)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E5%86%92%E6%B3%A1"><span class="nav-number">1.2.1.</span> <span class="nav-text">阻止冒泡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E7%BB%91%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">解绑事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E6%B3%A8%E5%86%8C%E4%BA%8B%E4%BB%B6L0-%E5%92%8C-L2%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.</span> <span class="nav-text">两种注册事件L0 和 L2的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9Fon%E6%B3%A8%E5%86%8C-L0"><span class="nav-number">1.4.1.</span> <span class="nav-text">传统on注册(L0)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC%E6%B3%A8%E5%86%8C-L2"><span class="nav-number">1.4.2.</span> <span class="nav-text">事件监听注册(L2)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98"><span class="nav-number">1.5.</span> <span class="nav-text">事件委托</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.6.</span> <span class="nav-text">阻止默认行为</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E4%BA%8B%E4%BB%B6mark"><span class="nav-number">2.</span> <span class="nav-text">其他事件mark</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BC%A0%E6%A0%87%E7%BB%8F%E8%BF%87%E5%92%8C%E7%A6%BB%E5%BC%80"><span class="nav-number">2.1.</span> <span class="nav-text">鼠标经过和离开</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-mouseover-%E9%BC%A0%E6%A0%87%E7%BB%8F%E8%BF%87-%E5%92%8C-mouseout-%E9%BC%A0%E6%A0%87%E7%A6%BB%E5%BC%80"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.mouseover 鼠标经过 和 mouseout 鼠标离开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-mouseenter-%E5%92%8C-mouseleave"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.mouseenter 和 mouseleave</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD-load-amp-DOMContentLoaded"><span class="nav-number">2.2.</span> <span class="nav-text">页面加载 load &amp; DOMContentLoaded</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#load-%E5%A4%96%E9%83%A8%E8%B5%84%E6%BA%90%E5%85%A8%E9%83%A8%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%AF%95"><span class="nav-number">2.2.1.</span> <span class="nav-text">load 外部资源全部加载完毕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOMContentLoaded-%E7%9B%91%E5%90%AC%E9%A1%B5%E9%9D%A2DOM%E5%8A%A0%E8%A3%81%E5%AE%8C%E6%AF%95"><span class="nav-number">2.2.2.</span> <span class="nav-text">DOMContentLoaded 监听页面DOM加裁完毕</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6-scroll"><span class="nav-number">2.3.</span> <span class="nav-text">滚动事件 scroll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.4.</span> <span class="nav-text">获取元素位置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1331592937&auto=1&height=66"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2022/03/25 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Piero</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">21.1k</span>
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+    总访客数:
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+      
+  
+    </span>
+  
+
+  
+    <span class="site-pv">
+    总访问量: 
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+      
+  
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+ <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>

@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,file,json," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="文件上传下载等以及json的一些记录，持续ing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件操作以及json">
+<meta property="og:url" content="http://example.com/2023/03/12/JavaScript/file/index.html">
+<meta property="og:site_name" content="鸣子铺">
+<meta property="og:description" content="文件上传下载等以及json的一些记录，持续ing">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-03-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-12T14:23:22.016Z">
+<meta property="article:author" content="Piero">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="file">
+<meta property="article:tag" content="json">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2023/03/12/JavaScript/file/"/>
+
+
+
+
+
+  <title>文件操作以及json | 鸣子铺</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鸣子铺</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个平平无奇的杂货铺</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%E5%85%B3%E4%BA%8E" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorite">
+          <a href="/favorite/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fa-star"></i> <br />
+            
+            收藏夹
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-foreend">
+          <a href="/foreend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fa-star"></i> <br />
+            
+            前端技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resources">
+          <a href="/resources/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-download"></i> <br />
+            
+            资源
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/12/JavaScript/file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鸣子铺">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">文件操作以及json</h1>
+        
+
+        <div class="post-meta">
+          <span class="fa fa-heart btn-like" style="color:#f15269;margin-right:10px">  </span> | 
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-12T00:00:00+08:00">
+                2023-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>文件上传下载等以及json的一些记录，持续ing </p>
+</blockquote>
+
+<span id="more"></span>
+
+<h1 id="file-文件对象"><a href="#file-文件对象" class="headerlink" title="file  文件对象"></a>file  文件对象</h1><div class="note info"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ol>
+<li>File 对象通常是用户在网页中的一个 <code>&lt;input&gt;</code> 元素上传文件返回的 FileList 对象，或者是拖放操作返回的 DataTransfer 对象，也可以在浏览器中的控制台中自己创建。或者来自 HTMLCanvasElement 上的 mozGetAsFile() API.</li>
+<li>File 对象中只存在于浏览器环境中，在 Node 环境不存在</li>
+<li>可以使用  <code>new File()</code> 新创建一个文件对象</li>
+</ol>
+<h1 id="属性和方法"><a href="#属性和方法" class="headerlink" title="属性和方法"></a>属性和方法</h1><div class="note "><p><mark>File 对象是特殊类型的 Blob</mark>，且可以用在任意的 Blob 类型的 context 中。比如说， FileReader, URL.createObjectURL(), createImageBitmap() (en-US), 及 XMLHttpRequest.send() 都能处理 Blob 和 File。<br>File 接口继承了 Blob 接口的属性，相关属性可以查询 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/File">MDN</a><br>参考 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/File_API/Using_files_from_web_applications">在 web 应用程序中使用文件</a> 了解更多信息和例子。</p>
+<h2 id="file常用属性："><a href="#file常用属性：" class="headerlink" title="file常用属性："></a>file常用属性：</h2><div class="note info"><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>读&#x2F;写</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>File.name</td>
+<td>只读</td>
+<td>返回文件名</td>
+</tr>
+<tr>
+<td>File.size</td>
+<td>只读</td>
+<td>返回文件大小</td>
+</tr>
+<tr>
+<td>File.type</td>
+<td>只读</td>
+<td>返回 File 对象所表示文件的媒体类型（MIME）。例如 PNG 图像是 “image&#x2F;png”.</td>
+</tr>
+<tr>
+<td>File.lastModified</td>
+<td>只读</td>
+<td>返回该 File 对象引用文件最后修改时间，自 1970年1月1日0:00 以来的毫秒数；</td>
+</tr>
+<tr>
+<td>File.lastModifiedDate</td>
+<td>只读</td>
+<td>Date, 返回当前文件的最后修改日期,如果无法获取到文件的最后修改日期,则使用当前日期来替代</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="file常用的方法归纳收藏"><a href="#file常用的方法归纳收藏" class="headerlink" title="file常用的方法归纳收藏"></a>file常用的方法归纳收藏</h2><div class="note info"><h1 id="文件上传以及获取"><a href="#文件上传以及获取" class="headerlink" title="文件上传以及获取"></a>文件上传以及获取</h1><blockquote>
+<p>通过 File API，我们可以访问 <mark>FileList</mark>，它包含了表示用户所选文件的 File 对象</p>
+</blockquote>
+<h2 id="单个文件上传以及获取"><a href="#单个文件上传以及获取" class="headerlink" title="单个文件上传以及获取"></a>单个文件上传以及获取</h2><figure class="highlight xml"><figcaption><span>获取上传文件</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">id</span>=<span class="string">&quot;input&quot;</span> <span class="attr">onchange</span>=<span class="string">&quot;handleFiles(this.files)&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1.单个时候直接获取，批量时可以加循环。</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> selectedFile = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;input&#x27;</span>).<span class="property">files</span>[<span class="number">0</span>];</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 2.通过 change 事件访问被选择的文件</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">handleFiles</span>(<span class="params">files</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(files);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="批量上传"><a href="#批量上传" class="headerlink" title="批量上传"></a>批量上传</h2><blockquote>
+<p>只需在 input 元素上使用 multiple 属性：<br>通过检查文件列表 fileList.length 来确定用户选择了多少个文件;</p>
+</blockquote>
+<figure class="highlight xml"><figcaption><span>批量上传</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">id</span>=<span class="string">&quot;input&quot;</span> <span class="attr">multiple</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> inputElement = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;input&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//添加 change 事件监听器</span></span></span><br><span class="line"><span class="language-javascript">    inputElement.<span class="title function_">addEventListener</span>(<span class="string">&quot;change&quot;</span>, handleFiles, <span class="literal">false</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">handleFiles</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> fileList = <span class="variable language_">this</span>.<span class="property">files</span>; <span class="comment">/* now you can work with the file list */</span></span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(fileList.<span class="property">length</span>)</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//遍历文件列表里的所有文件</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, numFiles = files.<span class="property">length</span>; i &lt; numFiles; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">const</span> file = files[i];</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// ...</span></span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="隐藏-file-input"><a href="#隐藏-file-input" class="headerlink" title="隐藏 file input"></a>隐藏 file input</h1><blockquote>
+<p>有时候不希望显示input 或者想要自定义上传图标时就需要隐藏fileinput</p>
+</blockquote>
+<h2 id="方法一：通过click事件"><a href="#方法一：通过click事件" class="headerlink" title="方法一：通过click事件"></a>方法一：通过click事件</h2><figure class="highlight typescript"><figcaption><span>通过click触发file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 给input 添加 display:none 样式隐藏。</span></span><br><span class="line">&lt;input <span class="keyword">type</span>=<span class="string">&quot;file&quot;</span> id=<span class="string">&quot;fileElem&quot;</span> multiple accept=<span class="string">&quot;image/*&quot;</span> style=<span class="string">&quot;display:none&quot;</span> onchange=<span class="string">&quot;handleFiles(this.files)&quot;</span>&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;fileSelect&quot;</span>&gt;</span>Select some files<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">const</span> fileSelect = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;fileSelect&quot;</span>),</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">fileElem = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;fileElem&quot;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">fileSelect.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">if</span> (fileElem) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="comment">// 触发input的点击事件，打开文件选择器供用户上传文件。</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    fileElem.<span class="title function_">click</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;, <span class="literal">false</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="方法二-使用-label-元素来触发一个隐藏的-file-input-元素"><a href="#方法二-使用-label-元素来触发一个隐藏的-file-input-元素" class="headerlink" title="方法二 使用 label 元素来触发一个隐藏的 file input 元素 ???"></a>方法二 使用 label 元素来触发一个隐藏的 file input 元素 ???</h2><div class="note "><p>允许在不使用 JavaScript（click() 方法）来打开文件选择器，可以使用 <code>&lt;label&gt;</code> 元素。注意在这种情况下，input 元素<mark>不能使用 display: none（或 visibility: hidden）隐藏</mark>，否则 label 将无法通过键盘访问。使用 visually-hidden technique 作为替代。</p>
+<p>这里不需要添加任何 JavaScript 代码来调用fileElem.click()，另外，这时你也可以给 label 元素添加你想要的样式。您需要在其 label 上提供隐藏 input 字段的焦点状态的视觉提示，比如上面用的轮廓，或者背景颜色或边框阴影。（截至编写时为止，Firefox 不显示 <code>&lt;input type=&quot;file&quot;&gt; </code>元素的视觉提示。）</p></div>
+<figure class="highlight xml"><figcaption><span>通过label触发file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.visually-hidden</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">position</span>: absolute <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">1px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">1px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">clip</span>: <span class="built_in">rect</span>(<span class="number">1px</span>, <span class="number">1px</span>, <span class="number">1px</span>, <span class="number">1px</span>);</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="comment">/* Separate rule for compatibility, :focus-within is required on modern Firefox and Chrome */</span></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">input</span><span class="selector-class">.visually-hidden</span><span class="selector-pseudo">:focus</span> + <span class="selector-tag">label</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">outline</span>: thin dotted;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">input</span><span class="selector-class">.visually-hidden</span><span class="selector-pseudo">:focus</span>-within + <span class="selector-tag">label</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">outline</span>: thin dotted;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">id</span>=<span class="string">&quot;fileElem&quot;</span> <span class="attr">multiple</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span> <span class="attr">class</span>=<span class="string">&quot;visually-hidden&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;fileElem&quot;</span>&gt;</span>Select some files<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="使用拖放来选择文件"><a href="#使用拖放来选择文件" class="headerlink" title="使用拖放来选择文件"></a>使用拖放来选择文件</h1><div class="note "><p>第一步是创建一个 drop 区域。虽然你网页内容的哪部分接受拖放取决于你的应用设计，但是使一个元素接收 drop 事件是很容易的。<br>这个例子中，将 ID 为dropbox的元素变为了我们的 drop 区域。这是通过给元素添加dragenter, dragover, 和drop 事件监听器实现的。<br>对于dragenter, dragover只需要阻止事件传播以及默认事件即可。重点在drop的处理。</p>
+<table>
+<thead>
+<tr>
+<th>事件名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dragenter</td>
+<td>拖动后首次在进入某个控件内发生</td>
+</tr>
+<tr>
+<td>dragover</td>
+<td>发生在DragEnter之后，当你移动拖动对象（鼠标）时发生，类似于MouseMove。</td>
+</tr>
+<tr>
+<td>drop &#x2F; gragdrop？</td>
+<td>当你松开鼠标时发生</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46022934/article/details/127375335?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-127375335-blog-73350336.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-127375335-blog-73350336.pc_relevant_default&utm_relevant_index=2">关于鼠标拖拽的其他属性方法mark</a></td>
+<td></td>
+</tr>
+</tbody></table></div>
+<figure class="highlight reasonml"><figcaption><span>拖放方式选择文件</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">let</span> dropbox;</span><br><span class="line">    dropbox = document.get<span class="constructor">ElementById(<span class="string">&quot;dropbox&quot;</span>)</span>;</span><br><span class="line">    dropbox.add<span class="constructor">EventListener(<span class="string">&quot;dragenter&quot;</span>, <span class="params">dragenter</span>, <span class="params">false</span>)</span>;</span><br><span class="line">    dropbox.add<span class="constructor">EventListener(<span class="string">&quot;dragover&quot;</span>, <span class="params">dragover</span>, <span class="params">false</span>)</span>;</span><br><span class="line">    dropbox.add<span class="constructor">EventListener(<span class="string">&quot;drop&quot;</span>, <span class="params">drop</span>, <span class="params">false</span>)</span>;</span><br><span class="line">    <span class="comment">// 从事件中获取到了dataTransfer 这个域，然后从中得到文件列表。</span></span><br><span class="line">    <span class="comment">//再将获取到的filelist传递给handleFiles()函数。在这之后，处理文件的方法和用input元素或者用拖拽就是一样的了。</span></span><br><span class="line">    <span class="keyword">function</span> drop(e) &#123;</span><br><span class="line">        e.stop<span class="constructor">Propagation()</span>;</span><br><span class="line">        e.prevent<span class="constructor">Default()</span>;</span><br><span class="line"></span><br><span class="line">        var dt = e.dataTransfer;</span><br><span class="line">        var files = dt.files;</span><br><span class="line"></span><br><span class="line">        handle<span class="constructor">Files(<span class="params">files</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> dragenter(e) &#123;</span><br><span class="line">        e.stop<span class="constructor">Propagation()</span>;</span><br><span class="line">        e.prevent<span class="constructor">Default()</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> dragover(e) &#123;</span><br><span class="line">        e.stop<span class="constructor">Propagation()</span>;</span><br><span class="line">        e.prevent<span class="constructor">Default()</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="显示用户选择的图片的缩略图"><a href="#显示用户选择的图片的缩略图" class="headerlink" title="显示用户选择的图片的缩略图"></a>显示用户选择的图片的缩略图</h1><blockquote>
+<p>想使用 HTML5 来展示用户在实际上传之前的图片的缩略图。你可以像我们之前讨论的那样创建自己的 input 元素或者 drop 区域，然后使用一个回调函数，比如下面的handleFiles()。</p>
+</blockquote>
+<figure class="highlight xml"><figcaption><span>reader+img元素</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">handleFiles</span>(<span class="params">files</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; files.<span class="property">length</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> file = files[i];</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> imageType = <span class="regexp">/^image\//</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 检查文件类型是否是image 图片 ，不是则跳过</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (!imageType.<span class="title function_">test</span>(file.<span class="property">type</span>)) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">continue</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 创建一个新的img元素</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> img = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;img&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 为了在 DOM 树中更容易地找到他们，每个图片元素都被添加了一个名为obj的 CSS 类</span></span></span><br><span class="line"><span class="language-javascript">        img.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&quot;obj&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 给每个图片添加了file属性使它具有 File；</span></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//这样做可以让我们拿到稍后需要实际上传的图片。我们在预览页中使用 Node.appendChild()来添加新的缩略图。？？？</span></span></span><br><span class="line"><span class="language-javascript">        img.<span class="property">file</span> = file;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 往div里追加这个img元素</span></span></span><br><span class="line"><span class="language-javascript">        preview.<span class="title function_">appendChild</span>(img); <span class="comment">// 假设&quot;preview&quot;就是用来显示缩略图的 div</span></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 创建FileReader来处理异步的图片加载并把他赋给img元素</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> reader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 立即执行函数+闭包？ 将img元素的src属性设置为刚刚加载完毕的 URL</span></span></span><br><span class="line"><span class="language-javascript">        reader.<span class="property">onload</span> = (<span class="keyword">function</span>(<span class="params">aImg</span>) &#123; <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">e</span>) &#123; aImg.<span class="property">src</span> = e.<span class="property">target</span>.<span class="property">result</span>; &#125;; &#125;)(img);</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//调用readAsDataURL()函数开始后台读取文件。</span></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//当整个图片文件的内容都被全部加载完后，它们被转换成了一个被传递到onload回调函数的data:URL</span></span></span><br><span class="line"><span class="language-javascript">        reader.<span class="title function_">readAsDataURL</span>(file);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="方法二-使用对象-URL"><a href="#方法二-使用对象-URL" class="headerlink" title="方法二 使用对象 URL"></a>方法二 使用对象 URL</h2><div class="note "><p>Gecko 2.0 引入了对 DOM window.URL.createObjectURL() (en-US) 和 window.URL.revokeObjectURL() (en-US) 方法的支持。这使得你可以创建用于引用任何数据的简单 URL 字符串，也可以引用一个包括用户电脑上的本地文件的 DOM File对象。</p>
+<p>当你需要在 HTML 中通过 URL 来引用一个File对象时，你可以创建一个对象 URL，就像这样：<br><code>var objectURL = window.URL.createObjectURL(fileObj);</code><br>当文档关闭时，它们会自动被释放。如果你的网页要动态使用它们，你需要显式调用<code>window.URL.revokeObjectURL(objectURL);</code> (en-US)来释放它们：</p></div>
+<figure class="highlight xml"><figcaption><span>使用对象 URL此案时缩略图</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">id</span>=<span class="string">&quot;fileElem&quot;</span> <span class="attr">multiple</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:none&quot;</span> <span class="attr">onchange</span>=<span class="string">&quot;handleFiles(this.files)&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">id</span>=<span class="string">&quot;fileSelect&quot;</span>&gt;</span>Select some files<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;fileList&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>No files selected!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">window</span>.<span class="property">URL</span> = <span class="variable language_">window</span>.<span class="property">URL</span> || <span class="variable language_">window</span>.<span class="property">webkitURL</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> fileSelect = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;fileSelect&quot;</span>),</span></span><br><span class="line"><span class="language-javascript">    fileElem = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;fileElem&quot;</span>),</span></span><br><span class="line"><span class="language-javascript">    fileList = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;fileList&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">fileSelect.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (fileElem) &#123;</span></span><br><span class="line"><span class="language-javascript">        fileElem.<span class="title function_">click</span>();</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    e.<span class="title function_">preventDefault</span>(); <span class="comment">// prevent navigation to &quot;#&quot;</span></span></span><br><span class="line"><span class="language-javascript">&#125;, <span class="literal">false</span>);</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">handleFiles</span>(<span class="params">files</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (!files.<span class="property">length</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        fileList.<span class="property">innerHTML</span> = <span class="string">&quot;&lt;p&gt;No files selected!&lt;/p&gt;&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        fileList.<span class="property">innerHTML</span> = <span class="string">&quot;&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> list = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;ul&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        fileList.<span class="title function_">appendChild</span>(list);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; files.<span class="property">length</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> li = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;li&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">            list.<span class="title function_">appendChild</span>(li);</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> img = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;img&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">            img.<span class="property">src</span> = <span class="variable language_">window</span>.<span class="property">URL</span>.<span class="title function_">createObjectURL</span>(files[i]);</span></span><br><span class="line"><span class="language-javascript">            img.<span class="property">height</span> = <span class="number">60</span>;</span></span><br><span class="line"><span class="language-javascript">            img.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">window</span>.<span class="property">URL</span>.<span class="title function_">revokeObjectURL</span>(<span class="variable language_">this</span>.<span class="property">src</span>);</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">            li.<span class="title function_">appendChild</span>(img);</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> info = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;span&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">            info.<span class="property">innerHTML</span> = files[i].<span class="property">name</span> + <span class="string">&quot;: &quot;</span> + files[i].<span class="property">size</span> + <span class="string">&quot; bytes&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">            li.<span class="title function_">appendChild</span>(info);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="上传（待更新"><a href="#上传（待更新" class="headerlink" title="上传（待更新"></a>上传（待更新</h1><h1 id="计算文件大小"><a href="#计算文件大小" class="headerlink" title="计算文件大小"></a>计算文件大小</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>File(s) size<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">updateSize</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">let</span> nBytes = <span class="number">0</span>,</span></span><br><span class="line"><span class="language-javascript">      oFiles = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;uploadInput&quot;</span>).<span class="property">files</span>,</span></span><br><span class="line"><span class="language-javascript">      nFiles = oFiles.<span class="property">length</span>;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">for</span> (<span class="keyword">let</span> nFileId = <span class="number">0</span>; nFileId &lt; nFiles; nFileId++) &#123;</span></span><br><span class="line"><span class="language-javascript">    nBytes += oFiles[nFileId].<span class="property">size</span>;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">let</span> sOutput = nBytes + <span class="string">&quot; bytes&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// optional code for multiples approximation</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> aMultiples = [<span class="string">&quot;KiB&quot;</span>, <span class="string">&quot;MiB&quot;</span>, <span class="string">&quot;GiB&quot;</span>, <span class="string">&quot;TiB&quot;</span>, <span class="string">&quot;PiB&quot;</span>, <span class="string">&quot;EiB&quot;</span>, <span class="string">&quot;ZiB&quot;</span>, <span class="string">&quot;YiB&quot;</span>];</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">for</span> (nMultiple = <span class="number">0</span>, nApprox = nBytes / <span class="number">1024</span>; nApprox &gt; <span class="number">1</span>; nApprox /= <span class="number">1024</span>, nMultiple++) &#123;</span></span><br><span class="line"><span class="language-javascript">    sOutput = nApprox.<span class="title function_">toFixed</span>(<span class="number">3</span>) + <span class="string">&quot; &quot;</span> + aMultiples[nMultiple] + <span class="string">&quot; (&quot;</span> + nBytes + <span class="string">&quot; bytes)&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// end of optional code</span></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;fileNum&quot;</span>).<span class="property">innerHTML</span> = nFiles;</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;fileSize&quot;</span>).<span class="property">innerHTML</span> = sOutput;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;updateSize()&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;uploadForm&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;uploadInput&quot;</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;myFiles&quot;</span> <span class="attr">onchange</span>=<span class="string">&quot;updateSize();&quot;</span> <span class="attr">multiple</span>&gt;</span></span><br><span class="line">      selected files: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;fileNum&quot;</span>&gt;</span>0<span class="tag">&lt;/<span class="name">span</span>&gt;</span>;</span><br><span class="line">      total size: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;fileSize&quot;</span>&gt;</span>0<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Send file&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="由Base64转File对象"><a href="#由Base64转File对象" class="headerlink" title="由Base64转File对象"></a>由Base64转File对象</h1><blockquote>
+<p>在日常开发中，Base64 形式的图片很多，JavaScript 允许将图片的 Base64 编码转换为 File 对象.</p>
+</blockquote>
+<figure class="highlight xml"><figcaption><span>base64转file 参考链接</span><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_57664166/article/details/126382642">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">dataURLtoFile</span>(<span class="params">dataurl, filename</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 获取到base64编码</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> base64_str = dataurl.<span class="title function_">split</span>(<span class="string">&#x27;,&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 将base64编码转为字符串</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> decode_str = <span class="title function_">atob</span>(base64_str[<span class="number">1</span>]);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> n = decode_str .<span class="property">length</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 创建初始化为0的，包含length个元素的无符号整型数组</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> u8arr = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>(n) ;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">while</span> (n--) &#123;</span></span><br><span class="line"><span class="language-javascript">            u8arr[n] = decode_str .<span class="title function_">charCodeAt</span>(n);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">File</span>([u8arr], filename, &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">type</span>: <span class="string">&#x27;image/png&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<!--</div> -->
+
+
+<!-- 方法收纳 --></div>
+<!-- file对象 end --></div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/file/" rel="tag"># file</a>
+          
+            <a href="/tags/json/" rel="tag"># json</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/03/09/css/animate/" rel="next" title="动画及特效">
+                <i class="fa fa-chevron-left"></i> 动画及特效
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#file-%E6%96%87%E4%BB%B6%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">file  文件对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#file%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">file常用属性：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file%E5%B8%B8%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95%E5%BD%92%E7%BA%B3%E6%94%B6%E8%97%8F"><span class="nav-number">3.2.</span> <span class="nav-text">file常用的方法归纳收藏</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%BB%A5%E5%8F%8A%E8%8E%B7%E5%8F%96"><span class="nav-number">4.</span> <span class="nav-text">文件上传以及获取</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%BB%A5%E5%8F%8A%E8%8E%B7%E5%8F%96"><span class="nav-number">4.1.</span> <span class="nav-text">单个文件上传以及获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E4%B8%8A%E4%BC%A0"><span class="nav-number">4.2.</span> <span class="nav-text">批量上传</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E8%97%8F-file-input"><span class="nav-number">5.</span> <span class="nav-text">隐藏 file input</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E9%80%9A%E8%BF%87click%E4%BA%8B%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">方法一：通过click事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C-%E4%BD%BF%E7%94%A8-label-%E5%85%83%E7%B4%A0%E6%9D%A5%E8%A7%A6%E5%8F%91%E4%B8%80%E4%B8%AA%E9%9A%90%E8%97%8F%E7%9A%84-file-input-%E5%85%83%E7%B4%A0"><span class="nav-number">5.2.</span> <span class="nav-text">方法二 使用 label 元素来触发一个隐藏的 file input 元素 ???</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%8B%96%E6%94%BE%E6%9D%A5%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">使用拖放来选择文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E7%94%A8%E6%88%B7%E9%80%89%E6%8B%A9%E7%9A%84%E5%9B%BE%E7%89%87%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE"><span class="nav-number">7.</span> <span class="nav-text">显示用户选择的图片的缩略图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C-%E4%BD%BF%E7%94%A8%E5%AF%B9%E8%B1%A1-URL"><span class="nav-number">7.1.</span> <span class="nav-text">方法二 使用对象 URL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%EF%BC%88%E5%BE%85%E6%9B%B4%E6%96%B0"><span class="nav-number">8.</span> <span class="nav-text">上传（待更新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F"><span class="nav-number">9.</span> <span class="nav-text">计算文件大小</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B1Base64%E8%BD%ACFile%E5%AF%B9%E8%B1%A1"><span class="nav-number">10.</span> <span class="nav-text">由Base64转File对象</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1331592937&auto=1&height=66"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2022/03/25 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Piero</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">27.2k</span>
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+    总访客数:
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+      
+  
+    </span>
+  
+
+  
+    <span class="site-pv">
+    总访问量: 
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+      
+  
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+ <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="html," />
+  <meta name="keywords" content="字符串,数组," />
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="使用 CSS 变量更改多个元素样式 var()​ 函数用于插入自定义的属性值如果一个属性值在多处被使用，该方法就很有用。  123456789var(custom-property-name, value)custom-property-name 是必需的, 自定义属性的名称，必需以 -- 开头。value 可选。备用值，在属性不存在的时候使用。 #div1 &amp;#123;  background-">
+<meta name="description" content="字符串和数组的处理方式摘录收藏，持续ing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML + CSS基础">
-<meta property="og:url" content="http://example.com/2022/03/30/html/HTML/index.html">
+<meta property="og:title" content="字符串和数组的处理">
+<meta property="og:url" content="http://example.com/2023/03/13/JavaScript/string_arr/index.html">
 <meta property="og:site_name" content="鸣子铺">
-<meta property="og:description" content="使用 CSS 变量更改多个元素样式 var()​ 函数用于插入自定义的属性值如果一个属性值在多处被使用，该方法就很有用。  123456789var(custom-property-name, value)custom-property-name 是必需的, 自定义属性的名称，必需以 -- 开头。value 可选。备用值，在属性不存在的时候使用。 #div1 &amp;#123;  background-">
+<meta property="og:description" content="字符串和数组的处理方式摘录收藏，持续ing">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-03-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-03T06:59:42.664Z">
+<meta property="og:image" content="http://example.com/images/slice.png">
+<meta property="article:published_time" content="2023-03-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-13T13:46:53.532Z">
 <meta property="article:author" content="Piero">
-<meta property="article:tag" content="html">
+<meta property="article:tag" content="字符串">
+<meta property="article:tag" content="数组">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/slice.png">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2022/03/30/html/HTML/"/>
+  <link rel="canonical" href="http://example.com/2023/03/13/JavaScript/string_arr/"/>
 
 
 
 
 
-  <title>HTML + CSS基础 | 鸣子铺</title>
+  <title>字符串和数组的处理 | 鸣子铺</title>
   
 
 
@@ -337,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/30/html/HTML/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/13/JavaScript/string_arr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -354,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HTML + CSS基础</h1>
+          <h1 class="post-title" itemprop="name headline">字符串和数组的处理</h1>
         
 
         <div class="post-meta">
@@ -367,8 +370,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-30T00:00:00+08:00">
-                2022-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-13T00:00:00+08:00">
+                2023-03-13
               </time>
             
 
@@ -390,8 +393,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Html/" itemprop="url" rel="index">
-                    <span itemprop="name">Html</span>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
 
@@ -426,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  721
+                  762
                 </span>
               
 
@@ -463,65 +466,51 @@
       
 
       
-        <h2 id="使用-CSS-变量更改多个元素样式"><a href="#使用-CSS-变量更改多个元素样式" class="headerlink" title="使用 CSS 变量更改多个元素样式"></a>使用 CSS 变量更改多个元素样式</h2><blockquote>
-<p>var()​ 函数用于插入自定义的属性值<br>如果一个属性值在多处被使用，该方法就很有用。</p>
+        <blockquote class="blockquote-center"><p>字符串和数组的处理方式摘录收藏，持续ing </p>
 </blockquote>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span>(custom-property-name, value)</span><br><span class="line">custom-property-name 是必需的, 自定义属性的名称，必需以 -- 开头。</span><br><span class="line">value 可选。备用值，在属性不存在的时候使用。 </span><br><span class="line"></span><br><span class="line"><span class="selector-id">#div1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">var</span>(--main-bg-color);</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--main-txt-color);</span><br><span class="line">  <span class="attribute">padding</span>: <span class="built_in">var</span>(--main-padding);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="创建一个自定义的-CSS-变量"><a href="#创建一个自定义的-CSS-变量" class="headerlink" title="创建一个自定义的 CSS 变量"></a>创建一个自定义的 CSS 变量</h3><blockquote>
-<p><code>--penguin-skin: gray;</code>  创建一个 CSS 变量，只需要在变量名前添加两个破折号，并为其赋值<br>其他元素可通过该变量来设置为gray（灰色）。 </p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 建变量 --&gt;</span></span><br><span class="line">.rabbit &#123;</span><br><span class="line">    --rabbit-skincolor: white;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">&lt;!-- 使用 --&gt;</span></span><br><span class="line">.rabbit .rabbit__body &#123;</span><br><span class="line">   background: var(--rabbit-skincolor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>变量不生效时设定默认值:<br><code>background: var(--penguin-skin, black);</code></p>
-</blockquote>
-<blockquote>
-<p>通过浏览器降级提高兼容性</p>
-</blockquote>
-<ul>
-<li>如果使用 CSS 变量来指定站点的背景色， IE 浏览器由于不支持 CSS 变量会忽视背景色。</li>
-<li>在声明之前提供另一个更宽泛的值即可。</li>
-<li>这样老旧的浏览器会降级使用这个方案，新的浏览器会在后面的声明里覆盖降级方案。 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.white-box</span> &#123;</span><br><span class="line">   <span class="attribute">background</span>: <span class="number">#FFF</span>;</span><br><span class="line">   <span class="attribute">background</span>: <span class="built_in">var</span>(--white-color);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="变量继承"><a href="#变量继承" class="headerlink" title="变量继承"></a>变量继承</h4></li>
-<li>CSS 变量经常会定义在 :root 元素内，这样就可被所有选择器继承。</li>
-<li>:root 是一个 pseudo-class 选择器匹配文档的根选择器，通常指 html 元素。</li>
-<li>通过在 :root 里创建变量，变量在全局可用，以及在 ​style ​样式的选择器里也生效。 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-pseudo">:root</span> &#123;</span></span><br><span class="line"><span class="language-css">   <span class="attr">--rabbit-ear-shadow</span>:pink;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>如果在元素里创建相同的变量，会重写:root变量设置的值。<ul>
-<li>更改特定区域的变量 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.rabbit &#123;</span><br><span class="line">   --rabbit-ear-shadow: black; </span><br><span class="line">   <span class="comment">&lt;!-- 重写成黑色原来是粉色pink --&gt;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="使用媒体查询更改变量"><a href="#使用媒体查询更改变量" class="headerlink" title="使用媒体查询更改变量"></a>使用媒体查询更改变量</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">350px</span>) &#123;</span><br><span class="line">   <span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">      <span class="attr">--rabbit-basecolor</span>: white;</span><br><span class="line">      <span class="attr">--rabbit-background</span>:<span class="built_in">rgb</span>(<span class="number">198</span>, <span class="number">250</span>, <span class="number">241</span>)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
-<h2 id="1-margin"><a href="#1-margin" class="headerlink" title="1.margin"></a>1.margin</h2><blockquote>
-<p>margin ​清除周围的（外边框）元素区域。如果你设置元素margin为负值，元素会变得更大。<br>em是相对fon-size</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-border"><a href="#2-border" class="headerlink" title="2.border"></a>2.border</h2><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4>   <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.img-<span class="built_in">border</span> &#123;</span><br><span class="line"> <span class="built_in">border</span>-<span class="built_in">style</span>: dashed;</span><br><span class="line"> <span class="built_in">border</span>-<span class="built_in">color</span>: blue;</span><br><span class="line"> <span class="built_in">border</span>-<span class="built_in">width</span>: 6px;</span><br><span class="line"> <span class="built_in">border</span>-<span class="built_in">radius</span>:10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>宽高一致时将border-radius的值设置为50% 能得到圆形</p>
-</blockquote>
-<h5 id="border-style"><a href="#border-style" class="headerlink" title="border-style:"></a>border-style:</h5><ul>
-<li>dashed&#x2F;dotted 虚线边框  </li>
-<li>solid  </li>
-<li>double 双边框 </li>
-<li>qroove 凹槽边框  </li>
-<li>ridge 垄状边框 </li>
-<li>inset 嵌入边框 outset 外凸边框  </li>
-<li>hidden 隐藏边框<h2 id="3-CSS优先级"><a href="#3-CSS优先级" class="headerlink" title="3.CSS优先级"></a>3.CSS优先级</h2>优先级关系：内联样式 &gt; ID 选择器 <blockquote>
-<p>类选择器 &#x3D; 属性选择器 &#x3D; 伪类选择器<br>标签选择器 &#x3D; 伪元素选择器<br>!important<br><code>.pink-text &#123;color: pink !important;&#125;</code></p>
-</blockquote>
-<h2 id="十六进颜色"><a href="#十六进颜色" class="headerlink" title="十六进颜色"></a>十六进颜色</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.w3cschool.cn/cssref/css-colorsfull.html">https://www.w3cschool.cn/cssref/css-colorsfull.html</a></p>
-</blockquote>
-<h2 id="4-引入外部字体"><a href="#4-引入外部字体" class="headerlink" title="4.引入外部字体"></a>4.引入外部字体</h2></li>
-</ul>
-<ol>
-<li><code>&lt;link href=&quot;https://fonts.loli.net/css?family=Lobster&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;</code> </li>
-<li>使用 <code>font-family:Lobster</code><blockquote>
-<p>多个字体用逗号隔开</p>
-</blockquote>
-</li>
-</ol>
 
+<span id="more"></span>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><div class="note info"><h1 id="获取字符串长度-myStr-length"><a href="#获取字符串长度-myStr-length" class="headerlink" title="获取字符串长度 myStr.length;"></a>获取字符串长度 <code>myStr.length;</code></h1><h1 id="字符凭借"><a href="#字符凭借" class="headerlink" title="字符凭借"></a>字符凭借</h1><ol>
+<li>js模板字符串！！！ <code>${}</code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> string1 = <span class="string">&#x27;clean&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> string2 = <span class="string">&#x27;code&#x27;</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> templateString = <span class="string">`<span class="subst">$&#123;clean&#125;</span> <span class="subst">$&#123;code&#125;</span>`</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">console</span>.<span class="title function_">log</span>(templateString); <span class="comment">// this prints out clean code</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>concat()  <code>tring1.concat(string2)</code><h1 id="查找子串并截取"><a href="#查找子串并截取" class="headerlink" title="查找子串并截取"></a>查找子串并截取</h1><h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2></li>
+<li><code>charAr(index)</code>  &#x2F;&#x2F;返回index处的字符<h2 id="查看字符串是否存在子串："><a href="#查看字符串是否存在子串：" class="headerlink" title="查看字符串是否存在子串："></a>查看字符串是否存在子串：</h2></li>
+<li>indexOf() <div class="note info"><blockquote>
+<p>找不到返回-1找到了返回子串最开始的字母的index下标<br>&#x2F;&#x2F; browserType &#x3D; “mozilla”<br><code>browserType.indexOf(&#39;zilla&#39;);</code> &#x2F;&#x2F; 2<br>因为子字符串“zilla”从“mozilla”内的位置 2（0，1，2 —— 所以从第 3 个字符）开始。</p>
+</blockquote></div></li>
+</ol>
+<ol start="2">
+<li><p>includes(strings)</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">const str = <span class="string">&#x27;hello world&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(str.<span class="built_in">includes</span>(<span class="string">&#x27;hello&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(str.<span class="built_in">includes</span>(<span class="string">&#x27;word&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>match(regex string)</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> firstName = <span class="string">&quot;Matt&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> badFirstName = <span class="string">&quot;Matthew4&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> nameRegex = <span class="regexp">/^[a-zA-Z]+$/</span></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">console</span>.<span class="title function_">log</span>(firstName.<span class="title function_">match</span>(nameRegex)); <span class="comment">// True</span></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">console</span>.<span class="title function_">log</span>(badFirstName.<span class="title function_">match</span>(nameRegex)); <span class="comment">// False</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="截取字符串"><a href="#截取字符串" class="headerlink" title="截取字符串"></a>截取字符串</h2><ol>
+<li>取最后一个字符 <code>myStr[myStr.length-1];</code> 或者 <code>myStr.charAt[myStr.length-1]</code></li>
+<li><code>slice(startIndex,endIndex)</code> <b>包头不包尾</b> <code>&quot;mozilla&quot;.slice(0,3)</code> &#x2F;&#x2F;moz</li>
+</ol>
+<ul>
+<li>要在某个字符之后提取字符串中的所有剩余字符，则不必包含第二个参数，只需开头的index <code>&quot;mozilla&quot;.slice(2);</code>&#x2F;&#x2F; zilla</li>
+<li>slice并不会替换原字符串。只会返回新字符串所以<mark>需要一个变量去接收</mark>。<br><img src="/images/slice.png"><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> hello = <span class="string">&#x27;Hello World&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">console</span>.<span class="title function_">log</span>(hello.<span class="title function_">substring</span>(<span class="number">1</span>, <span class="number">4</span>)); <span class="comment">// ell</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="3">
+<li><code>substring(startIndex, index)</code> <b>包头不包尾</b></li>
+</ol>
+<ul>
+<li>第二个参数省略时同slice<br><mark>substring与slice不同点:</mark><br>两者区别就在于负数截取,slice()负数截取时会识别负数索引，但是<mark>substring()会自动将负数索引全部改成0</mark>，比如:<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;script&gt;</span></span><br><span class="line"><span class="attribute">let</span> str=&#x27;hello china&#x27;</span><br><span class="line"><span class="attribute">console</span>.log(str.slice(-<span class="number">3</span>));   //ina</span><br><span class="line"><span class="attribute">console</span>.log(str.substring(-<span class="number">6</span>,-<span class="number">3</span>));    //没有输出，自动转化成substring(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line"><span class="attribute">console</span>.log(str.substring(-<span class="number">3</span>,<span class="number">6</span>));    //hello,转化成substring(<span class="number">0</span>,<span class="number">6</span>)</span><br><span class="line"><span class="attribute">console</span>.log(str.substring(<span class="number">3</span>,-<span class="number">6</span>));    //hel    转化成substring(<span class="number">3</span>,<span class="number">0</span>),实际执行时为(<span class="number">0</span>,<span class="number">3</span>)</span><br><span class="line"><span class="section">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="4">
+<li><code>split(string)</code>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> str =<span class="string">&quot;hello world&quot;</span></span></span><br><span class="line"><span class="language-javascript">str.<span class="title function_">split</span>(<span class="string">&quot; &quot;</span>) <span class="comment">//空格切分 [&quot;Hello&quot;, &quot;World&quot;];</span></span></span><br><span class="line"><span class="language-javascript">str.<span class="title function_">split</span>(<span class="string">&quot; &quot;</span>)[<span class="number">0</span>]  <span class="comment">//hello  </span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="替换-str-replace（stringToBeReplaced，stringToAdd）"><a href="#替换-str-replace（stringToBeReplaced，stringToAdd）" class="headerlink" title="替换 str.replace（stringToBeReplaced，stringToAdd）"></a>替换 str.replace（stringToBeReplaced，stringToAdd）</h1><ul>
+<li><code>str.replace(&#39;/&#39;,&#39;-&#39;)</code>把&#x2F;替换成-<h1 id="trim-清除多余的空格"><a href="#trim-清除多余的空格" class="headerlink" title="trim() 清除多余的空格"></a>trim() 清除多余的空格</h1><h1 id="大小写转换-str-toLowerCase-和-radData-toUpperCase"><a href="#大小写转换-str-toLowerCase-和-radData-toUpperCase" class="headerlink" title="大小写转换 str.toLowerCase() 和 radData.toUpperCase()"></a>大小写转换 <code>str.toLowerCase()</code> 和 <code>radData.toUpperCase()</code></h1></li>
+</ul>
+<h1 id="字符和数值互转"><a href="#字符和数值互转" class="headerlink" title="字符和数值互转"></a>字符和数值互转</h1><ol>
+<li>字符转数值<code>let myNum = Number(myString);</code></li>
+<li>数值转字符串 <code>myNum.toString();</code> 或者 <code>myNum+&#39;&#39;</code><h1 id="重复-repeat-count"><a href="#重复-repeat-count" class="headerlink" title="重复 repeat(count)"></a>重复 repeat(count)</h1><h1 id="startsWith-和-endsWith"><a href="#startsWith-和-endsWith" class="headerlink" title="startsWith() 和 endsWith()"></a>startsWith() 和 endsWith()</h1><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = [<span class="string">&quot;Today&quot;</span>, <span class="string">&quot;is&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;nice&quot;</span>,<span class="string">&quot;day!&quot;</span>]</span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(str.startsWith(<span class="string">&#x27;Today&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(str.endsWith(<span class="string">&#x27;day&#x27;</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h1 id="console-log-‘a’-charCodeAt-x2F-x2F-97"><a href="#console-log-‘a’-charCodeAt-x2F-x2F-97" class="headerlink" title="console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97"></a>console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97</h1><h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><div class="note primary"><h1 id="数组拼接-concat"><a href="#数组拼接-concat" class="headerlink" title="数组拼接 concat()"></a>数组拼接 concat()</h1><p>ex: <code>arr1.concat(arr1,arr3)</code> 把数组arr2 和 arr3拼接到arr1后面<br>嵌套数组仍然以嵌套形式存在，可以扁平化（？</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="built_in">let</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">let</span> arr2 = [<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line"><span class="built_in">let</span> <span class="built_in">num</span> = <span class="number">7</span>;</span><br><span class="line"><span class="built_in">let</span> arr3 = [<span class="number">8</span>,<span class="number">9</span>];</span><br><span class="line">console.<span class="built_in">log</span>(arr1.<span class="built_in">concat</span>(arr2));</span><br><span class="line">// Array: arr1+arr2：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>]]</span><br><span class="line">console.<span class="built_in">log</span>(arr1.<span class="built_in">concat</span>(<span class="built_in">num</span>));</span><br><span class="line">// Array: arr1+<span class="built_in">num</span>：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">7</span>]</span><br><span class="line">console.<span class="built_in">log</span>(arr1.<span class="built_in">concat</span>(arr2,<span class="built_in">num</span>,arr3));</span><br><span class="line">// Array: arr1+arr2+<span class="built_in">num</span>+arr3：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>],<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
       
     </div>
     
@@ -538,7 +527,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/html/" rel="tag"># html</a>
+            <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"># 字符串</a>
+          
+            <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"># 数组</a>
           
         </div>
       
@@ -551,8 +542,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/03/28/blog/NexT%E4%BC%98%E5%8C%96/" rel="next" title="NexT优化">
-                <i class="fa fa-chevron-left"></i> NexT优化
+              <a href="/2023/03/12/JavaScript/file/" rel="next" title="文件操作以及json">
+                <i class="fa fa-chevron-left"></i> 文件操作以及json
               </a>
             
           </div>
@@ -561,8 +552,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/04/01/JavaScript/JQ%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" rel="prev" title="JQ使用手册">
-                JQ使用手册 <i class="fa fa-chevron-right"></i>
+              <a href="/2023/03/13/JavaScript/daily/" rel="prev" title="用过的一些方法记录">
+                用过的一些方法记录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -699,7 +690,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-CSS-%E5%8F%98%E9%87%8F%E6%9B%B4%E6%94%B9%E5%A4%9A%E4%B8%AA%E5%85%83%E7%B4%A0%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">使用 CSS 变量更改多个元素样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84-CSS-%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text">创建一个自定义的 CSS 变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%BB%A7%E6%89%BF"><span class="nav-number">1.1.1.</span> <span class="nav-text">变量继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E6%9B%B4%E6%94%B9%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用媒体查询更改变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-margin"><span class="nav-number">2.</span> <span class="nav-text">1.margin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-border"><span class="nav-number">3.</span> <span class="nav-text">2.border</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">3.0.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#border-style"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">border-style:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-CSS%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">4.</span> <span class="nav-text">3.CSS优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E8%BF%9B%E9%A2%9C%E8%89%B2"><span class="nav-number">5.</span> <span class="nav-text">十六进颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E5%AD%97%E4%BD%93"><span class="nav-number">6.</span> <span class="nav-text">4.引入外部字体</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6-myStr-length"><span class="nav-number">2.</span> <span class="nav-text">获取字符串长度 myStr.length;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%87%AD%E5%80%9F"><span class="nav-number">3.</span> <span class="nav-text">字符凭借</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%AD%90%E4%B8%B2%E5%B9%B6%E6%88%AA%E5%8F%96"><span class="nav-number">4.</span> <span class="nav-text">查找子串并截取</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE"><span class="nav-number">4.1.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%AD%90%E4%B8%B2%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">查看字符串是否存在子串：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%AA%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">4.3.</span> <span class="nav-text">截取字符串</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2-str-replace%EF%BC%88stringToBeReplaced%EF%BC%8CstringToAdd%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">替换 str.replace（stringToBeReplaced，stringToAdd）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#trim-%E6%B8%85%E9%99%A4%E5%A4%9A%E4%BD%99%E7%9A%84%E7%A9%BA%E6%A0%BC"><span class="nav-number">6.</span> <span class="nav-text">trim() 清除多余的空格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2-str-toLowerCase-%E5%92%8C-radData-toUpperCase"><span class="nav-number">7.</span> <span class="nav-text">大小写转换 str.toLowerCase() 和 radData.toUpperCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%92%8C%E6%95%B0%E5%80%BC%E4%BA%92%E8%BD%AC"><span class="nav-number">8.</span> <span class="nav-text">字符和数值互转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%87%8D%E5%A4%8D-repeat-count"><span class="nav-number">9.</span> <span class="nav-text">重复 repeat(count)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#startsWith-%E5%92%8C-endsWith"><span class="nav-number">10.</span> <span class="nav-text">startsWith() 和 endsWith()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#console-log-%E2%80%98a%E2%80%99-charCodeAt-x2F-x2F-97"><span class="nav-number">11.</span> <span class="nav-text">console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">12.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%8B%BC%E6%8E%A5-concat"><span class="nav-number">13.</span> <span class="nav-text">数组拼接 concat()</span></a></li></ol></div>
             
 
           </div>

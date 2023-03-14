@@ -88,7 +88,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/images/slice.png">
 <meta property="article:published_time" content="2023-03-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-13T13:46:53.532Z">
+<meta property="article:modified_time" content="2023-03-13T14:03:31.790Z">
 <meta property="article:author" content="Piero">
 <meta property="article:tag" content="字符串">
 <meta property="article:tag" content="数组">
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  762
+                  777
                 </span>
               
 
@@ -470,10 +470,24 @@
 </blockquote>
 
 <span id="more"></span>
-<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><div class="note info"><h1 id="获取字符串长度-myStr-length"><a href="#获取字符串长度-myStr-length" class="headerlink" title="获取字符串长度 myStr.length;"></a>获取字符串长度 <code>myStr.length;</code></h1><h1 id="字符凭借"><a href="#字符凭借" class="headerlink" title="字符凭借"></a>字符凭借</h1><ol>
+<style>
+    hr{
+        margin: 20px 0;
+        background-image:none;
+        border-bottom:2px solid #eee;
+        height:0
+    }
+</style>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><div class="note info"><h2 id="获取字符串长度-myStr-length"><a href="#获取字符串长度-myStr-length" class="headerlink" title="获取字符串长度 myStr.length;"></a>获取字符串长度 <code>myStr.length;</code></h2><hr>
+<h2 id="字符拼接"><a href="#字符拼接" class="headerlink" title="字符拼接"></a>字符拼接</h2><ol>
 <li>js模板字符串！！！ <code>${}</code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> string1 = <span class="string">&#x27;clean&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> string2 = <span class="string">&#x27;code&#x27;</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> templateString = <span class="string">`<span class="subst">$&#123;clean&#125;</span> <span class="subst">$&#123;code&#125;</span>`</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">console</span>.<span class="title function_">log</span>(templateString); <span class="comment">// this prints out clean code</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>concat()  <code>tring1.concat(string2)</code><h1 id="查找子串并截取"><a href="#查找子串并截取" class="headerlink" title="查找子串并截取"></a>查找子串并截取</h1><h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2></li>
-<li><code>charAr(index)</code>  &#x2F;&#x2F;返回index处的字符<h2 id="查看字符串是否存在子串："><a href="#查看字符串是否存在子串：" class="headerlink" title="查看字符串是否存在子串："></a>查看字符串是否存在子串：</h2></li>
+<li>concat()  ex:<code>tring1.concat(string2)</code></li>
+</ol>
+<hr>
+<h2 id="查找子串并截取"><a href="#查找子串并截取" class="headerlink" title="查找子串并截取"></a>查找子串并截取</h2><h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><blockquote>
+<p><code>charAr(index)</code>  &#x2F;&#x2F;返回index处的字符</p>
+</blockquote>
+<h3 id="查看字符串是否存在子串："><a href="#查看字符串是否存在子串：" class="headerlink" title="查看字符串是否存在子串："></a>查看字符串是否存在子串：</h3><div class="note "><ol>
 <li>indexOf() <div class="note info"><blockquote>
 <p>找不到返回-1找到了返回子串最开始的字母的index下标<br>&#x2F;&#x2F; browserType &#x3D; “mozilla”<br><code>browserType.indexOf(&#39;zilla&#39;);</code> &#x2F;&#x2F; 2<br>因为子字符串“zilla”从“mozilla”内的位置 2（0，1，2 —— 所以从第 3 个字符）开始。</p>
 </blockquote></div></li>
@@ -483,9 +497,9 @@
 <figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">const str = <span class="string">&#x27;hello world&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(str.<span class="built_in">includes</span>(<span class="string">&#x27;hello&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(str.<span class="built_in">includes</span>(<span class="string">&#x27;word&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>match(regex string)</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> firstName = <span class="string">&quot;Matt&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> badFirstName = <span class="string">&quot;Matthew4&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> nameRegex = <span class="regexp">/^[a-zA-Z]+$/</span></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">console</span>.<span class="title function_">log</span>(firstName.<span class="title function_">match</span>(nameRegex)); <span class="comment">// True</span></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">console</span>.<span class="title function_">log</span>(badFirstName.<span class="title function_">match</span>(nameRegex)); <span class="comment">// False</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> firstName = <span class="string">&quot;Matt&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> badFirstName = <span class="string">&quot;Matthew4&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> nameRegex = <span class="regexp">/^[a-zA-Z]+$/</span></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">console</span>.<span class="title function_">log</span>(firstName.<span class="title function_">match</span>(nameRegex)); <span class="comment">// True</span></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">console</span>.<span class="title function_">log</span>(badFirstName.<span class="title function_">match</span>(nameRegex)); <span class="comment">// False</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></div></li>
 </ol>
-<h2 id="截取字符串"><a href="#截取字符串" class="headerlink" title="截取字符串"></a>截取字符串</h2><ol>
+<h3 id="截取字符串"><a href="#截取字符串" class="headerlink" title="截取字符串"></a>截取字符串</h3><div class="note "><ol>
 <li>取最后一个字符 <code>myStr[myStr.length-1];</code> 或者 <code>myStr.charAt[myStr.length-1]</code></li>
 <li><code>slice(startIndex,endIndex)</code> <b>包头不包尾</b> <code>&quot;mozilla&quot;.slice(0,3)</code> &#x2F;&#x2F;moz</li>
 </ol>
@@ -501,15 +515,27 @@
 </ul>
 <ol start="4">
 <li><code>split(string)</code>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> str =<span class="string">&quot;hello world&quot;</span></span></span><br><span class="line"><span class="language-javascript">str.<span class="title function_">split</span>(<span class="string">&quot; &quot;</span>) <span class="comment">//空格切分 [&quot;Hello&quot;, &quot;World&quot;];</span></span></span><br><span class="line"><span class="language-javascript">str.<span class="title function_">split</span>(<span class="string">&quot; &quot;</span>)[<span class="number">0</span>]  <span class="comment">//hello  </span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="替换-str-replace（stringToBeReplaced，stringToAdd）"><a href="#替换-str-replace（stringToBeReplaced，stringToAdd）" class="headerlink" title="替换 str.replace（stringToBeReplaced，stringToAdd）"></a>替换 str.replace（stringToBeReplaced，stringToAdd）</h1><ul>
-<li><code>str.replace(&#39;/&#39;,&#39;-&#39;)</code>把&#x2F;替换成-<h1 id="trim-清除多余的空格"><a href="#trim-清除多余的空格" class="headerlink" title="trim() 清除多余的空格"></a>trim() 清除多余的空格</h1><h1 id="大小写转换-str-toLowerCase-和-radData-toUpperCase"><a href="#大小写转换-str-toLowerCase-和-radData-toUpperCase" class="headerlink" title="大小写转换 str.toLowerCase() 和 radData.toUpperCase()"></a>大小写转换 <code>str.toLowerCase()</code> 和 <code>radData.toUpperCase()</code></h1></li>
+</ol></div>
+<hr>
+<h2 id="替换-str-replace（stringToBeReplaced，stringToAdd）"><a href="#替换-str-replace（stringToBeReplaced，stringToAdd）" class="headerlink" title="替换 str.replace（stringToBeReplaced，stringToAdd）"></a>替换 str.replace（stringToBeReplaced，stringToAdd）</h2><ul>
+<li><code>str.replace(&#39;/&#39;,&#39;-&#39;)</code>把&#x2F;替换成-</li>
 </ul>
-<h1 id="字符和数值互转"><a href="#字符和数值互转" class="headerlink" title="字符和数值互转"></a>字符和数值互转</h1><ol>
+<hr>
+<h2 id="trim-清除多余的空格"><a href="#trim-清除多余的空格" class="headerlink" title="trim() 清除多余的空格"></a>trim() 清除多余的空格</h2><hr>
+<h2 id="大小写转换-str-toLowerCase-和-radData-toUpperCase"><a href="#大小写转换-str-toLowerCase-和-radData-toUpperCase" class="headerlink" title="大小写转换 str.toLowerCase() 和 radData.toUpperCase()"></a>大小写转换 <code>str.toLowerCase()</code> 和 <code>radData.toUpperCase()</code></h2><hr>
+<h2 id="字符和数值互转"><a href="#字符和数值互转" class="headerlink" title="字符和数值互转"></a>字符和数值互转</h2><ol>
 <li>字符转数值<code>let myNum = Number(myString);</code></li>
-<li>数值转字符串 <code>myNum.toString();</code> 或者 <code>myNum+&#39;&#39;</code><h1 id="重复-repeat-count"><a href="#重复-repeat-count" class="headerlink" title="重复 repeat(count)"></a>重复 repeat(count)</h1><h1 id="startsWith-和-endsWith"><a href="#startsWith-和-endsWith" class="headerlink" title="startsWith() 和 endsWith()"></a>startsWith() 和 endsWith()</h1><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = [<span class="string">&quot;Today&quot;</span>, <span class="string">&quot;is&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;nice&quot;</span>,<span class="string">&quot;day!&quot;</span>]</span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(str.startsWith(<span class="string">&#x27;Today&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(str.endsWith(<span class="string">&#x27;day&#x27;</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></div></li>
+<li>数值转字符串 <code>myNum.toString();</code> 或者 <code>myNum+&#39;&#39;</code></li>
 </ol>
-<h1 id="console-log-‘a’-charCodeAt-x2F-x2F-97"><a href="#console-log-‘a’-charCodeAt-x2F-x2F-97" class="headerlink" title="console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97"></a>console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97</h1><h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><div class="note primary"><h1 id="数组拼接-concat"><a href="#数组拼接-concat" class="headerlink" title="数组拼接 concat()"></a>数组拼接 concat()</h1><p>ex: <code>arr1.concat(arr1,arr3)</code> 把数组arr2 和 arr3拼接到arr1后面<br>嵌套数组仍然以嵌套形式存在，可以扁平化（？</p>
+<hr>
+<h2 id="重复-repeat-count"><a href="#重复-repeat-count" class="headerlink" title="重复 repeat(count)"></a>重复 repeat(count)</h2><hr>
+<h2 id="startsWith-和-endsWith"><a href="#startsWith-和-endsWith" class="headerlink" title="startsWith() 和 endsWith()"></a>startsWith() 和 endsWith()</h2><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = [<span class="string">&quot;Today&quot;</span>, <span class="string">&quot;is&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;nice&quot;</span>,<span class="string">&quot;day!&quot;</span>]</span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(str.startsWith(<span class="string">&#x27;Today&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(str.endsWith(<span class="string">&#x27;day&#x27;</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="console-log-‘a’-charCodeAt-x2F-x2F-97"><a href="#console-log-‘a’-charCodeAt-x2F-x2F-97" class="headerlink" title="console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97"></a>console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97</h2></div>
+
+
+
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><div class="note primary"><h2 id="数组拼接-concat"><a href="#数组拼接-concat" class="headerlink" title="数组拼接 concat()"></a>数组拼接 concat()</h2><p>ex: <code>arr1.concat(arr1,arr3)</code> 把数组arr2 和 arr3拼接到arr1后面<br>嵌套数组仍然以嵌套形式存在，可以扁平化（？</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="built_in">let</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">let</span> arr2 = [<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line"><span class="built_in">let</span> <span class="built_in">num</span> = <span class="number">7</span>;</span><br><span class="line"><span class="built_in">let</span> arr3 = [<span class="number">8</span>,<span class="number">9</span>];</span><br><span class="line">console.<span class="built_in">log</span>(arr1.<span class="built_in">concat</span>(arr2));</span><br><span class="line">// Array: arr1+arr2：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>]]</span><br><span class="line">console.<span class="built_in">log</span>(arr1.<span class="built_in">concat</span>(<span class="built_in">num</span>));</span><br><span class="line">// Array: arr1+<span class="built_in">num</span>：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">7</span>]</span><br><span class="line">console.<span class="built_in">log</span>(arr1.<span class="built_in">concat</span>(arr2,<span class="built_in">num</span>,arr3));</span><br><span class="line">// Array: arr1+arr2+<span class="built_in">num</span>+arr3：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>],<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
       
     </div>
@@ -635,7 +661,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -646,7 +672,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -657,7 +683,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -690,7 +716,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6-myStr-length"><span class="nav-number">2.</span> <span class="nav-text">获取字符串长度 myStr.length;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%87%AD%E5%80%9F"><span class="nav-number">3.</span> <span class="nav-text">字符凭借</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%AD%90%E4%B8%B2%E5%B9%B6%E6%88%AA%E5%8F%96"><span class="nav-number">4.</span> <span class="nav-text">查找子串并截取</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE"><span class="nav-number">4.1.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%AD%90%E4%B8%B2%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">查看字符串是否存在子串：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%AA%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">4.3.</span> <span class="nav-text">截取字符串</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2-str-replace%EF%BC%88stringToBeReplaced%EF%BC%8CstringToAdd%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">替换 str.replace（stringToBeReplaced，stringToAdd）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#trim-%E6%B8%85%E9%99%A4%E5%A4%9A%E4%BD%99%E7%9A%84%E7%A9%BA%E6%A0%BC"><span class="nav-number">6.</span> <span class="nav-text">trim() 清除多余的空格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2-str-toLowerCase-%E5%92%8C-radData-toUpperCase"><span class="nav-number">7.</span> <span class="nav-text">大小写转换 str.toLowerCase() 和 radData.toUpperCase()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%92%8C%E6%95%B0%E5%80%BC%E4%BA%92%E8%BD%AC"><span class="nav-number">8.</span> <span class="nav-text">字符和数值互转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%87%8D%E5%A4%8D-repeat-count"><span class="nav-number">9.</span> <span class="nav-text">重复 repeat(count)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#startsWith-%E5%92%8C-endsWith"><span class="nav-number">10.</span> <span class="nav-text">startsWith() 和 endsWith()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#console-log-%E2%80%98a%E2%80%99-charCodeAt-x2F-x2F-97"><span class="nav-number">11.</span> <span class="nav-text">console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">12.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%8B%BC%E6%8E%A5-concat"><span class="nav-number">13.</span> <span class="nav-text">数组拼接 concat()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6-myStr-length"><span class="nav-number">1.1.</span> <span class="nav-text">获取字符串长度 myStr.length;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E6%8B%BC%E6%8E%A5"><span class="nav-number">1.2.</span> <span class="nav-text">字符拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%AD%90%E4%B8%B2%E5%B9%B6%E6%88%AA%E5%8F%96"><span class="nav-number">1.3.</span> <span class="nav-text">查找子串并截取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE"><span class="nav-number">1.3.1.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%AD%90%E4%B8%B2%EF%BC%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">查看字符串是否存在子串：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%AA%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.3.3.</span> <span class="nav-text">截取字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2-str-replace%EF%BC%88stringToBeReplaced%EF%BC%8CstringToAdd%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">替换 str.replace（stringToBeReplaced，stringToAdd）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trim-%E6%B8%85%E9%99%A4%E5%A4%9A%E4%BD%99%E7%9A%84%E7%A9%BA%E6%A0%BC"><span class="nav-number">1.5.</span> <span class="nav-text">trim() 清除多余的空格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2-str-toLowerCase-%E5%92%8C-radData-toUpperCase"><span class="nav-number">1.6.</span> <span class="nav-text">大小写转换 str.toLowerCase() 和 radData.toUpperCase()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%92%8C%E6%95%B0%E5%80%BC%E4%BA%92%E8%BD%AC"><span class="nav-number">1.7.</span> <span class="nav-text">字符和数值互转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%A4%8D-repeat-count"><span class="nav-number">1.8.</span> <span class="nav-text">重复 repeat(count)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#startsWith-%E5%92%8C-endsWith"><span class="nav-number">1.9.</span> <span class="nav-text">startsWith() 和 endsWith()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#console-log-%E2%80%98a%E2%80%99-charCodeAt-x2F-x2F-97"><span class="nav-number">1.10.</span> <span class="nav-text">console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%8B%BC%E6%8E%A5-concat"><span class="nav-number">2.1.</span> <span class="nav-text">数组拼接 concat()</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -724,7 +750,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">29.1k</span>
+    <span title="Site words total count">30k</span>
   
 </div>
 

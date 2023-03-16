@@ -1961,10 +1961,29 @@ ___粗斜体文本___
     <content><![CDATA[<blockquote class="blockquote-center"><p>VBscript 和 asp 学习or使用记录 </p>
 </blockquote>
 <span id="more"></span>
+<h1 id="搭建asp环境"><a href="#搭建asp环境" class="headerlink" title="搭建asp环境"></a>搭建asp环境</h1><div class="note info"><p><a href="https://blog.csdn.net/qq_58000413/article/details/123911101">搭建环境</a></p>
+<p>文章里很详细了，asp那几个记得勾上。<br>端口号记得写8088 ，80容易冲突<br>访问地址就是 <a href="http://localhost:8088/index.html">http://localhost:8088/index.html</a><br>踩坑是因为 ：主机名不要填不要填不要填！！！！！ 不然找不到阿<br><img src="/images/asp_error1.png"><br><img src="/images/asp_error.png"></p>
+<p>ajax 如果不是访问服务端是访问不到的 ， get只会打开文件拿到文件里全部文本，post直接报错。所以一定要先搭建环境！！！<br>比如：<br><img src="/images/form_error.png"><br>or post时候404<br><img src="/images/asp_ajaxerror.png"><br>or GET时候会打开文件拿到文件里全部文本 没有执行服务端代码 因为根本没搭建服务端阿。。<br><img src="/images/asp_ajaxerror2.png"></p></div>
+<h1 id="服务器实战中记录"><a href="#服务器实战中记录" class="headerlink" title="服务器实战中记录"></a>服务器实战中记录</h1><div class="note info"><ol>
+<li>服务器代码记得写在&lt;%%&gt;里面</li>
+<li>asp里的 ‘ 一个单引号是注释</li>
+<li>参数拼接用&amp;var&amp;  比如：”hello,”&amp;username&amp;” .now”   &#x2F;&#x2F; hello,piero .now</li>
+</ol>
+<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xmlhttp.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; <span class="variable language_">this</span>.<span class="property">status</span> == <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;txtHint&quot;</span>).<span class="property">innerHTML</span> = <span class="variable language_">this</span>.<span class="property">responseText</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">xmlhttp.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;student.asp?username=&quot;</span> + username, <span class="literal">true</span>);</span><br><span class="line">xmlhttp.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
 
+<h2 id="在页面打印信息-lt-x3D-gt-或者-lt-response-write-username-gt"><a href="#在页面打印信息-lt-x3D-gt-或者-lt-response-write-username-gt" class="headerlink" title="在页面打印信息 &lt;%&#x3D; %&gt; 或者  &lt;% response.write(username)%&gt;"></a>在页面打印信息 &lt;%&#x3D; %&gt; 或者  &lt;% response.write(username)%&gt;</h2><figure class="highlight vbnet"><figcaption><span>asp</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    <span class="keyword">dim</span> username </span><br><span class="line">    <span class="comment">&#x27; 获取传过来的参数</span></span><br><span class="line">    username = request(<span class="string">&quot;username&quot;</span>)  </span><br><span class="line">    <span class="comment">&#x27; 返回页面的结果</span></span><br><span class="line">    response.write(username)</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+## 设置和获取cookie
+<figure class="highlight vbscript"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    <span class="keyword">dim</span> username,password</span><br><span class="line">    <span class="comment">&#x27; 常规 设置cookie</span></span><br><span class="line">    <span class="built_in">Response</span>.Cookies(<span class="string">&quot;username&quot;</span>)=username</span><br><span class="line">    <span class="comment">&#x27; 类似对象的写法</span></span><br><span class="line">    <span class="built_in">Response</span>.Cookies(<span class="string">&quot;user&quot;</span>)(<span class="string">&quot;password&quot;</span>)=password</span><br><span class="line"></span><br><span class="line">    <span class="comment">&#x27; 获取cookie</span></span><br><span class="line">    username = <span class="built_in">Request</span>.Cookies(<span class="string">&quot;username&quot;</span>)</span><br><span class="line">    password = <span class="built_in">Request</span>.Cookies(<span class="string">&quot;password&quot;</span>)(<span class="string">&quot;password&quot;</span>)</span><br><span class="line">    </span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+## 重定向 response.Redirect(url)    
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">response.<span class="constructor">Redirect(<span class="string">&quot;http://www.mels.hk/newlesson/learning.asp?username=&quot;</span>&amp;<span class="params">sUserName</span>&amp;<span class="string">&quot;&amp;lessonid=LiteratureAll&amp;action=login2&quot;</span>)</span>    </span><br></pre></td></tr></table></figure></div>
+
+<h1 id="错误记录"><a href="#错误记录" class="headerlink" title="错误记录"></a>错误记录</h1><h2 id="走表单默认方式提交到asp时候报错"><a href="#走表单默认方式提交到asp时候报错" class="headerlink" title="走表单默认方式提交到asp时候报错"></a>走表单默认方式提交到asp时候报错</h2><p>主要原因是我的不是服务端！！！我没搭建服务端</p>
+<blockquote>
+<p>方法：不走submit走click事件。<br>增加<code>&lt;meta&gt;</code>那个试过了无效。<br><img src="/images/form_error.png"></p>
+</blockquote>
 <h1 id="教程链接mark"><a href="#教程链接mark" class="headerlink" title="教程链接mark"></a>教程链接mark</h1><p><a href="https://www.runoob.com/vbscript/vbscript-tutorial.html">vbscript的菜鸟教程</a><br><a href="https://www.runoob.com/asp/asp-tutorial.html">asp菜鸟教程</a></p>
-<div class="note info"><h1 id="asp"><a href="#asp" class="headerlink" title="asp"></a>asp</h1><div class="note info"><p>&lt;% 服务端代码 %&gt;<br>如果想在页面中打印 用<code>response.write()</code><br><code>&lt;%response.write(&quot;My first ASP script!&quot;)%&gt;</code></p></div>
-<h1 id="vbscript使用"><a href="#vbscript使用" class="headerlink" title="vbscript使用"></a>vbscript使用</h1><ol>
+<div class="note info"><h1 id="asp语法摘抄"><a href="#asp语法摘抄" class="headerlink" title="asp语法摘抄"></a>asp语法摘抄</h1><div class="note info"><p>&lt;% 服务端代码 %&gt;<br>如果想在页面中打印 用<code>response.write()</code><br><code>&lt;%response.write(&quot;My first ASP script!&quot;)%&gt;</code></p></div>
+<h1 id="vbscript语法摘抄"><a href="#vbscript语法摘抄" class="headerlink" title="vbscript语法摘抄"></a>vbscript语法摘抄</h1><ol>
 <li>html中使用<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/vbscript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&quot;Hello World!&quot;</span>)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li>可以通过 <code>Dim</code>、<code>Public</code> 或 <code>Private</code> 语句声明 VBScript 变量</li>
 </ol>
@@ -1996,6 +2015,43 @@ ___粗斜体文本___
       <tags>
         <tag>VBscript</tag>
         <tag>asp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqlServer</title>
+    <url>/2023/03/16/server/sqlServer/</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>数据库学习&amp;sqlServer的使用记录 </p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="安装教程"><a href="#安装教程" class="headerlink" title="安装教程"></a>安装教程</h1><blockquote>
+<p><a href="https://www.bilibili.com/video/av935855774/?vd_source=358320077e752c3aadfc396646934168">视频教程</a><br><a href="https://blog.csdn.net/m0_67403013/article/details/125244805">文本教程</a></p>
+</blockquote>
+<h1 id="新建库和表"><a href="#新建库和表" class="headerlink" title="新建库和表"></a>新建库和表</h1><div class="note info"><ol>
+<li>在数据库直接右键”数据库”填写信息即可</li>
+<li>在新建好的数据库右键“新建表即可” </li>
+<li>在数据库右键 “附加数据库”可以导入数据库</li>
+<li>在表右键如图，即可copy到表的新建代码。然后新建查询粘贴执行即可在另一个数据库里面创建一模一样的表。</li>
+</ol>
+<p>一般新建完需要右键刷新一下才出来。<br><img src="/images/copytable.png" alt="复制表"></p></div>
+
+<h1 id="杂七杂八的记录"><a href="#杂七杂八的记录" class="headerlink" title="杂七杂八的记录"></a>杂七杂八的记录</h1><div class="note info"><blockquote>
+<p>nchar 是unicode编码，含有中文时推荐用这个不容易乱码。<br>没中文时候推荐varchar。</p>
+</blockquote>
+<h2 id="设置自增的id"><a href="#设置自增的id" class="headerlink" title="设置自增的id"></a>设置自增的id</h2><blockquote>
+<p><b>id要一开始就设置好，不然后面追加是不允许追加的</b><br>展开标识规范里在第一项里选择“是”，如图<br><img src="/images/sql_id.png"></p>
+</blockquote>
+<h2 id="设置createTime或updateTime"><a href="#设置createTime或updateTime" class="headerlink" title="设置createTime或updateTime"></a>设置createTime或updateTime</h2><blockquote>
+<p>数据类型设置为datetime 然后 在默认值输入 getdate() 即可 如图<br>插入数据后时间如果没自动更新时候可以输入完数据后右键 “执行sql” 后时间就会自动更新了。 或者再次打开表也会自动更新。<br>上述情况一般只在新建表不久，之后再插入都是自动更新的不需要再额外操作。<br><img src="/images/sql_time.png"><br><img src="/images/sql_time2.png"></p>
+</blockquote>
+<h2 id="主键和外键"><a href="#主键和外键" class="headerlink" title="主键和外键"></a>主键和外键</h2><blockquote>
+<p>设计表时候直接右键 设置主键即可，只能设一个（一般id？<br>外键  设置外键时候踩坑了，好像要两边字段同时设置为主键才能添加外键？<br>一直tips：“列与现有主键或UNIQUE约束不匹配  都设为主键后再加外键才设置外键成功。<br>”<br><img src="/images/sql_fk.png"></p>
+</blockquote></div>]]></content>
+      <categories>
+        <category>sql Server</category>
+      </categories>
+      <tags>
+        <tag>sql Server</tag>
       </tags>
   </entry>
 </search>

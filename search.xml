@@ -1190,13 +1190,30 @@ ___粗斜体文本___
       </tags>
   </entry>
   <entry>
-    <title>js函数&amp;方法概念以及this指向归纳</title>
+    <title>函数&amp;方法以及this指向归纳</title>
     <url>/2023/03/03/JavaScript/function/</url>
     <content><![CDATA[<blockquote class="blockquote-center"><p>javascript中function&amp;method的概念以及this指向 </p>
 </blockquote>
 
 <span id="more"></span>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><div class="note info"><p>函数分为具名函数function fn(){} 和 匿名函数function(){}。此处主要介绍匿名函数</p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><div class="note info"><h2 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h2><blockquote>
+<p>形参和实参不再赘述<br>主要记录 函数的参数之 动态参数和剩余参数</p>
+</blockquote>
+<h3 id="剩余参数-…"><a href="#剩余参数-…" class="headerlink" title="剩余参数  …"></a>剩余参数  …</h3><div class="note "><ol>
+<li><code>...</code>是语法符号,置于最末函数形参之前，用于获取<b><mark>多余</mark></b>的实参</li>
+<li>借助…获取的剩余实参，是个<mark><b>真数组</b></mark>。所以提出用这个！<figure class="highlight actionscript"><figcaption><span>lang=javascript</span></figcaption><table><tr><td class="code"><pre><span class="line">config(<span class="string">&quot;http://www.baidu.com&quot;</span>,<span class="string">&#x27;get&#x27;</span>,<span class="string">&#x27;json&#x27;</span>)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">config</span><span class="params">(baseURL, <span class="rest_arg">...other</span>)</span>&#123;</span><br><span class="line">    console.log(baseURL) <span class="comment">// 得到  &#x27;http://www.baidu.com&#x27;</span></span><br><span class="line">    console.log(other)  <span class="comment">//使用时候不用加 ...    [&#x27;get&#x27;,&#x27;json&#x27;]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>补充： 当<code>...</code>用在函数时候是剩余参数<br><mark>如果用在函数外就是<b>展开运算符</b></mark><br>展开运算符可以展开数组<br>主要作用：1.求数组最值   2.合并数组<br>时数组转字符串还可以join的方法</p>
+<blockquote>
+<p>因为Math.max方法的参数形式是 (1,2,3) 这样的 所以可以用 …arr 变成这样的形式 然后就可以求最大值了</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(...arr)  <span class="comment">// ...arr === 1,2,3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.求数组最值</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Math</span>.<span class="title function_">max</span>(...arr1))  <span class="comment">//3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Math</span>.<span class="title function_">min</span>(...arr1))  <span class="comment">//1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.合并数组</span></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">const</span> arr = [...arr1,...arr2]</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr)   <span class="comment">// [1,2,3,3,4,5]</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="动态参数-arguments"><a href="#动态参数-arguments" class="headerlink" title="动态参数 arguments"></a>动态参数 arguments</h3><div class="note "><p>动态参数arguments是<b>函数内部内置的<mark>伪数组</b></mark>变量，它包含了调用函数时<mark><b>传入的所有实参</b></mark>.<br>可以通过<b>for循环依次得到传递过来的实参</b></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>;i&lt;<span class="variable language_">arguments</span>.<span class="property">length</span>;i++&gt;)&#123;</span><br><span class="line">        s+=<span class="variable language_">arguments</span>[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(s)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sum</span>(<span class="number">5</span>,<span class="number">10</span>)  <span class="comment">//15</span></span><br><span class="line"><span class="title function_">sum</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>) <span class="comment">//7</span></span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>函数分为具名函数function fn(){} 和 匿名函数function(){}。此处主要介绍匿名函数。</p>
+</blockquote>
 <h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><ol>
 <li>匿名函数的使用方式主要两种：函数表达式 和 立即执行函数</li>
 <li>匿名函数的使用场景：webAPI , JQ中大量使用了。<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">let btn = document.querySelector(<span class="string">&#x27;button&#x27;</span>)</span><br><span class="line">btn.onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">btn.addEventListener(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;)</span><br><span class="line">// $(<span class="string">&quot;.btn&quot;</span>).on(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;)</span><br></pre></td></tr></table></figure></li>
@@ -1208,7 +1225,7 @@ ___粗斜体文本___
 <ul>
 <li>var 声明的函数表达式具有<b>声明提升但赋值不提升</b>的特点，所以<mark>不能在赋值语句之前调用</mark>。 在赋值之前调用 变量名存在但是还没赋值 会返回“undefined”</li>
 <li>具名函数具有声明提升特性，<mark>可以在任意地方调用且会正常执行</mark>。<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 函数表达式</span></span><br><span class="line">fn(<span class="number">1</span>,<span class="number">3</span>)  <span class="comment">// &quot;undefined&quot;</span></span><br><span class="line"><span class="keyword">var</span> fn = <span class="keyword">function</span>(<span class="params">x,y</span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(x+y);</span><br><span class="line">&#125;</span><br><span class="line">fn(<span class="number">1</span>,<span class="number">2</span>)  <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//具名函数</span></span><br><span class="line">fun1(<span class="number">4</span>,<span class="number">3</span>)  <span class="comment">//7</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fun1</span>(<span class="params">x,y</span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(x+y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-### 立即执行函数 (function(){})()</li>
+<h3 id="立即执行函数-function"><a href="#立即执行函数-function" class="headerlink" title="立即执行函数 (function(){})()"></a>立即执行函数 (function(){})()</h3></li>
 </ul>
 <ol>
 <li>函数定义完，立即被调用</li>
@@ -1299,18 +1316,32 @@ ___粗斜体文本___
       </tags>
   </entry>
   <entry>
-    <title>作用域&amp;闭包</title>
+    <title>作用域&amp;垃圾回收机制&amp;闭包</title>
     <url>/2023/03/04/JavaScript/scope/</url>
     <content><![CDATA[<blockquote class="blockquote-center"><p>归纳总结：作用域&#x2F;垃圾回收机制&#x2F;闭包 </p>
 </blockquote>
 <span id="more"></span>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><div class="note warning"><blockquote>
+<p>一个函数对周围状态的引用捆绑在一起，内层函数中访问到其外层函数的作用域。<br>（对周围状态引用指：里面的函数用到了外面函数的变量）<br><mark>闭包 &#x3D; 内层函数 + 外层函数的变量</mark></p>
+</blockquote>
+<blockquote>
+<p>作用:封闭数据，提供操作，使外部也能访问到函数内部的变量，如例子里的outer函数里的a</p>
+</blockquote>
+<p>例子中:</p>
+<ol>
+<li>因为return 了fn这个函数所以相当于<br><mark>outer() &#x3D;&#x3D;&#x3D; fn &#x3D;&#x3D;&#x3D; function fn(){}</mark></li>
+<li>对调用outer()处打断点会发现： （图所示<br>1）如果内部函数fn使用了outer的变量 则断点调试里scope 处显示 local closure(outer) global<br>2）如果内部函数fn没有使用outer的变量 则断点调试里scope处不会显示closure 不构成一个闭包</li>
+</ol>
+<p><img src="/images/closure.png"><br><img src="/images/closure2.png"></p>
+<h2 id="闭包会造成内存泄漏"><a href="#闭包会造成内存泄漏" class="headerlink" title="闭包会造成内存泄漏"></a>闭包会造成内存泄漏</h2><div class="note "><p>例子中：因为fun是全局变量，在页面销毁前它一直在。<br>根据垃圾回收机制的标记清除法：从根部扫描对象，<mark>能查找到的就是在使用的，就不会被回收</mark><br>因fun这个全局变量一直指向fn所以fn也是能查找到的；<br>又fn用到了i所以i也是能被查找到的；<br>顾outer函数里的变量i 不会被回收（根部能访问到i ，通过fun访问所以根据垃圾回收机制的标记清除法 i不会被回收）。<br>这也是一种内存泄露，本该回收的但是因为能访问到所以没办法回收。<br><img src="/images/closure3.png"></p></div>
+
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">function outer()&#123;</span><br><span class="line">    let i = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 匿名函数</span></span><br><span class="line">    <span class="keyword">return</span> function fn()&#123;</span><br><span class="line">        i++</span><br><span class="line">        console.log(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="function"><span class="keyword">fun</span> = <span class="title">outer</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">fun</span><span class="params">()</span></span>   <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></div>
 
 <h1 id="作用域-Scope"><a href="#作用域-Scope" class="headerlink" title="作用域 Scope"></a>作用域 Scope</h1><div class="note info"><ol>
 <li>一个变量的作用范围.</li>
 <li>js中一共两种作用域：<mark>全局作用域</mark> 和 <mark>函数作用域</mark></li>
 </ol></div>
-
-<h1 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h1><div class="note info"><ol>
+<h2 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h2><div class="note danger"><ol>
 <li>直接编写在script标签中的js代码，都在全局作用域。</li>
 <li>全局作用域在<mark>页面打开时创建</mark>，在<mark>页面关闭时候销毁</mark>。</li>
 <li>在全局作用域中有个<b>全局对象window</b>。<blockquote>
@@ -1336,7 +1367,7 @@ ___粗斜体文本___
 <p>1.使用函数声明形式创建的函数 function 函数(){},会在所有的代码执行之前就被创建。<br>2.和变量提前不同的是：<mark>函数不仅是声明提前，它是<b>整个函数都提前(包括函数里面的执行语句)</b>所以可以正常运行。</mark><br>3.所以<mark>可以在函数声明前调用函数</mark>。 （例子里的fun）<br>4. <b style="color:red;">注意</b>使用函数表达式创建的函数（var fun &#x3D; function(){}），只声明提前,赋值不会提前，所以不能在声明前调用。（例子里的fun2！！）</p></div>
 <figure class="highlight arcade"><figcaption><span>函数声明提前</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">fun();   <span class="comment">// fun函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//因为全局变量fun2只声明提前，赋值不提前。</span></span><br><span class="line"><span class="comment">//此时还没赋值所以不能正常调用。</span></span><br><span class="line">fun2();  <span class="comment">// undefined is not a function</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//var 声明的变量所以变量有。</span></span><br><span class="line"><span class="comment">//但是还没执行到赋值语句所以是undefined</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(fun2) <span class="comment">// &quot;undefined&quot;  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fun</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&#x27;fun函数&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行到这里时候才赋值，赋值完后fun2才是一个函数对象才可以正常调用。</span></span><br><span class="line"><span class="keyword">var</span> fun2 = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&#x27;fun2&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h1 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h1><div class="note primary"><ol>
+<h2 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h2><div class="note primary"><ol>
 <li><p><mark>调用函数时</mark>创建函数作用域，<mark>函数执行完毕后</mark>，函数作用域销毁</p>
 </li>
 <li><p>每调用一次函数就会创建一个新的函数作用域，他们之间<b>互相独立</b>。</p>
@@ -1356,6 +1387,7 @@ ___粗斜体文本___
 <li><p><b>定义形参相当于在函数作用域中声明了变量</b></p>
 <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">23</span>;</span><br><span class="line">function <span class="function"><span class="title">fun</span><span class="params">(age)</span></span>&#123;</span><br><span class="line"><span class="comment">//定义了形参相当于在函数中加了 var age;</span></span><br><span class="line">    console.log(age);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 没有传实参  </span></span><br><span class="line"><span class="comment">//因为定义了形参所以函数作用域中有age，直接用了函数作用域了的age没有全局的。</span></span><br><span class="line"><span class="comment">// 但是因为没传实参，所以函数作用域里的age没能赋值所以是undefined</span></span><br><span class="line"><span class="function"><span class="title">fun</span><span class="params">()</span></span>;  <span class="comment">//&quot;undefined&quot;</span></span><br></pre></td></tr></table></figure></li>
 </ol></div>
+
 
 <h1 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h1><div class="note info"><h2 id="内存的生命周期"><a href="#内存的生命周期" class="headerlink" title="内存的生命周期"></a>内存的生命周期</h2><ol>
 <li><mark>内存分配</mark>:当我们声明变量、函数、对象的时候，系统会自动为他们分配内存。</li>
@@ -1384,6 +1416,7 @@ ___粗斜体文本___
         <tag>js</tag>
         <tag>作用域</tag>
         <tag>闭包</tag>
+        <tag>垃圾回收机制</tag>
       </tags>
   </entry>
   <entry>
@@ -1975,7 +2008,7 @@ ___粗斜体文本___
 ## 设置和获取cookie
 <figure class="highlight vbscript"><table><tr><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    <span class="keyword">dim</span> username,password</span><br><span class="line">    <span class="comment">&#x27; 常规 设置cookie</span></span><br><span class="line">    <span class="built_in">Response</span>.Cookies(<span class="string">&quot;username&quot;</span>)=username</span><br><span class="line">    <span class="comment">&#x27; 类似对象的写法</span></span><br><span class="line">    <span class="built_in">Response</span>.Cookies(<span class="string">&quot;user&quot;</span>)(<span class="string">&quot;password&quot;</span>)=password</span><br><span class="line"></span><br><span class="line">    <span class="comment">&#x27; 获取cookie</span></span><br><span class="line">    username = <span class="built_in">Request</span>.Cookies(<span class="string">&quot;username&quot;</span>)</span><br><span class="line">    password = <span class="built_in">Request</span>.Cookies(<span class="string">&quot;password&quot;</span>)(<span class="string">&quot;password&quot;</span>)</span><br><span class="line">    </span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
 ## 重定向 response.Redirect(url)    
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">response.<span class="constructor">Redirect(<span class="string">&quot;http://www.mels.hk/newlesson/learning.asp?username=&quot;</span>&amp;<span class="params">sUserName</span>&amp;<span class="string">&quot;&amp;lessonid=LiteratureAll&amp;action=login2&quot;</span>)</span>    </span><br></pre></td></tr></table></figure></div>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">response.<span class="constructor">Redirect(<span class="string">&quot;http://www.baidu.com/learning.asp?username=&quot;</span>&amp;<span class="params">username</span>&amp;<span class="string">&quot;&amp;lessonid=LiteratureAll&amp;action=login2&quot;</span>)</span>    </span><br></pre></td></tr></table></figure></div>
 
 <h1 id="错误记录"><a href="#错误记录" class="headerlink" title="错误记录"></a>错误记录</h1><h2 id="走表单默认方式提交到asp时候报错"><a href="#走表单默认方式提交到asp时候报错" class="headerlink" title="走表单默认方式提交到asp时候报错"></a>走表单默认方式提交到asp时候报错</h2><p>主要原因是我的不是服务端！！！我没搭建服务端</p>
 <blockquote>

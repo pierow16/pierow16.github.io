@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="js,作用域,闭包," />
+  <meta name="keywords" content="js,作用域,闭包,垃圾回收机制," />
 
 
 
@@ -81,20 +81,24 @@
 
 <meta name="description" content="归纳总结：作用域&#x2F;垃圾回收机制&#x2F;闭包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="作用域&amp;闭包">
+<meta property="og:title" content="作用域&amp;垃圾回收机制&amp;闭包">
 <meta property="og:url" content="http://example.com/2023/03/04/JavaScript/scope/index.html">
 <meta property="og:site_name" content="鸣子铺">
 <meta property="og:description" content="归纳总结：作用域&#x2F;垃圾回收机制&#x2F;闭包">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/images/closure.png">
+<meta property="og:image" content="http://example.com/images/closure2.png">
+<meta property="og:image" content="http://example.com/images/closure3.png">
 <meta property="og:image" content="http://example.com/images/ljhs.png">
 <meta property="article:published_time" content="2023-03-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-05T13:31:49.018Z">
+<meta property="article:modified_time" content="2023-03-19T07:20:40.849Z">
 <meta property="article:author" content="Piero">
 <meta property="article:tag" content="js">
 <meta property="article:tag" content="作用域">
 <meta property="article:tag" content="闭包">
+<meta property="article:tag" content="垃圾回收机制">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/ljhs.png">
+<meta name="twitter:image" content="http://example.com/images/closure.png">
 
 
 
@@ -130,7 +134,7 @@
 
 
 
-  <title>作用域&闭包 | 鸣子铺</title>
+  <title>作用域&垃圾回收机制&闭包 | 鸣子铺</title>
   
 
 
@@ -358,7 +362,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">作用域&闭包</h1>
+          <h1 class="post-title" itemprop="name headline">作用域&垃圾回收机制&闭包</h1>
         
 
         <div class="post-meta">
@@ -387,8 +391,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-05T21:31:49+08:00">
-                2023-03-05
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-19T15:20:40+08:00">
+                2023-03-19
               </time>
             
           </span>
@@ -442,7 +446,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.9k
+                  2.3k
                 </span>
               
 
@@ -458,7 +462,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  8
                 </span>
               
             </div>
@@ -482,13 +486,27 @@
         <blockquote class="blockquote-center"><p>归纳总结：作用域&#x2F;垃圾回收机制&#x2F;闭包 </p>
 </blockquote>
 <span id="more"></span>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><div class="note warning"><blockquote>
+<p>一个函数对周围状态的引用捆绑在一起，内层函数中访问到其外层函数的作用域。<br>（对周围状态引用指：里面的函数用到了外面函数的变量）<br><mark>闭包 &#x3D; 内层函数 + 外层函数的变量</mark></p>
+</blockquote>
+<blockquote>
+<p>作用:封闭数据，提供操作，使外部也能访问到函数内部的变量，如例子里的outer函数里的a</p>
+</blockquote>
+<p>例子中:</p>
+<ol>
+<li>因为return 了fn这个函数所以相当于<br><mark>outer() &#x3D;&#x3D;&#x3D; fn &#x3D;&#x3D;&#x3D; function fn(){}</mark></li>
+<li>对调用outer()处打断点会发现： （图所示<br>1）如果内部函数fn使用了outer的变量 则断点调试里scope 处显示 local closure(outer) global<br>2）如果内部函数fn没有使用outer的变量 则断点调试里scope处不会显示closure 不构成一个闭包</li>
+</ol>
+<p><img src="/images/closure.png"><br><img src="/images/closure2.png"></p>
+<h2 id="闭包会造成内存泄漏"><a href="#闭包会造成内存泄漏" class="headerlink" title="闭包会造成内存泄漏"></a>闭包会造成内存泄漏</h2><div class="note "><p>例子中：因为fun是全局变量，在页面销毁前它一直在。<br>根据垃圾回收机制的标记清除法：从根部扫描对象，<mark>能查找到的就是在使用的，就不会被回收</mark><br>因fun这个全局变量一直指向fn所以fn也是能查找到的；<br>又fn用到了i所以i也是能被查找到的；<br>顾outer函数里的变量i 不会被回收（根部能访问到i ，通过fun访问所以根据垃圾回收机制的标记清除法 i不会被回收）。<br>这也是一种内存泄露，本该回收的但是因为能访问到所以没办法回收。<br><img src="/images/closure3.png"></p></div>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function outer()&#123;</span><br><span class="line">    let i = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 匿名函数</span></span><br><span class="line">    <span class="keyword">return</span> function fn()&#123;</span><br><span class="line">        i++</span><br><span class="line">        console.log(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="function"><span class="keyword">fun</span> = <span class="title">outer</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">fun</span><span class="params">()</span></span>   <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></div>
 
 <h1 id="作用域-Scope"><a href="#作用域-Scope" class="headerlink" title="作用域 Scope"></a>作用域 Scope</h1><div class="note info"><ol>
 <li>一个变量的作用范围.</li>
 <li>js中一共两种作用域：<mark>全局作用域</mark> 和 <mark>函数作用域</mark></li>
 </ol></div>
-
-<h1 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h1><div class="note info"><ol>
+<h2 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h2><div class="note danger"><ol>
 <li>直接编写在script标签中的js代码，都在全局作用域。</li>
 <li>全局作用域在<mark>页面打开时创建</mark>，在<mark>页面关闭时候销毁</mark>。</li>
 <li>在全局作用域中有个<b>全局对象window</b>。<blockquote>
@@ -514,7 +532,7 @@
 <p>1.使用函数声明形式创建的函数 function 函数(){},会在所有的代码执行之前就被创建。<br>2.和变量提前不同的是：<mark>函数不仅是声明提前，它是<b>整个函数都提前(包括函数里面的执行语句)</b>所以可以正常运行。</mark><br>3.所以<mark>可以在函数声明前调用函数</mark>。 （例子里的fun）<br>4. <b style="color:red;">注意</b>使用函数表达式创建的函数（var fun &#x3D; function(){}），只声明提前,赋值不会提前，所以不能在声明前调用。（例子里的fun2！！）</p></div>
 <figure class="highlight arcade"><figcaption><span>函数声明提前</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fun();   <span class="comment">// fun函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//因为全局变量fun2只声明提前，赋值不提前。</span></span><br><span class="line"><span class="comment">//此时还没赋值所以不能正常调用。</span></span><br><span class="line">fun2();  <span class="comment">// undefined is not a function</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//var 声明的变量所以变量有。</span></span><br><span class="line"><span class="comment">//但是还没执行到赋值语句所以是undefined</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(fun2) <span class="comment">// &quot;undefined&quot;  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fun</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&#x27;fun函数&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行到这里时候才赋值，赋值完后fun2才是一个函数对象才可以正常调用。</span></span><br><span class="line"><span class="keyword">var</span> fun2 = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&#x27;fun2&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h1 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h1><div class="note primary"><ol>
+<h2 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h2><div class="note primary"><ol>
 <li><p><mark>调用函数时</mark>创建函数作用域，<mark>函数执行完毕后</mark>，函数作用域销毁</p>
 </li>
 <li><p>每调用一次函数就会创建一个新的函数作用域，他们之间<b>互相独立</b>。</p>
@@ -534,6 +552,7 @@
 <li><p><b>定义形参相当于在函数作用域中声明了变量</b></p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">23</span>;</span><br><span class="line">function <span class="function"><span class="title">fun</span><span class="params">(age)</span></span>&#123;</span><br><span class="line"><span class="comment">//定义了形参相当于在函数中加了 var age;</span></span><br><span class="line">    console.log(age);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 没有传实参  </span></span><br><span class="line"><span class="comment">//因为定义了形参所以函数作用域中有age，直接用了函数作用域了的age没有全局的。</span></span><br><span class="line"><span class="comment">// 但是因为没传实参，所以函数作用域里的age没能赋值所以是undefined</span></span><br><span class="line"><span class="function"><span class="title">fun</span><span class="params">()</span></span>;  <span class="comment">//&quot;undefined&quot;</span></span><br></pre></td></tr></table></figure></li>
 </ol></div>
+
 
 <h1 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h1><div class="note info"><h2 id="内存的生命周期"><a href="#内存的生命周期" class="headerlink" title="内存的生命周期"></a>内存的生命周期</h2><ol>
 <li><mark>内存分配</mark>:当我们声明变量、函数、对象的时候，系统会自动为他们分配内存。</li>
@@ -577,6 +596,8 @@
           
             <a href="/tags/%E9%97%AD%E5%8C%85/" rel="tag"># 闭包</a>
           
+            <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" rel="tag"># 垃圾回收机制</a>
+          
         </div>
       
 
@@ -588,8 +609,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2023/03/03/JavaScript/function/" rel="next" title="js函数&方法概念以及this指向归纳">
-                <i class="fa fa-chevron-left"></i> js函数&方法概念以及this指向归纳
+              <a href="/2023/03/03/JavaScript/function/" rel="next" title="函数&方法以及this指向归纳">
+                <i class="fa fa-chevron-left"></i> 函数&方法以及this指向归纳
               </a>
             
           </div>
@@ -703,7 +724,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -736,7 +757,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F-Scope"><span class="nav-number">1.</span> <span class="nav-text">作用域 Scope</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.</span> <span class="nav-text">全局作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E6%8F%90%E5%89%8D%E4%BB%A5%E5%8F%8A%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E6%8F%90%E5%89%8D"><span class="nav-number">2.1.</span> <span class="nav-text">变量的声明提前以及函数的声明提前</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">变量的声明提前：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">函数的声明提前：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">3.</span> <span class="nav-text">函数作用域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">4.1.</span> <span class="nav-text">内存的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95%E5%92%8C%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">引用计数法和标记清除法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="nav-number">4.3.1.</span> <span class="nav-text">引用计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4"><span class="nav-number">4.3.2.</span> <span class="nav-text">标记清除</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AD%E5%8C%85%E4%BC%9A%E9%80%A0%E6%88%90%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">闭包会造成内存泄漏</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F-Scope"><span class="nav-number">2.</span> <span class="nav-text">作用域 Scope</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.1.</span> <span class="nav-text">全局作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E6%8F%90%E5%89%8D%E4%BB%A5%E5%8F%8A%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E6%8F%90%E5%89%8D"><span class="nav-number">2.2.</span> <span class="nav-text">变量的声明提前以及函数的声明提前</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">变量的声明提前：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">函数的声明提前：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.3.</span> <span class="nav-text">函数作用域</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">3.1.</span> <span class="nav-text">内存的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95%E5%92%8C%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">引用计数法和标记清除法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="nav-number">3.3.1.</span> <span class="nav-text">引用计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4"><span class="nav-number">3.3.2.</span> <span class="nav-text">标记清除</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -770,7 +791,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">30.9k</span>
+    <span title="Site words total count">31.7k</span>
   
 </div>
 

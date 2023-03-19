@@ -1321,19 +1321,19 @@ ___粗斜体文本___
     <content><![CDATA[<blockquote class="blockquote-center"><p>归纳总结：作用域&#x2F;垃圾回收机制&#x2F;闭包 </p>
 </blockquote>
 <span id="more"></span>
-<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><div class="note warning"><blockquote>
-<p>一个函数对周围状态的引用捆绑在一起，内层函数中访问到其外层函数的作用域。<br>（对周围状态引用指：里面的函数用到了外面函数的变量）<br><mark>闭包 &#x3D; 内层函数 + 外层函数的变量</mark></p>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><div class="note info"><blockquote>
+<p>一个函数对周围状态的引用捆绑在一起，内层函数中访问到其外层函数的作用域。<br>（对周围状态引用指：里面的函数用到了外面函数的变量）<br><mark><b>闭包 &#x3D; 内层函数 + 外层函数的变量</b></mark></p>
 </blockquote>
 <blockquote>
-<p>作用:封闭数据，提供操作，使外部也能访问到函数内部的变量，如例子里的outer函数里的a</p>
+<p>作用:<b>封闭数据，提供操作，使外部也能访问到函数内部的变量</b>. 如例子里的outer函数里的a</p>
 </blockquote>
 <p>例子中:</p>
 <ol>
 <li>因为return 了fn这个函数所以相当于<br><mark>outer() &#x3D;&#x3D;&#x3D; fn &#x3D;&#x3D;&#x3D; function fn(){}</mark></li>
-<li>对调用outer()处打断点会发现： （图所示<br>1）如果内部函数fn使用了outer的变量 则断点调试里scope 处显示 local closure(outer) global<br>2）如果内部函数fn没有使用outer的变量 则断点调试里scope处不会显示closure 不构成一个闭包</li>
+<li>对调用outer()处打断点会发现： （图所示<br>1）如果内部函数fn<b>使用了outer的变量</b> 则断点调试里scope 处显示<mark> local <b>closure(outer)</b> global </mark><br>2）如果内部函数fn<b>没有使用outer的变量</b> 则断点调试里scope处<b>不会显示closure</b> 不构成一个闭包<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">outer</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fn</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//常规使用方法</span></span><br><span class="line"><span class="keyword">const</span> fun = <span class="title function_">outer</span>() <span class="comment">//此时fun === fn()&#123;&#125;</span></span><br><span class="line"><span class="title function_">fun</span>()  <span class="comment">//调用函数  ---相当于调用 fn() 执行fn里的内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 简洁的写法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">outer</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 匿名函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        i++</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fun = <span class="title function_">outer</span>()</span><br><span class="line"><span class="title function_">fun</span>()   <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <p><img src="/images/closure.png"><br><img src="/images/closure2.png"></p>
-<h2 id="闭包会造成内存泄漏"><a href="#闭包会造成内存泄漏" class="headerlink" title="闭包会造成内存泄漏"></a>闭包会造成内存泄漏</h2><div class="note "><p>例子中：因为fun是全局变量，在页面销毁前它一直在。<br>根据垃圾回收机制的标记清除法：从根部扫描对象，<mark>能查找到的就是在使用的，就不会被回收</mark><br>因fun这个全局变量一直指向fn所以fn也是能查找到的；<br>又fn用到了i所以i也是能被查找到的；<br>顾outer函数里的变量i 不会被回收（根部能访问到i ，通过fun访问所以根据垃圾回收机制的标记清除法 i不会被回收）。<br>这也是一种内存泄露，本该回收的但是因为能访问到所以没办法回收。<br><img src="/images/closure3.png"></p></div>
+<h2 id="闭包会造成内存泄漏"><a href="#闭包会造成内存泄漏" class="headerlink" title="闭包会造成内存泄漏"></a>闭包会造成内存泄漏</h2><div class="note "><p>例子中：因为<b>fun是全局变量，在页面销毁前它一直在</b>。<br>根据垃圾回收机制的<mark>标记清除法</mark>：从根部扫描对象，<b>能查找到的就是在使用的，就不会被回收</b><br>因fun这个全局变量一直指向fn所以fn也是能查找到的；<br>又fn用到了i所以i也是能被查找到的；<br>顾outer函数里的变量i 不会被回收（根部能访问到i ，通过fun访问所以根据垃圾回收机制的标记清除法 i不会被回收）。<br>这也是一种内存泄露，本该回收的但是因为能访问到所以没办法回收。<br><img src="/images/closure3.png"></p></div>
 
 <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">function outer()&#123;</span><br><span class="line">    let i = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 匿名函数</span></span><br><span class="line">    <span class="keyword">return</span> function fn()&#123;</span><br><span class="line">        i++</span><br><span class="line">        console.log(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="function"><span class="keyword">fun</span> = <span class="title">outer</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">fun</span><span class="params">()</span></span>   <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></div>
 
@@ -1356,7 +1356,7 @@ ___粗斜体文本___
 </ul>
 <figure class="highlight arcade"><figcaption><span>全局变量和函数存在window对象里</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a =<span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(window.a) <span class="comment">// 10</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;fn&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">window.fn() <span class="comment">// fn</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="变量的声明提前以及函数的声明提前"><a href="#变量的声明提前以及函数的声明提前" class="headerlink" title="变量的声明提前以及函数的声明提前"></a>变量的声明提前以及函数的声明提前</h2><br>
+<h3 id="变量的声明提前以及函数的声明提前"><a href="#变量的声明提前以及函数的声明提前" class="headerlink" title="变量的声明提前以及函数的声明提前"></a>变量的声明提前以及函数的声明提前</h3><br>
 <div class="note "><h4 style="color:black;">变量的声明提前：</h4>
 
 <p>使用var关键字声明的变量会在所有代码执行之前执行<br><mark>但不会赋值，直到执行到赋值语句时候才赋值</mark>）。（预编译&#x2F;预处理</p>
@@ -1413,7 +1413,6 @@ ___粗斜体文本___
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>作用域</tag>
         <tag>闭包</tag>
         <tag>垃圾回收机制</tag>
@@ -2085,6 +2084,103 @@ ___粗斜体文本___
       </categories>
       <tags>
         <tag>sql Server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>window / BOM / DOM</title>
+    <url>/2023/03/19/html/window/</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>window 以及 dom 以及 bom 对象的属性方法归纳 js执行机制 </p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="window"><a href="#window" class="headerlink" title="window"></a>window</h1><div class="note "><ul>
+<li>window对象是一个<b>全局对象</b></li>
+<li>window之下：navigator location <mark>document</mark> history screen</li>
+<li>函数 以及 通过var定义在全局作用域的变量都会变成window对象的属性和方法</li>
+</ul></div>
+
+<h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h1><div class="note info"><h2 id="JS执行机制"><a href="#JS执行机制" class="headerlink" title="JS执行机制"></a>JS执行机制</h2><div class="note "><p>浏览器有两个引擎：渲染引擎(html&#x2F;css) 和 js解释&#x2F;解析器</p>
+<h3 id="同步任务"><a href="#同步任务" class="headerlink" title="同步任务"></a>同步任务</h3><p>同步任务都在主线程上执行，形成一个<b>执行栈</b></p>
+<h3 id="异步任务"><a href="#异步任务" class="headerlink" title="异步任务"></a>异步任务</h3><p>js的异步都是通过<b>回调函数</b>实现的。<br>一般，异步任务有三种：  (耗时的)</p>
+<ol>
+<li>普通事件，click、resize等 （dom板块</li>
+<li>资源加载，load、error等 </li>
+<li>定时器，setInterval、setTimeout等 （timer板块<br>ajax(网络板块)<br>异步任务相关 添加到<b style="color:#a20f11">任务队列</b>（任务队列也叫消息队列.</li>
+</ol>
+<h3 id="js执行机制-："><a href="#js执行机制-：" class="headerlink" title="js执行机制 ："></a>js执行机制 ：</h3><ol>
+<li>先执行执行栈中的同步任务</li>
+<li>异步任务放入任务队列中</li>
+<li>一旦执行栈中所有同步任务执行完毕，系统会按次序读取任务队列中的异步任务，于是被读取的异步任务结束等待状态进入执行栈开始执行。</li>
+</ol>
+<p>—— 事件循环 ——<br>主线程不断的重复获得任务、执行任务、再获取任务、再执行，所以这种机制被称为<b style="color:#a20f11">事件循环（event loop）</b></p>
+<div class="note info"><p>简而言之：主线程把异步任务丢给浏览器处理，浏览器处理好后，把计算结果推到任务队列。主线程执行完后会不时去任务队列查看是由有已执行好的异步任务，有就调到执行栈执行。</p>
+<p>浏览器可以多线程，所以异步api是浏览器的功能。异步任务都是提交给浏览器&#x2F;宿主去执行的。</p></div>
+
+<p>有异步任务时候。主线程会把异步任务丢给<b>异步api</b>去处理执行，异步api会把执行完毕(即处理好，已得到结果)的异步任务放到任务队列里.（即任务队列里存放的其实是执行完了的异步任务。</p>
+<p>主线程执行完同步任务之后会不断查询任务队列里有没有任务，有就调过来执行。</p>
+<p><img src="/images/eventloop.png"></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 结果 111 333 222</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">111</span>)</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">222</span>)</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">333</span>)</span><br></pre></td></tr></table></figure>
+
+<p>js特点是<b>单线程</b>：同一时间只能做一件事</p></div>
+
+<h2 id="定时器-setInterval-x2F-setTimeout"><a href="#定时器-setInterval-x2F-setTimeout" class="headerlink" title="定时器 setInterval &#x2F; setTimeout"></a>定时器 setInterval &#x2F; setTimeout</h2><blockquote>
+<p>每次调用定时器都会产生一个新的定时器，返回值是id （即12345 第几个定时器。<br>间歇函数：setInterval(回调函数，等待的毫秒数)<br>一直执行，除非手动清除</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> timer = <span class="built_in">setInterval</span>(fn,<span class="number">3000</span>)</span><br><span class="line"><span class="built_in">clearInterval</span>(timer)</span><br></pre></td></tr></table></figure>
+<p>延时函数：setTimeout(回调函数，等待的毫秒数)</p>
+<blockquote>
+<p>只执行一次</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> timer = <span class="built_in">setTimeout</span>(fn,<span class="number">3000</span>)</span><br><span class="line"><span class="built_in">clearTimeout</span>(timer)</span><br></pre></td></tr></table></figure>
+
+<h2 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h2><blockquote>
+<p>拆分并保存了url地址的各个组成部分</p>
+</blockquote>
+<div class="note "><h3 id="常用属性："><a href="#常用属性：" class="headerlink" title="常用属性："></a>常用属性：</h3><ul>
+<li><b>location.search</b> <div class="note "><p>获取地址栏中携带的参数，<mark>符号?后面部分（包括？</mark><br>可以拿到地址栏表单的相关信息!!!<br>location.search &#x2F;&#x2F; ?username&#x3D;piero&amp;age&#x3D;18</p></div></li>
+</ul>
+<ul>
+<li><p>location.hash </p>
+<div class="note "><p>获取地址中的哈希值，符号#后面部分(包含#)</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">//</span> 这样的a链接点击时候页面不跳转，只会在地址栏后面加上<span class="comment">#/my </span></span><br><span class="line"><span class="regexp">//</span> 比如点击第一个时候 index.html<span class="comment">#/my </span></span><br><span class="line"><span class="regexp">//</span>点第二个时候index.html<span class="comment">#/friend</span></span><br><span class="line">&lt;a href=<span class="string">&quot;#/my&quot;</span>&gt;我的&lt;/a&gt;</span><br><span class="line">&lt;a href=<span class="string">&quot;#/friend&quot;</span>&gt;关注&lt;/a&gt;</span><br><span class="line"><span class="regexp">//</span> 可以用location.hash 确定点的是哪个</span><br><span class="line">console.log(location.href)  <span class="regexp">//</span> <span class="string">&#x27;#/friend&#x27;</span></span><br></pre></td></tr></table></figure>
+应用场景：
+spa：单页面应用。 网易云音乐就是
+不需要刷新页面，加载资源少，只改变中间一块的内容。
+根据hash地址即#后面地址显示不同内容，类似tab切换，但是组件的形式
+比如网易云
+'https://music.163.com/#/friend' 
+'https://music.163.com/#/my/'</div>
+</li>
+<li><p><b>location.href<b></p>
+<div class="note "><p>获取地址 赋值时候是跳转页面。<br>使用场景：比如登陆成功后五秒钟之后自动跳转回首页&#x2F;支付完几秒后跳转回之前页面。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果点击则直接跳转，如果不点则5秒后自动跳转。</span></span><br><span class="line">&lt;a href=<span class="string">&quot;index.html&quot;</span>&gt;&lt;/a&gt;</span><br><span class="line"><span class="keyword">const</span> a = $(<span class="string">&quot;a&quot;</span>)</span><br><span class="line"><span class="keyword">let</span> num = <span class="number">5</span></span><br><span class="line"><span class="keyword">let</span> timer = <span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    num--</span><br><span class="line">    a.<span class="property">innerHTML</span>=<span class="string">`<span class="subst">$&#123;num&#125;</span>秒钟后跳转到首页`</span></span><br><span class="line">    <span class="comment">// 如果num == 0 停止定时器并跳转。</span></span><br><span class="line">    <span class="keyword">if</span>(num === <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">clearInterval</span>(timer)</span><br><span class="line">        location.<span class="property">href</span>=<span class="string">&quot;index.html&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ul>
+<li>location.reload<div class="note "><p>刷新当前页面，当传入参数true时表示强制刷新<br>location.reload(true) &#x2F;&#x2F;f5<br>location.reload()  &#x2F;&#x2F;ctrl+f5</p></div>
+<!-- location end --></div></li>
+</ul>
+<h2 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h2><div class="note "><p>记录了浏览器自身的相关信息</p>
+<h3 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h3><ul>
+<li>userAgent 检测浏览器的版本及平台<br>应用场景：当移动端浏览时候跳去移动端页面。<br>把下面的代码放在头部就行了。<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">!(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">const</span> userAgent = navigator.<span class="property">userAgent</span></span><br><span class="line">    <span class="comment">//验证是否为android或iPhone</span></span><br><span class="line">    <span class="keyword">const</span> android = userAgent.<span class="title function_">match</span>(<span class="regexp">/(Android);?[\s\/]+([\d.]+)?/</span>)</span><br><span class="line">    <span class="keyword">const</span> iphone =  userAgent.<span class="title function_">match</span>(<span class="regexp">/(iPhone\sOS)\s([\d_]+)/</span>)</span><br><span class="line">    <span class="comment">// 如果是m端就跳转到m端页面</span></span><br><span class="line">    <span class="keyword">if</span>(android || iphone)&#123;</span><br><span class="line">        location.<span class="property">href</span> =<span class="string">&#x27;m.taobao.com&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();  <span class="comment">//分号</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//立即执行函数的几种写法</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;)()</span><br><span class="line"><span class="comment">// 这种会报错，因为浏览器会把function()和&#123;&#125;()割裂开。不当一个整体看。</span></span><br><span class="line"><span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以在前面放个! 或者 +或者~等符号  暗示这是一个整体</span></span><br><span class="line">!<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;();</span><br><span class="line">+<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;();</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul></div>
+
+<h2 id="history对象"><a href="#history对象" class="headerlink" title="history对象"></a>history对象</h2><div class="note "><p>历史记录和前进后退</p>
+<ul>
+<li>back() 后退</li>
+<li>forward()</li>
+<li>go(参数)<br>go(1) 前进一步，go(-1) 后退一步<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> back = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button:first-child&quot;</span>)</span><br><span class="line"><span class="keyword">const</span> forward = back.<span class="property">nextElementSibling</span></span><br><span class="line">back.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    history.<span class="title function_">back</span>()</span><br><span class="line">&#125;)</span><br><span class="line">back.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    history.<span class="title function_">forward</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul></div>
+
+<!-- bom end --></div>
+
+<h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1>]]></content>
+      <categories>
+        <category>html</category>
+      </categories>
+      <tags>
+        <tag>bom</tag>
+        <tag>dom</tag>
       </tags>
   </entry>
 </search>

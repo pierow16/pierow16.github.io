@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="js,作用域,闭包,垃圾回收机制," />
+  <meta name="keywords" content="作用域,闭包,垃圾回收机制," />
 
 
 
@@ -91,9 +91,8 @@
 <meta property="og:image" content="http://example.com/images/closure3.png">
 <meta property="og:image" content="http://example.com/images/ljhs.png">
 <meta property="article:published_time" content="2023-03-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-19T07:20:40.849Z">
+<meta property="article:modified_time" content="2023-03-19T07:32:10.395Z">
 <meta property="article:author" content="Piero">
-<meta property="article:tag" content="js">
 <meta property="article:tag" content="作用域">
 <meta property="article:tag" content="闭包">
 <meta property="article:tag" content="垃圾回收机制">
@@ -391,7 +390,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-19T15:20:40+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-19T15:32:10+08:00">
                 2023-03-19
               </time>
             
@@ -446,7 +445,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.3k
+                  2.4k
                 </span>
               
 
@@ -462,7 +461,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  9
                 </span>
               
             </div>
@@ -486,19 +485,19 @@
         <blockquote class="blockquote-center"><p>归纳总结：作用域&#x2F;垃圾回收机制&#x2F;闭包 </p>
 </blockquote>
 <span id="more"></span>
-<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><div class="note warning"><blockquote>
-<p>一个函数对周围状态的引用捆绑在一起，内层函数中访问到其外层函数的作用域。<br>（对周围状态引用指：里面的函数用到了外面函数的变量）<br><mark>闭包 &#x3D; 内层函数 + 外层函数的变量</mark></p>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><div class="note info"><blockquote>
+<p>一个函数对周围状态的引用捆绑在一起，内层函数中访问到其外层函数的作用域。<br>（对周围状态引用指：里面的函数用到了外面函数的变量）<br><mark><b>闭包 &#x3D; 内层函数 + 外层函数的变量</b></mark></p>
 </blockquote>
 <blockquote>
-<p>作用:封闭数据，提供操作，使外部也能访问到函数内部的变量，如例子里的outer函数里的a</p>
+<p>作用:<b>封闭数据，提供操作，使外部也能访问到函数内部的变量</b>. 如例子里的outer函数里的a</p>
 </blockquote>
 <p>例子中:</p>
 <ol>
 <li>因为return 了fn这个函数所以相当于<br><mark>outer() &#x3D;&#x3D;&#x3D; fn &#x3D;&#x3D;&#x3D; function fn(){}</mark></li>
-<li>对调用outer()处打断点会发现： （图所示<br>1）如果内部函数fn使用了outer的变量 则断点调试里scope 处显示 local closure(outer) global<br>2）如果内部函数fn没有使用outer的变量 则断点调试里scope处不会显示closure 不构成一个闭包</li>
+<li>对调用outer()处打断点会发现： （图所示<br>1）如果内部函数fn<b>使用了outer的变量</b> 则断点调试里scope 处显示<mark> local <b>closure(outer)</b> global </mark><br>2）如果内部函数fn<b>没有使用outer的变量</b> 则断点调试里scope处<b>不会显示closure</b> 不构成一个闭包<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">outer</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fn</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//常规使用方法</span></span><br><span class="line"><span class="keyword">const</span> fun = <span class="title function_">outer</span>() <span class="comment">//此时fun === fn()&#123;&#125;</span></span><br><span class="line"><span class="title function_">fun</span>()  <span class="comment">//调用函数  ---相当于调用 fn() 执行fn里的内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 简洁的写法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">outer</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 匿名函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        i++</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fun = <span class="title function_">outer</span>()</span><br><span class="line"><span class="title function_">fun</span>()   <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <p><img src="/images/closure.png"><br><img src="/images/closure2.png"></p>
-<h2 id="闭包会造成内存泄漏"><a href="#闭包会造成内存泄漏" class="headerlink" title="闭包会造成内存泄漏"></a>闭包会造成内存泄漏</h2><div class="note "><p>例子中：因为fun是全局变量，在页面销毁前它一直在。<br>根据垃圾回收机制的标记清除法：从根部扫描对象，<mark>能查找到的就是在使用的，就不会被回收</mark><br>因fun这个全局变量一直指向fn所以fn也是能查找到的；<br>又fn用到了i所以i也是能被查找到的；<br>顾outer函数里的变量i 不会被回收（根部能访问到i ，通过fun访问所以根据垃圾回收机制的标记清除法 i不会被回收）。<br>这也是一种内存泄露，本该回收的但是因为能访问到所以没办法回收。<br><img src="/images/closure3.png"></p></div>
+<h2 id="闭包会造成内存泄漏"><a href="#闭包会造成内存泄漏" class="headerlink" title="闭包会造成内存泄漏"></a>闭包会造成内存泄漏</h2><div class="note "><p>例子中：因为<b>fun是全局变量，在页面销毁前它一直在</b>。<br>根据垃圾回收机制的<mark>标记清除法</mark>：从根部扫描对象，<b>能查找到的就是在使用的，就不会被回收</b><br>因fun这个全局变量一直指向fn所以fn也是能查找到的；<br>又fn用到了i所以i也是能被查找到的；<br>顾outer函数里的变量i 不会被回收（根部能访问到i ，通过fun访问所以根据垃圾回收机制的标记清除法 i不会被回收）。<br>这也是一种内存泄露，本该回收的但是因为能访问到所以没办法回收。<br><img src="/images/closure3.png"></p></div>
 
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function outer()&#123;</span><br><span class="line">    let i = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 匿名函数</span></span><br><span class="line">    <span class="keyword">return</span> function fn()&#123;</span><br><span class="line">        i++</span><br><span class="line">        console.log(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="function"><span class="keyword">fun</span> = <span class="title">outer</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">fun</span><span class="params">()</span></span>   <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></div>
 
@@ -521,7 +520,7 @@
 </ul>
 <figure class="highlight arcade"><figcaption><span>全局变量和函数存在window对象里</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =<span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(window.a) <span class="comment">// 10</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;fn&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">window.fn() <span class="comment">// fn</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="变量的声明提前以及函数的声明提前"><a href="#变量的声明提前以及函数的声明提前" class="headerlink" title="变量的声明提前以及函数的声明提前"></a>变量的声明提前以及函数的声明提前</h2><br>
+<h3 id="变量的声明提前以及函数的声明提前"><a href="#变量的声明提前以及函数的声明提前" class="headerlink" title="变量的声明提前以及函数的声明提前"></a>变量的声明提前以及函数的声明提前</h3><br>
 <div class="note "><h4 style="color:black;">变量的声明提前：</h4>
 
 <p>使用var关键字声明的变量会在所有代码执行之前执行<br><mark>但不会赋值，直到执行到赋值语句时候才赋值</mark>）。（预编译&#x2F;预处理</p>
@@ -589,8 +588,6 @@
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/js/" rel="tag"># js</a>
           
             <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag"># 作用域</a>
           
@@ -702,7 +699,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -713,7 +710,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -724,7 +721,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -757,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AD%E5%8C%85%E4%BC%9A%E9%80%A0%E6%88%90%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">闭包会造成内存泄漏</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F-Scope"><span class="nav-number">2.</span> <span class="nav-text">作用域 Scope</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.1.</span> <span class="nav-text">全局作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E6%8F%90%E5%89%8D%E4%BB%A5%E5%8F%8A%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E6%8F%90%E5%89%8D"><span class="nav-number">2.2.</span> <span class="nav-text">变量的声明提前以及函数的声明提前</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">变量的声明提前：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">函数的声明提前：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.3.</span> <span class="nav-text">函数作用域</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">3.1.</span> <span class="nav-text">内存的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95%E5%92%8C%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">引用计数法和标记清除法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="nav-number">3.3.1.</span> <span class="nav-text">引用计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4"><span class="nav-number">3.3.2.</span> <span class="nav-text">标记清除</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AD%E5%8C%85%E4%BC%9A%E9%80%A0%E6%88%90%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">闭包会造成内存泄漏</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F-Scope"><span class="nav-number">2.</span> <span class="nav-text">作用域 Scope</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.1.</span> <span class="nav-text">全局作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E6%8F%90%E5%89%8D%E4%BB%A5%E5%8F%8A%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E6%8F%90%E5%89%8D"><span class="nav-number">2.1.1.</span> <span class="nav-text">变量的声明提前以及函数的声明提前</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">变量的声明提前：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">函数的声明提前：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.2.</span> <span class="nav-text">函数作用域</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">3.1.</span> <span class="nav-text">内存的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95%E5%92%8C%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">引用计数法和标记清除法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="nav-number">3.3.1.</span> <span class="nav-text">引用计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4"><span class="nav-number">3.3.2.</span> <span class="nav-text">标记清除</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -791,7 +788,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">31.7k</span>
+    <span title="Site words total count">33.1k</span>
   
 </div>
 

@@ -82,7 +82,7 @@
 <meta name="description" content="一个平平无奇的杂货铺">
 <meta property="og:type" content="website">
 <meta property="og:title" content="鸣子铺">
-<meta property="og:url" content="http://example.com/tags/js/index.html">
+<meta property="og:url" content="http://example.com/tags/JS/index.html">
 <meta property="og:site_name" content="鸣子铺">
 <meta property="og:description" content="一个平平无奇的杂货铺">
 <meta property="og:locale">
@@ -117,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/tags/js/"/>
+  <link rel="canonical" href="http://example.com/tags/JS/"/>
 
 
 
 
 
-  <title>标签: js | 鸣子铺</title>
+  <title>标签: JS | 鸣子铺</title>
   
 
 
@@ -327,7 +327,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>js<small>标签</small>
+        <h1>JS<small>标签</small>
         </h1>
       </div>
 
@@ -339,9 +339,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2023/03/04/JavaScript/scope/" itemprop="url">
+            <a class="post-title-link" href="/2023/02/27/JavaScript/es6/" itemprop="url">
               
-                <span itemprop="name">作用域&垃圾回收机制&闭包</span>
+                <span itemprop="name">Es6新增记录</span>
               
             </a>
         
@@ -349,9 +349,65 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2023-03-04T00:00:00+08:00"
-              content="2023-03-04" >
-          03-04
+              datetime="2023-02-27T00:00:00+08:00"
+              content="2023-02-27" >
+          02-27
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2022/04/05/JavaScript/JS/" itemprop="url">
+              
+                <span itemprop="name">JS</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2022-04-05T00:00:00+08:00"
+              content="2022-04-05" >
+          04-05
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2022/04/01/JavaScript/JQ%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url">
+              
+                <span itemprop="name">JQ使用手册</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2022-04-01T00:00:00+08:00"
+              content="2022-04-01" >
+          04-01
         </time>
       </div>
 
@@ -415,7 +471,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -426,7 +482,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -437,7 +493,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -488,7 +544,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">31.7k</span>
+    <span title="Site words total count">33.1k</span>
   
 </div>
 
@@ -959,61 +1015,6 @@
           }
 
           // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
- <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/clicklove.js"></script>
-</html>
-
           $(".local-search-pop-overlay").remove();
           $('body').css('overflow', '');
 

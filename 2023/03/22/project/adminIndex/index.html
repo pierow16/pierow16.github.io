@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vbscript,sqlServer,bootstrap," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="某表管理页面，含增删改查批量设置等操作。样式引用bootstrap 数据库采用sqlServer 后端asp 后端编程语言vbscript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的管理页面整合">
+<meta property="og:url" content="http://example.com/2023/03/22/project/adminIndex/index.html">
+<meta property="og:site_name" content="鸣子铺">
+<meta property="og:description" content="某表管理页面，含增删改查批量设置等操作。样式引用bootstrap 数据库采用sqlServer 后端asp 后端编程语言vbscript">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-03-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-22T05:37:57.233Z">
+<meta property="article:author" content="Piero">
+<meta property="article:tag" content="vbscript">
+<meta property="article:tag" content="sqlServer">
+<meta property="article:tag" content="bootstrap">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2023/03/22/project/adminIndex/"/>
+
+
+
+
+
+  <title>简单的管理页面整合 | 鸣子铺</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鸣子铺</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个平平无奇的杂货铺</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%E5%85%B3%E4%BA%8E" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorite">
+          <a href="/favorite/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fa-star"></i> <br />
+            
+            收藏夹
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-foreend">
+          <a href="/foreend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fa-star"></i> <br />
+            
+            前端技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resources">
+          <a href="/resources/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-download"></i> <br />
+            
+            资源
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/22/project/adminIndex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鸣子铺">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">简单的管理页面整合</h1>
+        
+
+        <div class="post-meta">
+          <span class="fa fa-heart btn-like" style="color:#f15269;margin-right:10px">  </span> | 
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-22T00:00:00+08:00">
+                2023-03-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-22T13:37:57+08:00">
+                2023-03-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/project/" itemprop="url" rel="index">
+                    <span itemprop="name">project</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/project/demo/" itemprop="url" rel="index">
+                    <span itemprop="name">demo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>某表管理页面，含增删改查批量设置等操作。样式引用bootstrap 数据库采用sqlServer 后端asp 后端编程语言vbscript </p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="vbs连接数据库"><a href="#vbs连接数据库" class="headerlink" title="vbs连接数据库"></a>vbs连接数据库</h1><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line"><span class="keyword">set</span> conn = <span class="built_in">server</span>.<span class="built_in">createObject</span>(<span class="string">&quot;adodb.connection&quot;</span>)</span><br><span class="line"><span class="comment">&#x27;创建connection对象</span></span><br><span class="line"> </span><br><span class="line">conn.connectionString = <span class="string">&quot;PROVIDER=SQLOLEDB;DATA SOURCE=(local);UID=myname;PWD=******;DATABASE=study&quot;</span></span><br><span class="line"><span class="comment">&#x27;利用connection对象的connectionString属性 来定义  连接数据库的参数</span></span><br><span class="line"><span class="comment">&#x27;参数  dirver固定为 &#123;sql server&#125;; server是服务器名称  uid、pwd、dataBase、就可以了</span></span><br><span class="line"><span class="comment">&#x27;也可以 定义一个  以key:value; 组成的 连接参数字符串str  再通过 oCon.open str  来连接</span></span><br><span class="line">conn.open  <span class="comment">&#x27;连接数据库</span></span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="html页面设置"><a href="#html页面设置" class="headerlink" title="html页面设置"></a>html页面设置</h2><div class="note info"><ol>
+<li>页面总体布局 以及获取 表格数据并渲染<blockquote>
+<p>我的表格</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;main_wrap&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--search--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;search_wrap&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin: 10px;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;form-inline&quot;</span> <span class="attr">id</span>=<span class="string">&quot;searchForm&quot;</span> <span class="attr">onsubmit</span>=<span class="string">&quot;return false;&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;email&quot;</span>&gt;</span>email<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;email&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;remark&quot;</span>&gt;</span>学校<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span>请选择学校<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span>&gt;</span>passcode<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">name</span>=<span class="string">&quot;passcode&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;passcode&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span>&gt;</span>状态<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">name</span>=<span class="string">&quot;status&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;NO&quot;</span>&gt;</span>未激活<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;YES&quot;</span>&gt;</span>已激活<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-success searchBtn&quot;</span>&gt;</span>搜索<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-default clearBtn&quot;</span>&gt;</span>清空<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--operate--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;btn-group&quot;</span> <span class="attr">role</span>=<span class="string">&quot;group&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-warning initBtn&quot;</span>&gt;</span>重置卡<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary setSchool&quot;</span>&gt;</span>批量选择学校<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-danger&quot;</span>&gt;</span>批量删除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-default addCode&quot;</span>&gt;</span>添加激活码<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--mytable--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&quot;table table-hover table-bordered&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--批量设置用的chebox--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;rows&quot;</span> <span class="attr">value</span>=<span class="string">&quot;all&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>id<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>持有者<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>激活码<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>状态<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>有效期<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>学校<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>点数<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>应用<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>课程类型1<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>课程类型2<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>无限制<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>操作<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tbody</span> <span class="attr">id</span>=<span class="string">&quot;tb&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &lt;tr&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;&lt;input type=&quot;checkbox&quot; name=&quot;rows&quot; value=&quot;1&quot; &gt;&lt;/td&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;1&lt;/td&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;piero&lt;/td&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;used&lt;/td&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;2023/3/20&lt;/td&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;小太阳学院&lt;/td&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;200&lt;/td&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;all&lt;/td&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;classic&lt;/td&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;none&lt;/td&gt;</span></span><br><span class="line"><span class="comment">                &lt;td&gt;</span></span><br><span class="line"><span class="comment">                    &lt;button class=&quot;btn btn-primary edit&quot; data-id=&quot;1&quot;&gt;编辑&lt;/button&gt;</span></span><br><span class="line"><span class="comment">                    &lt;button class=&quot;btn btn-danger del&quot; data-id=&quot;1&quot;&gt;删除&lt;/button&gt;</span></span><br><span class="line"><span class="comment">                &lt;/td&gt;</span></span><br><span class="line"><span class="comment">            &lt;/tr&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- pagination --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;pagination&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;li class=&quot;pre&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;laquo;&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">        &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;2&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">        &lt;li class=&quot;next&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;raquo;&lt;/a&gt;&lt;/li&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>获取数据并渲染</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="comment">// 分页的方法pagination()在另一篇笔记&#x27;一些自己写的功能&#x27;里</span></span><br><span class="line"><span class="keyword">var</span> page = <span class="number">1</span> <span class="comment">// 点分页跳转时候改变</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fetchList</span>(<span class="params"></span>) &#123;</span><br><span class="line">    $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">        <span class="attr">url</span>: <span class="string">&quot;server/unlockset.asp?action=getAll&quot;</span>,</span><br><span class="line">        <span class="attr">data</span>: &#123;</span><br><span class="line">            <span class="string">&quot;page&quot;</span>: <span class="variable language_">window</span>.<span class="property">page</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">dataType</span>: <span class="string">&quot;json&quot;</span>,</span><br><span class="line">        <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> list = data.<span class="property">list</span></span><br><span class="line">            <span class="keyword">let</span> totalCount = data.<span class="property">totalCount</span></span><br><span class="line">            <span class="keyword">let</span> staust_str = <span class="string">&quot;无&quot;</span></span><br><span class="line">            <span class="keyword">let</span> html = <span class="string">&quot;&quot;</span></span><br><span class="line">            <span class="comment">// console.log(list)</span></span><br><span class="line">            <span class="keyword">if</span> (totalCount) &#123;</span><br><span class="line">                <span class="title function_">pagination</span>(<span class="title class_">Math</span>.<span class="title function_">ceil</span>(totalCount / <span class="number">10</span>), <span class="variable language_">window</span>.<span class="property">page</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (i <span class="keyword">in</span> list) &#123;</span><br><span class="line">                <span class="keyword">let</span> remark = <span class="built_in">unescape</span>(list[i].<span class="property">remark</span>)</span><br><span class="line">                html += <span class="string">`&lt;tr&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;&lt;input type=&quot;checkbox&quot; data-id=<span class="subst">$&#123;list[i].id&#125;</span> name=&quot;rows&quot; value=&quot;1&quot;&gt;&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td data-id=<span class="subst">$&#123;list[i].id&#125;</span>&gt;<span class="subst">$&#123;list[i].id&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;<span class="subst">$&#123;list[i].email?list[i].email:staust_str&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;<span class="subst">$&#123;list[i].passcode?list[i].passcode:staust_str&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;<span class="subst">$&#123;list[i].status==<span class="string">&quot;NO&quot;</span>?<span class="string">&quot;未激活&quot;</span>:<span class="string">&quot;已激活&quot;</span>&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;<span class="subst">$&#123;list[i].exp_date?list[i].exp_date:staust_str&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;<span class="subst">$&#123;remark?remark:staust_str&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;<span class="subst">$&#123;list[i].points?list[i].points:<span class="number">0</span>&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;<span class="subst">$&#123;list[i].apps?list[i].apps:staust_str&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;<span class="subst">$&#123;list[i].remark3==<span class="string">&quot;none&quot;</span>?staust_str:list[i].remark3&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;<span class="subst">$&#123;list[i].remark4==<span class="string">&quot;none&quot;</span>?staust_str:list[i].remark4&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;<span class="subst">$&#123;list[i].unlimited&#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;td&gt;</span></span><br><span class="line"><span class="string">                    &lt;button class=&quot;btn btn-primary edit&quot;  data-id=&quot;<span class="subst">$&#123;list[i].id&#125;</span>&quot;&gt;修改&lt;/button&gt;</span></span><br><span class="line"><span class="string">                    &lt;button class=&quot;btn btn-danger del&quot;  data-id=&quot;<span class="subst">$&#123;list[i].id&#125;</span>&quot;&gt;删除&lt;/button&gt;</span></span><br><span class="line"><span class="string">                &lt;/td&gt;</span></span><br><span class="line"><span class="string">                &lt;/tr&gt;`</span></span><br><span class="line">            &#125;</span><br><span class="line">            $(<span class="string">&#x27;#tb&#x27;</span>).<span class="title function_">html</span>(html)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">error</span>: <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">            <span class="comment">// alert(&#x27;error&#x27;,e);  </span></span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">dir</span>(e)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fetchList</span>()</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>修改的模态框 以及 修改操作</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 模态框 edit--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal fade &quot;</span> <span class="attr">id</span>=<span class="string">&quot;editMod&quot;</span> <span class="attr">tabindex</span>=<span class="string">&quot;-1&quot;</span> <span class="attr">role</span>=<span class="string">&quot;dialog&quot;</span> <span class="attr">aria-labelledby</span>=<span class="string">&quot;myLargeModalLabel&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-dialog modal-lg&quot;</span> <span class="attr">role</span>=<span class="string">&quot;document&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-content&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-header&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;close&quot;</span> <span class="attr">data-dismiss</span>=<span class="string">&quot;modal&quot;</span> <span class="attr">aria-label</span>=<span class="string">&quot;Close&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;times;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h4</span> <span class="attr">class</span>=<span class="string">&quot;modal-title&quot;</span> <span class="attr">id</span>=<span class="string">&quot;myModalLabel&quot;</span>&gt;</span>修改信息<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-body&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;form-horizontal&quot;</span> <span class="attr">id</span>=<span class="string">&quot;editForm&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;passcode&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-2 control-label&quot;</span>&gt;</span>激活码:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-8&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;passcode&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">disabled</span> <span class="attr">id</span>=<span class="string">&quot;passcode&quot;</span></span></span><br><span class="line"><span class="tag">                                <span class="attr">placeholder</span>=<span class="string">&quot;passcode&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;email&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-2 control-label&quot;</span>&gt;</span>持有者:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-8&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;email&quot;</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;email&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;passcode&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-2 control-label&quot;</span>&gt;</span>有效期:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-2&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;date&quot;</span> <span class="attr">name</span>=<span class="string">&quot;exp_date&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">id</span>=<span class="string">&quot;exp_date&quot;</span></span></span><br><span class="line"><span class="tag">                                <span class="attr">placeholder</span>=<span class="string">&quot;exp_date&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;Points&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-2 control-label&quot;</span>&gt;</span>激活状态<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-8&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;radio-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;status&quot;</span> <span class="attr">value</span>=<span class="string">&quot;NO&quot;</span>&gt;</span> 未激活</span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;radio-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;status&quot;</span> <span class="attr">value</span>=<span class="string">&quot;YES&quot;</span>&gt;</span> 已激活</span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;Points&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-2 control-label&quot;</span>&gt;</span>Points<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-8&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;points&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">id</span>=<span class="string">&quot;Points&quot;</span></span></span><br><span class="line"><span class="tag">                                <span class="attr">placeholder</span>=<span class="string">&quot;Points&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;school&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-2 control-label&quot;</span>&gt;</span>学校<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-8&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span>请选择学校<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                                <span class="comment">&lt;!-- &lt;option value=&quot;XS&quot;&gt;小太阳幼儿园&lt;/option&gt; --&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;school&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-2 control-label&quot;</span>&gt;</span>类型1<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-8&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;checkbox-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;math&quot;</span>&gt;</span> Mathematics</span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;checkbox-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;melsstep&quot;</span>&gt;</span>Phonics and Reading</span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;checkbox-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;melsstem&quot;</span>&gt;</span>Cognitive Training</span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;checkbox-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;melsscience&quot;</span>&gt;</span>Science for kids<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;checkbox-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;melsmoral&quot;</span>&gt;</span>Morality and ethics<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;checkbox-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;melsfcd&quot;</span>&gt;</span>Fine motor skills<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;checkbox-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;melsmfb&quot;</span>&gt;</span>My first book &amp;</span><br><span class="line">                                Prebronze<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;checkbox-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;melssnvideo&quot;</span>&gt;</span>Science Video<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;school&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-2 control-label&quot;</span>&gt;</span>类型2<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-8&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remark4&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;none&quot;</span>&gt;</span>请选择课程类型<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;LITERATURE&quot;</span>&gt;</span>LITERATURE<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;LiteratureAll&quot;</span>&gt;</span>LiteratureAll<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;CLASSIC&quot;</span>&gt;</span>CLASSIC<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;CLASSIC_CN&quot;</span>&gt;</span>CLASSIC_CN<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;STEP&quot;</span>&gt;</span>STEP<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;Points&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-2 control-label&quot;</span>&gt;</span>无限卡<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-sm-8&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;radio-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;unlimited&quot;</span> <span class="attr">value</span>=<span class="string">&quot;NO&quot;</span>&gt;</span> 非无限卡</span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;radio-inline&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;unlimited&quot;</span> <span class="attr">value</span>=<span class="string">&quot;YES&quot;</span>&gt;</span> 无限卡</span><br><span class="line">                            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-footer&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-default&quot;</span> <span class="attr">data-dismiss</span>=<span class="string">&quot;modal&quot;</span>&gt;</span>关闭<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary submit-btn&quot;</span> <span class="attr">data-id</span>=<span class="string">&quot;&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">onclick</span>=<span class="string">&quot;updateById(this)&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">// 点击修改按钮 弹出编辑窗口</span><br><span class="line">$(&quot;table&quot;).on(&quot;click&quot;, &quot;.edit&quot;, function() &#123;</span><br><span class="line">    let id = parseInt($(this).data(&quot;id&quot;))</span><br><span class="line">    $(&quot;#editMod&quot;).modal(&quot;show&quot;)</span><br><span class="line">    // 给提交按钮绑定id</span><br><span class="line">    $(&quot;#editMod&quot;).find(&quot;.submit-btn&quot;).data(&quot;id&quot;, id)</span><br><span class="line">    console.log($(&quot;#editMod&quot;).find(&quot;.submit-btn&quot;).data(&quot;id&quot;))</span><br><span class="line">    getById(id)</span><br><span class="line">&#125;)</span><br><span class="line">// 传的e是点击的提交按钮，为了获取提交按钮上绑定的id</span><br><span class="line">// &lt;button onclick=&quot;updateById(this)&quot;&gt;提交&lt;/button&gt;</span><br><span class="line">function updateById(e) &#123;</span><br><span class="line">    let id = $(e).data(&quot;id&quot;)</span><br><span class="line">    let data = &#123;&#125;</span><br><span class="line">    let passcode = $(&quot;#editForm&quot;).find(&quot;input[name=&#x27;passcode&#x27;]&quot;).val()</span><br><span class="line">    let email = $(&quot;#editForm&quot;).find(&quot;input[name=&#x27;email&#x27;]&quot;).val()</span><br><span class="line">    let exp_date = $(&quot;#editForm&quot;).find(&quot;input[name=&#x27;exp_date&#x27;]&quot;).val()</span><br><span class="line">    let status = $(&quot;#editForm&quot;).find(&quot;input[name=&#x27;status&#x27;]:checked&quot;).val()</span><br><span class="line">    let points = $(&quot;#editForm&quot;).find(&quot;input[name=&#x27;points&#x27;]&quot;).val()</span><br><span class="line">    let remark = $(&quot;#editForm&quot;).find(&quot;select[name=&#x27;remark&#x27;] option:selected&quot;).val()</span><br><span class="line">    let remark4 = $(&quot;#editForm&quot;).find(&quot;select[name=&#x27;remark4&#x27;] option:selected&quot;).val()</span><br><span class="line">    // remark3单独处理 ::</span><br><span class="line">    let remark3 = &quot;&quot;</span><br><span class="line">    $(&quot;#editForm input[name=&#x27;remark3&#x27;]:checked&quot;).each(function() &#123;</span><br><span class="line">        remark3 += $(this).val() + &quot;::&quot;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    data[&quot;id&quot;] = id</span><br><span class="line">    if (email &amp;&amp; email != &quot;&quot;) &#123;</span><br><span class="line">        data[&quot;email&quot;] = email</span><br><span class="line">    &#125;</span><br><span class="line">    if (exp_date &amp;&amp; exp_date != &quot;&quot;) &#123;</span><br><span class="line">        data[&quot;exp_date&quot;] = exp_date</span><br><span class="line">    &#125;</span><br><span class="line">    if (status &amp;&amp; status != &quot;&quot;) &#123;</span><br><span class="line">        data[&quot;status&quot;] = status</span><br><span class="line">    &#125;</span><br><span class="line">    if (points &amp;&amp; points != &quot;&quot;) &#123;</span><br><span class="line">        data[&quot;points&quot;] = points</span><br><span class="line">    &#125;</span><br><span class="line">    if (remark &amp;&amp; remark != &quot;&quot;) &#123;</span><br><span class="line">        data[&quot;remark&quot;] = escape(remark)</span><br><span class="line">    &#125;</span><br><span class="line">    if (remark3 &amp;&amp; remark3 != &quot;&quot;) &#123;</span><br><span class="line">        data[&quot;remark3&quot;] = remark3</span><br><span class="line">    &#125;</span><br><span class="line">    if (remark4 &amp;&amp; remark4 != &quot;&quot;) &#123;</span><br><span class="line">        data[&quot;remark4&quot;] = remark4</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(data)</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: &quot;POST&quot;,</span><br><span class="line">        url: &quot;server/unlockset.asp?action=updatebyid&quot;,</span><br><span class="line">        data: data,</span><br><span class="line">        success: function(data) &#123;</span><br><span class="line">            if (data == &quot;success&quot;) &#123;</span><br><span class="line">                $(&quot;#editMod&quot;).modal(&quot;hide&quot;)</span><br><span class="line">                fetchList()</span><br><span class="line">                alert(&quot;修改成功！&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        error: function(e) &#123;</span><br><span class="line">            // alert(&#x27;error&#x27;,e);  </span><br><span class="line">            console.dir(e)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>删除 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">$(<span class="string">&quot;table&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;click&quot;</span>, <span class="string">&quot;.del&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> id = $(<span class="variable language_">this</span>).<span class="title function_">data</span>(<span class="string">&quot;id&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> r = <span class="title function_">confirm</span>(<span class="string">&quot;确定要删除id=&quot;</span> + id + <span class="string">&quot;的这一条数据吗&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (r == <span class="literal">true</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        $.<span class="title function_">ajax</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">type</span>: <span class="string">&quot;POST&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">url</span>: <span class="string">&quot;server/unlockset.asp?action=deleteById&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">data</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="string">&quot;id&quot;</span>: id</span></span><br><span class="line"><span class="language-javascript">            &#125;,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">if</span> (data == <span class="string">&quot;success&quot;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="title function_">alert</span>(<span class="string">&quot;删除成功！&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">                    <span class="title function_">fetchList</span>()</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">error</span>: <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="comment">// alert(&#x27;error&#x27;,e);  </span></span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">dir</span>(e)</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">    &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">&#125;)</span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新增</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;.addCode&quot;</span>).on(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    $(<span class="string">&quot;#addMod&quot;</span>).modal(<span class="string">&quot;show&quot;</span>)</span><br><span class="line">    <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="number">111</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vbscript/" rel="tag"># vbscript</a>
+          
+            <a href="/tags/sqlServer/" rel="tag"># sqlServer</a>
+          
+            <a href="/tags/bootstrap/" rel="tag"># bootstrap</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/03/20/project/myself/" rel="next" title="一些自己写的功能">
+                <i class="fa fa-chevron-left"></i> 一些自己写的功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vbs%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">vbs连接数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#html%E9%A1%B5%E9%9D%A2%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">html页面设置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1331592937&auto=1&height=66"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2022/03/25 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Piero</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">37k</span>
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+    总访客数:
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+      
+  
+    </span>
+  
+
+  
+    <span class="site-pv">
+    总访问量: 
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+      
+  
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+ <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+</html>

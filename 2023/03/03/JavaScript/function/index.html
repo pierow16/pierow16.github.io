@@ -86,14 +86,15 @@
 <meta property="og:site_name" content="鸣子铺">
 <meta property="og:description" content="javascript中function&amp;method的概念以及this指向">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/images/niming.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/3317d7238cfa4c72807478874ad80cd9.png#pic_center">
 <meta property="article:published_time" content="2023-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-19T06:33:50.699Z">
+<meta property="article:modified_time" content="2023-03-23T10:11:35.704Z">
 <meta property="article:author" content="Piero">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="function">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/3317d7238cfa4c72807478874ad80cd9.png#pic_center">
+<meta name="twitter:image" content="http://example.com/images/niming.png">
 
 
 
@@ -386,8 +387,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-19T14:33:50+08:00">
-                2023-03-19
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-23T18:11:35+08:00">
+                2023-03-23
               </time>
             
           </span>
@@ -441,7 +442,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.5k
+                  2.7k
                 </span>
               
 
@@ -457,7 +458,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10
+                  11
                 </span>
               
             </div>
@@ -500,6 +501,21 @@
 <blockquote>
 <p>函数分为具名函数function fn(){} 和 匿名函数function(){}。此处主要介绍匿名函数。</p>
 </blockquote>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><div class="note "><ol>
+<li>常见形式 ()&#x3D;&gt;{}</li>
+<li>箭头函数<b>只有剩余参数…arr 没有arguments</b></li>
+<li>常用场景，匿名函数。</li>
+<li>匿名函数常用在绑定事件中比如$(“body”).on(“click”,function(){}), 如果回调函数(匿名函数)需要用到this，则不推荐使用箭头函数。<br>因为箭头函数没有自己的this，他的this是上一级(非匿名函数)的this (<b>是上一级的this 而不是上一级！！</b>)</li>
+</ol>
+<div class="note "><h3 id="箭头函数的几种形式"><a href="#箭头函数的几种形式" class="headerlink" title="箭头函数的几种形式"></a>箭头函数的几种形式</h3><ol>
+<li>当只有一个参数时候()可以省略 , 无参数或者参数超过1个的时候不可省</li>
+<li>只有一条执行语句时候 ，{}可以省，且默认带隐式return 需要return时候不用再写一次return<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 常见形式</span></span><br><span class="line"><span class="keyword">let</span> <span class="title function_">fn</span> = (<span class="params"></span>)=&gt;&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">123</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fn</span>() <span class="comment">//123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 当只有一个参数时候()可以省略</span></span><br><span class="line">fn = <span class="function"><span class="params">x</span> =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(x++)&#125;</span><br><span class="line"><span class="title function_">fn</span>(<span class="number">3</span>)  <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.只有一条执行语句时候 &#123;&#125;可以省，</span></span><br><span class="line"><span class="comment">// 且默认带隐式return 需要return时候不用再写一次return</span></span><br></pre></td></tr></table></figure>
+fn = x => x
+console.log(fn(5))  //5</li>
+</ol></div>
+<p><img src="/images/niming.png"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
 <h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><ol>
 <li>匿名函数的使用方式主要两种：函数表达式 和 立即执行函数</li>
 <li>匿名函数的使用场景：webAPI , JQ中大量使用了。<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let btn = document.querySelector(<span class="string">&#x27;button&#x27;</span>)</span><br><span class="line">btn.onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">btn.addEventListener(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;)</span><br><span class="line">// $(<span class="string">&quot;.btn&quot;</span>).on(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;)</span><br></pre></td></tr></table></figure></li>
@@ -772,7 +788,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">函数的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%A9%E4%BD%99%E5%8F%82%E6%95%B0-%E2%80%A6"><span class="nav-number">1.1.1.</span> <span class="nav-text">剩余参数  …</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0-arguments"><span class="nav-number">1.1.2.</span> <span class="nav-text">动态参数 arguments</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">匿名函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0-function"><span class="nav-number">1.2.2.</span> <span class="nav-text">立即执行函数 (function(){})()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">函数和方法区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this-%E4%B8%8A%E4%B8%8B%E6%96%87-%E7%9A%84%E6%8C%87%E5%90%91%E6%83%85%E5%86%B5"><span class="nav-number">3.</span> <span class="nav-text">this 上下文 的指向情况</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91"><span class="nav-number">3.1.</span> <span class="nav-text">箭头函数this指向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.2.</span> <span class="nav-text">构造函数this指向实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%AD%E7%9A%84this"><span class="nav-number">3.3.</span> <span class="nav-text">原型链中的this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91%E6%96%B9%E6%B3%95-call-apply"><span class="nav-number">3.4.</span> <span class="nav-text">改变this指向方法 call() apply()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call%E5%92%8Capply%E5%BC%82%E5%90%8C"><span class="nav-number">3.5.</span> <span class="nav-text">call和apply异同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="nav-number">3.6.</span> <span class="nav-text">枚举对象属性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">函数的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%A9%E4%BD%99%E5%8F%82%E6%95%B0-%E2%80%A6"><span class="nav-number">1.1.1.</span> <span class="nav-text">剩余参数  …</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0-arguments"><span class="nav-number">1.1.2.</span> <span class="nav-text">动态参数 arguments</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">箭头函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">箭头函数的几种形式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">匿名函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.3.1.</span> <span class="nav-text">函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0-function"><span class="nav-number">1.3.2.</span> <span class="nav-text">立即执行函数 (function(){})()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">函数和方法区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this-%E4%B8%8A%E4%B8%8B%E6%96%87-%E7%9A%84%E6%8C%87%E5%90%91%E6%83%85%E5%86%B5"><span class="nav-number">3.</span> <span class="nav-text">this 上下文 的指向情况</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91"><span class="nav-number">3.1.</span> <span class="nav-text">箭头函数this指向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0this%E6%8C%87%E5%90%91%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.2.</span> <span class="nav-text">构造函数this指向实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%AD%E7%9A%84this"><span class="nav-number">3.3.</span> <span class="nav-text">原型链中的this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91%E6%96%B9%E6%B3%95-call-apply"><span class="nav-number">3.4.</span> <span class="nav-text">改变this指向方法 call() apply()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call%E5%92%8Capply%E5%BC%82%E5%90%8C"><span class="nav-number">3.5.</span> <span class="nav-text">call和apply异同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="nav-number">3.6.</span> <span class="nav-text">枚举对象属性</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -806,7 +822,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">40.5k</span>
+    <span title="Site words total count">40.9k</span>
   
 </div>
 

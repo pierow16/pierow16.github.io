@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="字符串和数组的处理方式摘录收藏，持续ing">
+<meta name="description" content="字符串和数组和对象的处理方式摘录收藏，持续ing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串和数组的处理">
+<meta property="og:title" content="字符串和数组和对象整理">
 <meta property="og:url" content="http://example.com/2023/03/13/JavaScript/string_arr/index.html">
 <meta property="og:site_name" content="鸣子铺">
-<meta property="og:description" content="字符串和数组的处理方式摘录收藏，持续ing">
+<meta property="og:description" content="字符串和数组和对象的处理方式摘录收藏，持续ing">
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/images/slice.png">
+<meta property="og:image" content="http://example.com/images/jgfz1.png">
 <meta property="article:published_time" content="2023-03-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-13T14:03:31.790Z">
+<meta property="article:modified_time" content="2023-03-23T13:21:16.627Z">
 <meta property="article:author" content="Piero">
 <meta property="article:tag" content="字符串">
 <meta property="article:tag" content="数组">
@@ -129,7 +130,7 @@
 
 
 
-  <title>字符串和数组的处理 | 鸣子铺</title>
+  <title>字符串和数组和对象整理 | 鸣子铺</title>
   
 
 
@@ -357,7 +358,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">字符串和数组的处理</h1>
+          <h1 class="post-title" itemprop="name headline">字符串和数组和对象整理</h1>
         
 
         <div class="post-meta">
@@ -386,8 +387,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-13T22:03:31+08:00">
-                2023-03-13
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-23T21:21:16+08:00">
+                2023-03-23
               </time>
             
           </span>
@@ -441,7 +442,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  777
+                  1.5k
                 </span>
               
 
@@ -457,7 +458,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  7
                 </span>
               
             </div>
@@ -478,7 +479,7 @@
       
 
       
-        <blockquote class="blockquote-center"><p>字符串和数组的处理方式摘录收藏，持续ing </p>
+        <blockquote class="blockquote-center"><p>字符串和数组和对象的处理方式摘录收藏，持续ing </p>
 </blockquote>
 
 <span id="more"></span>
@@ -547,8 +548,40 @@
 
 
 
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><div class="note primary"><h2 id="数组拼接-concat"><a href="#数组拼接-concat" class="headerlink" title="数组拼接 concat()"></a>数组拼接 concat()</h2><p>ex: <code>arr1.concat(arr1,arr3)</code> 把数组arr2 和 arr3拼接到arr1后面<br>嵌套数组仍然以嵌套形式存在，可以扁平化（？</p>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><div class="note primary"><h2 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h2><h3 id="filter-方法"><a href="#filter-方法" class="headerlink" title="filter 方法"></a>filter 方法</h3><div class="note "><p>筛选数组符合条件的元素，并返回筛选之后元素的新数组</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const score = [<span class="number">70</span>,<span class="number">99</span>,<span class="number">50</span>,<span class="number">45</span>,<span class="number">65</span>,<span class="number">80</span>]</span><br><span class="line"><span class="comment">// 筛选分数大于60的</span></span><br><span class="line">const pass = score.<span class="built_in">filter</span>(<span class="function"><span class="params">item</span>=&gt;</span> item&gt;<span class="number">60</span>)</span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(pass) </span><br></pre></td></tr></table></figure>
+![](/images/filter.png)</div>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="arr-forEach-function-item-index"><a href="#arr-forEach-function-item-index" class="headerlink" title="arr.forEach(function(item[,index]){})"></a>arr.forEach(function(item[,index]){})</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const arr = [&quot;js&quot;,&quot;html&quot;,&quot;css&quot;]</span><br><span class="line">arr.<span class="keyword">forEach</span>(<span class="keyword">function</span>(item,<span class="keyword">index</span>)&#123;</span><br><span class="line">    conso.log(`元素是$(item),<span class="keyword">index</span>索引值是$&#123;<span class="keyword">index</span>&#125;`)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><blockquote>
+<p>可以<b>快速批量赋值变量</b>。 解构赋值的本质就是变量赋值。</p>
+</blockquote>
+<ol>
+<li>快速交换两个变量，不需要中间变量。  从右往左执行。<br>注意：数组开头且前面有语句时加分号  ;[] 类似立即执行函数 ;function(){} 。加了才被当成一个整体？<br>所以需要加分号的：解构赋值 以及 立即执行函数<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span><span class="params">()</span><span class="comment">&#123;&#125;</span>)<span class="params">()</span>;</span></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">;(<span class="function"><span class="keyword">function</span><span class="params">()</span><span class="comment">&#123;&#125;</span>)<span class="params">()</span></span></span><br><span class="line"><span class="function">;</span>[a,b]=[b,a]</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 1. 交换两个变量</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">let</span> a = <span class="number">3</span> ,b=<span class="number">4</span></span></span><br><span class="line"><span class="language-javascript">;[b,a] = [a,b] <span class="comment">// b=3,a=4</span></span></span><br><span class="line"><span class="language-javascript"><span class="comment">//冒泡排序</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">let</span> arr = [<span class="number">4</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">12</span>,<span class="number">5</span>,<span class="number">7</span>]</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>-<span class="number">1</span>;i++)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//每次循环完，都会有次大的一个被换到末尾</span></span></span><br><span class="line"><span class="language-javascript"> <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;arr.<span class="property">length</span>-i-<span class="number">1</span>;j++)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//前一个大于后一个交换位置</span></span></span><br><span class="line"><span class="language-javascript">       [arr[j+<span class="number">1</span>],arr[j]]=[arr[j],arr[j+<span class="number">1</span>]]</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"> &#125;   </span></span><br><span class="line"><span class="language-javascript"> <span class="variable language_">console</span>.<span class="title function_">log</span>(arr)  <span class="comment">// [4,5,7,8,10,12]</span></span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><mark>当变量个数大于数组长度时候</mark>，<b>多出来的变量会被赋值undefined</b>。<br> 想防止出现undefined的情况可以设置默认值 <code>[a=0,b=0]=[3]  //这样a=3,b=0</code><br><mark>当变量个数少于数组长度时候</mark>:<br>1)可以<b>用剩余参数…arr接收剩下的值</b><br>2）或者把不需要的那个位置空出来 比如 <code>[a,,b,c]</code></li>
+<li>遇到数组嵌套时候，只要格式一样就能取出来 <code>[a,[b,c]]=[1,[2,3]]  //a=1,b=2,c=3</code><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const [a,b,...arr] = [<span class="string">&quot;javascript&quot;</span>,<span class="string">&quot;html&quot;</span>,<span class="string">&quot;css&quot;</span>,<span class="string">&quot;less&quot;</span>,<span class="string">&quot;scss&quot;</span>]</span><br><span class="line">console.log(arr)   // [<span class="string">&quot;css&quot;</span>,<span class="string">&quot;less&quot;</span>,<span class="string">&quot;scss&quot;</span>] </span><br><span class="line"></span><br><span class="line">let [c=<span class="number">0</span>,d=<span class="number">0</span>]=[<span class="number">3</span>] // c=<span class="number">3</span>,d=<span class="number">0</span></span><br><span class="line"></span><br><span class="line">let [e,,f,g]=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]  // a=<span class="number">1</span>,b=<span class="number">3</span>,c=<span class="number">4</span></span><br><span class="line"></span><br><span class="line">[a,[b,c,d],e]=[<span class="string">&quot;javascript&quot;</span>,[<span class="string">&quot;html&quot;</span>,<span class="string">&quot;css&quot;</span>,<span class="string">&quot;less&quot;</span>],<span class="string">&quot;scss&quot;</span>]    </span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="数组拼接-concat"><a href="#数组拼接-concat" class="headerlink" title="数组拼接 concat()"></a>数组拼接 concat()</h2><p>ex: <code>arr1.concat(arr1,arr3)</code> 把数组arr2 和 arr3拼接到arr1后面<br>嵌套数组仍然以嵌套形式存在，可以扁平化（？</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="built_in">let</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">let</span> arr2 = [<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line"><span class="built_in">let</span> <span class="built_in">num</span> = <span class="number">7</span>;</span><br><span class="line"><span class="built_in">let</span> arr3 = [<span class="number">8</span>,<span class="number">9</span>];</span><br><span class="line">console.<span class="built_in">log</span>(arr1.<span class="built_in">concat</span>(arr2));</span><br><span class="line">// Array: arr1+arr2：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>]]</span><br><span class="line">console.<span class="built_in">log</span>(arr1.<span class="built_in">concat</span>(<span class="built_in">num</span>));</span><br><span class="line">// Array: arr1+<span class="built_in">num</span>：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">7</span>]</span><br><span class="line">console.<span class="built_in">log</span>(arr1.<span class="built_in">concat</span>(arr2,<span class="built_in">num</span>,arr3));</span><br><span class="line">// Array: arr1+arr2+<span class="built_in">num</span>+arr3：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>],<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><div class="note info"><h2 id="对象解构赋值"><a href="#对象解构赋值" class="headerlink" title="对象解构赋值"></a>对象解构赋值</h2><blockquote>
+<p>将对象属性和方法<b>快速批量赋值</b>给一系列变量的简洁语法</p>
+</blockquote>
+<ol>
+<li>对象属性的值将被赋值给与<b>属性名相同的变量</b>。对象中找不到与变量名一致的属性时变量值为 undefined。<ul>
+<li>可以重命名变量名 但有语法格式 <code>{name:username}</code>  将name重命名为username</li>
+</ul>
+</li>
+<li>注意解构的变量名<b>不要和外面的变量名冲突</b>否则报错<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 一般形态</span><br><span class="line">const <span class="keyword">user</span> =&#123;</span><br><span class="line">    <span class="type">name</span>:&quot;piero&quot;,</span><br><span class="line">    age:<span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line">let &#123;<span class="type">name</span>,age&#125; = <span class="keyword">user</span>   //<span class="type">name</span>=piero age=<span class="number">18</span></span><br><span class="line"></span><br><span class="line">// 重命名变量名 将<span class="type">name</span>重命名为username</span><br><span class="line">const &#123;<span class="type">name</span>:username ,age&#125; =<span class="keyword">user</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3>数组对象的解构</h3>
+
+<blockquote>
+<p>同样的：格式相同即可 赋值  。多级对象(对象嵌套对象) 也是同理</p>
+</blockquote>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const <span class="keyword">user</span>=[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">name</span>:<span class="string">&#x27;piero&#x27;</span>,</span><br><span class="line">        age:<span class="number">18</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">const [&#123;<span class="type">name</span>,age&#125;]=<span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/jgfz1.png"></p></div>
       
     </div>
     
@@ -728,7 +761,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6-myStr-length"><span class="nav-number">1.1.</span> <span class="nav-text">获取字符串长度 myStr.length;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E6%8B%BC%E6%8E%A5"><span class="nav-number">1.2.</span> <span class="nav-text">字符拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%AD%90%E4%B8%B2%E5%B9%B6%E6%88%AA%E5%8F%96"><span class="nav-number">1.3.</span> <span class="nav-text">查找子串并截取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE"><span class="nav-number">1.3.1.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%AD%90%E4%B8%B2%EF%BC%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">查看字符串是否存在子串：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%AA%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.3.3.</span> <span class="nav-text">截取字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2-str-replace%EF%BC%88stringToBeReplaced%EF%BC%8CstringToAdd%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">替换 str.replace（stringToBeReplaced，stringToAdd）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trim-%E6%B8%85%E9%99%A4%E5%A4%9A%E4%BD%99%E7%9A%84%E7%A9%BA%E6%A0%BC"><span class="nav-number">1.5.</span> <span class="nav-text">trim() 清除多余的空格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2-str-toLowerCase-%E5%92%8C-radData-toUpperCase"><span class="nav-number">1.6.</span> <span class="nav-text">大小写转换 str.toLowerCase() 和 radData.toUpperCase()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%92%8C%E6%95%B0%E5%80%BC%E4%BA%92%E8%BD%AC"><span class="nav-number">1.7.</span> <span class="nav-text">字符和数值互转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%A4%8D-repeat-count"><span class="nav-number">1.8.</span> <span class="nav-text">重复 repeat(count)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#startsWith-%E5%92%8C-endsWith"><span class="nav-number">1.9.</span> <span class="nav-text">startsWith() 和 endsWith()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#console-log-%E2%80%98a%E2%80%99-charCodeAt-x2F-x2F-97"><span class="nav-number">1.10.</span> <span class="nav-text">console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%8B%BC%E6%8E%A5-concat"><span class="nav-number">2.1.</span> <span class="nav-text">数组拼接 concat()</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6-myStr-length"><span class="nav-number">1.1.</span> <span class="nav-text">获取字符串长度 myStr.length;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E6%8B%BC%E6%8E%A5"><span class="nav-number">1.2.</span> <span class="nav-text">字符拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%AD%90%E4%B8%B2%E5%B9%B6%E6%88%AA%E5%8F%96"><span class="nav-number">1.3.</span> <span class="nav-text">查找子串并截取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE"><span class="nav-number">1.3.1.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%AD%90%E4%B8%B2%EF%BC%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">查看字符串是否存在子串：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%AA%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.3.3.</span> <span class="nav-text">截取字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2-str-replace%EF%BC%88stringToBeReplaced%EF%BC%8CstringToAdd%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">替换 str.replace（stringToBeReplaced，stringToAdd）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trim-%E6%B8%85%E9%99%A4%E5%A4%9A%E4%BD%99%E7%9A%84%E7%A9%BA%E6%A0%BC"><span class="nav-number">1.5.</span> <span class="nav-text">trim() 清除多余的空格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2-str-toLowerCase-%E5%92%8C-radData-toUpperCase"><span class="nav-number">1.6.</span> <span class="nav-text">大小写转换 str.toLowerCase() 和 radData.toUpperCase()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%92%8C%E6%95%B0%E5%80%BC%E4%BA%92%E8%BD%AC"><span class="nav-number">1.7.</span> <span class="nav-text">字符和数值互转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%A4%8D-repeat-count"><span class="nav-number">1.8.</span> <span class="nav-text">重复 repeat(count)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#startsWith-%E5%92%8C-endsWith"><span class="nav-number">1.9.</span> <span class="nav-text">startsWith() 和 endsWith()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#console-log-%E2%80%98a%E2%80%99-charCodeAt-x2F-x2F-97"><span class="nav-number">1.10.</span> <span class="nav-text">console.log(‘a’.charCodeAt()); &#x2F;&#x2F; 97</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%9B%E9%80%89"><span class="nav-number">2.1.</span> <span class="nav-text">筛选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#filter-%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.1.</span> <span class="nav-text">filter 方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8D%E5%8E%86"><span class="nav-number">2.2.</span> <span class="nav-text">遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#arr-forEach-function-item-index"><span class="nav-number">2.2.1.</span> <span class="nav-text">arr.forEach(function(item[,index]){})</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC"><span class="nav-number">2.3.</span> <span class="nav-text">解构赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%8B%BC%E6%8E%A5-concat"><span class="nav-number">2.4.</span> <span class="nav-text">数组拼接 concat()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1"><span class="nav-number">3.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC"><span class="nav-number">3.1.</span> <span class="nav-text">对象解构赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.1.1.</span> <span class="nav-text">数组对象的解构</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -762,7 +795,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">40.9k</span>
+    <span title="Site words total count">41.8k</span>
   
 </div>
 
